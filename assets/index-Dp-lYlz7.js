@@ -174,7 +174,13 @@ shadow-xl\r
                 max-w-xl\r
                 text-lg\r
                 text-slate-600\r
-              `,children:`Akses sistem pendaftaran peserta, penilaian lomba, administrasi event, dan monitoring festival secara real-time.`})]}),(0,J.jsx)(`div`,{className:`flex justify-center lg:justify-center`,children:(0,J.jsx)(Yv,{})})]})})]})}function Zv(){return(0,J.jsxs)(`section`,{className:`relative overflow-hidden py-28`,children:[` `,(0,J.jsxs)(`div`,{className:`absolute inset-0`,children:[` `,(0,J.jsx)(`div`,{className:`absolute left-0 top-0 h-96 w-96 rounded-full bg-green-200/40 blur-3xl`}),(0,J.jsx)(`div`,{className:`absolute right-0 bottom-0 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl`})]}),(0,J.jsx)(`div`,{className:`container relative mx-auto px-6`,children:(0,J.jsxs)(`div`,{className:`grid items-center gap-16 lg:grid-cols-2`,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
+              `,children:`Akses sistem pendaftaran peserta, penilaian lomba, administrasi event, dan monitoring festival secara real-time.`})]}),(0,J.jsx)(`div`,{className:`flex justify-center lg:justify-center`,children:(0,J.jsx)(Yv,{})})]})})]})}function Zv(){return(0,J.jsxs)(`section`,{className:`\r
+    relative\r
+    min-h-[calc(100svh-88px)]\r
+    flex\r
+    items-center\r
+    overflow-hidden\r
+  `,children:[` `,(0,J.jsxs)(`div`,{className:`absolute inset-0`,children:[` `,(0,J.jsx)(`div`,{className:`absolute left-0 top-0 h-96 w-96 rounded-full bg-green-200/40 blur-3xl`}),(0,J.jsx)(`div`,{className:`absolute right-0 bottom-0 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl`})]}),(0,J.jsx)(`div`,{className:`container relative mx-auto px-6`,children:(0,J.jsxs)(`div`,{className:`grid items-center gap-16 lg:grid-cols-2`,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
           inline-flex\r
           rounded-full\r
           bg-green-100\r
@@ -225,53 +231,76 @@ shadow-xl\r
             hover:bg-green-700\r
           `,children:`Kembali ke Beranda`})]})})}function ey(){return(0,J.jsx)(`header`,{className:`\r
         sticky\r
-        top-4\r
+        top-5\r
         z-50\r
         mx-auto\r
         w-[95%]\r
         max-w-7xl\r
-        rounded-2xl\r
+        rounded-3xl\r
         border\r
-        border-white/60\r
-        bg-white/80\r
-        backdrop-blur-xl\r
-        shadow-lg\r
-      `,children:(0,J.jsxs)(`div`,{className:`h-[72px] flex items-center justify-between px-6`,children:[(0,J.jsxs)(Ii,{to:`/`,className:`flex items-center gap-3`,children:[(0,J.jsx)(`div`,{className:`\r
-              flex\r
-              items-center\r
-              justify-center\r
-              h-12\r
-              w-12\r
+        border-white/20\r
+        bg-white/70\r
+        backdrop-blur-2xl\r
+        shadow-[0_8px_40px_rgba(0,0,0,0.08)]\r
+      `,children:(0,J.jsxs)(`div`,{className:`h-20 flex items-center justify-between px-8`,children:[(0,J.jsxs)(Ii,{to:`/`,className:`flex items-center gap-4 group`,children:[(0,J.jsx)(`div`,{className:`\r
+              relative\r
+              h-14\r
+              w-14\r
               rounded-2xl\r
               bg-gradient-to-br\r
               from-green-500\r
-              to-lime-500\r
-              text-white\r
-              font-bold\r
+              via-emerald-500\r
+              to-lime-400\r
+              flex\r
+              items-center\r
+              justify-center\r
               shadow-lg\r
-            `,children:`M`}),(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`h4`,{className:`font-bold text-slate-800`,children:`MPJ FEST`}),(0,J.jsx)(`p`,{className:`text-xs text-gray-500`,children:`Festival Media Pondok`})]})]}),(0,J.jsxs)(`nav`,{className:`hidden md:flex items-center gap-8`,children:[(0,J.jsx)(`a`,{href:`#festival`,className:`font-medium text-slate-700 hover:text-green-600 transition`,children:`Festival`}),(0,J.jsx)(`a`,{href:`#event`,className:`font-medium text-slate-700 hover:text-green-600 transition`,children:`Event`}),(0,J.jsx)(`a`,{href:`#tentang`,className:`font-medium text-slate-700 hover:text-green-600 transition`,children:`Tentang`})]}),(0,J.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,J.jsx)(Ii,{to:`/login`,className:`\r
+              ring-1\r
+              ring-white/40\r
+            `,children:(0,J.jsx)(`span`,{className:`text-white text-lg font-black`,children:`M`})}),(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`h4`,{className:`font-bold text-slate-900 tracking-tight`,children:`MPJ FEST`}),(0,J.jsx)(`p`,{className:`text-xs text-slate-500`,children:`Festival Media Pondok`})]})]}),(0,J.jsx)(`nav`,{className:`hidden md:flex items-center gap-10`,children:[`Festival`,`Event`,`Tentang`].map(e=>(0,J.jsx)(`a`,{href:`#${e.toLowerCase()}`,className:`\r
+                relative\r
+                text-sm\r
+                font-semibold\r
+                text-slate-700\r
+                transition\r
+                hover:text-slate-900\r
+                after:absolute\r
+                after:left-0\r
+                after:-bottom-1\r
+                after:h-[2px]\r
+                after:w-0\r
+                after:bg-green-500\r
+                after:transition-all\r
+                hover:after:w-full\r
+              `,children:e},e))}),(0,J.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,J.jsx)(Ii,{to:`/login`,className:`\r
               px-5\r
               py-2.5\r
               rounded-xl\r
-              font-medium\r
+              border\r
+              border-slate-200\r
+              bg-white/70\r
               text-slate-700\r
-              hover:bg-slate-100\r
-              transition\r
+              font-medium\r
+              hover:bg-white\r
+              hover:shadow-md\r
+              transition-all\r
             `,children:`Login`}),(0,J.jsx)(Ii,{to:`/register`,className:`\r
-              px-5\r
+              px-6\r
               py-2.5\r
               rounded-xl\r
               bg-gradient-to-r\r
               from-green-600\r
+              via-emerald-500\r
               to-lime-500\r
               text-white\r
               font-semibold\r
               shadow-lg\r
-              hover:scale-105\r
+              shadow-green-500/25\r
+              hover:-translate-y-0.5\r
               hover:shadow-xl\r
               transition-all\r
               duration-300\r
-            `,children:`Daftar`})]})]})})}function ty(){return(0,J.jsx)(`footer`,{id:`tentang`,className:`\r
+            `,children:`Daftar Sekarang`})]})]})})}function ty(){return(0,J.jsx)(`footer`,{id:`tentang`,className:`\r
       mt-24\r
       border-t\r
       border-slate-200\r
