@@ -153,37 +153,28 @@ shadow-xl\r
       text-center\r
       text-xs\r
       text-slate-400\r
-      `,children:[`© `,new Date().getFullYear(),` MPJ FEST`]})]})})]})}function Xv(){return(0,J.jsx)(`div`,{className:`relative overflow-hidden`,children:(0,J.jsx)(`div`,{className:`relative z-10 container mx-auto px-6 py-20`,children:(0,J.jsx)(`div`,{className:`mx-auto max-w-6xl`,children:(0,J.jsxs)(`div`,{className:`\r
-            grid\r
-            gap-10\r
-            lg:grid-cols-2\r
-            items-center\r
-          `,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
+      `,children:[`© `,new Date().getFullYear(),` MPJ FEST`]})]})})]})}function Xv(){return(0,J.jsxs)(`section`,{className:`relative overflow-hidden py-28`,children:[(0,J.jsxs)(`div`,{className:`absolute inset-0`,children:[(0,J.jsx)(`div`,{className:`absolute left-0 top-0 h-96 w-96 rounded-full bg-green-200/40 blur-3xl`}),(0,J.jsx)(`div`,{className:`absolute right-0 bottom-0 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl`})]}),(0,J.jsx)(`div`,{className:`container relative mx-auto px-6`,children:(0,J.jsxs)(`div`,{className:`grid items-center gap-16 lg:grid-cols-2`,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
                 inline-flex\r
-                items-center\r
                 rounded-full\r
-                border\r
-                border-green-200\r
-                bg-white\r
+                bg-green-100\r
                 px-4\r
                 py-2\r
                 text-sm\r
                 font-medium\r
                 text-green-700\r
-                shadow-sm\r
               `,children:`MPJ FEST 2026`}),(0,J.jsxs)(`h1`,{className:`\r
                 mt-6\r
-                text-5xl\r
+                text-6xl\r
                 font-black\r
                 leading-tight\r
-                text-slate-900\r
-              `,children:[`Portal Peserta &`,(0,J.jsx)(`span`,{className:`block text-green-600`,children:`Manajemen Festival`})]}),(0,J.jsx)(`p`,{className:`\r
-                mt-6\r
-                max-w-lg\r
+                tracking-tight\r
+                lg:text-7xl\r
+              `,children:[`Portal Peserta`,(0,J.jsx)(`span`,{className:`block text-green-600`,children:`& Manajemen Festival`})]}),(0,J.jsx)(`p`,{className:`\r
+                mt-8\r
+                max-w-xl\r
                 text-lg\r
-                leading-relaxed\r
                 text-slate-600\r
-              `,children:`Akses sistem pendaftaran peserta, penilaian lomba, administrasi event, dan monitoring festival secara real-time.`})]}),(0,J.jsx)(`div`,{className:`flex justify-center lg:justify-end`,children:(0,J.jsx)(Yv,{})})]})})})})}function Zv(){return(0,J.jsxs)(`section`,{className:`relative overflow-hidden py-28`,children:[` `,(0,J.jsxs)(`div`,{className:`absolute inset-0`,children:[` `,(0,J.jsx)(`div`,{className:`absolute left-0 top-0 h-96 w-96 rounded-full bg-green-200/40 blur-3xl`}),(0,J.jsx)(`div`,{className:`absolute right-0 bottom-0 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl`})]}),(0,J.jsx)(`div`,{className:`container relative mx-auto px-6`,children:(0,J.jsxs)(`div`,{className:`grid items-center gap-16 lg:grid-cols-2`,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
+              `,children:`Akses sistem pendaftaran peserta, penilaian lomba, administrasi event, dan monitoring festival secara real-time.`})]}),(0,J.jsx)(`div`,{className:`flex justify-center lg:justify-center`,children:(0,J.jsx)(Yv,{})})]})})]})}function Zv(){return(0,J.jsxs)(`section`,{className:`relative overflow-hidden py-28`,children:[` `,(0,J.jsxs)(`div`,{className:`absolute inset-0`,children:[` `,(0,J.jsx)(`div`,{className:`absolute left-0 top-0 h-96 w-96 rounded-full bg-green-200/40 blur-3xl`}),(0,J.jsx)(`div`,{className:`absolute right-0 bottom-0 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl`})]}),(0,J.jsx)(`div`,{className:`container relative mx-auto px-6`,children:(0,J.jsxs)(`div`,{className:`grid items-center gap-16 lg:grid-cols-2`,children:[(0,J.jsxs)(`div`,{children:[(0,J.jsx)(`span`,{className:`\r
           inline-flex\r
           rounded-full\r
           bg-green-100\r
