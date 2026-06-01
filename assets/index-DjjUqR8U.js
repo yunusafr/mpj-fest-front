@@ -467,7 +467,7 @@ border-r\r
 hidden\r
 lg:flex\r
 lg:flex-col\r
-`,style:{background:`linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.92))`,borderColor:`rgba(6,70,34,.08)`},children:[(0,R.jsx)(`div`,{className:`flex items-center justify-center px-6 py-8`,children:(0,R.jsx)(`img`,{src:`/mpj-horizontal-color.png`,alt:`MPJ Fest`,className:`h-10 w-auto object-contain`})}),(0,R.jsx)(`nav`,{className:`flex-1 px-4`,children:t.map(e=>{let t=e.icon;return(0,R.jsxs)(Au,{to:e.path,className:({isActive:e})=>`
+`,style:{background:`linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.92))`,borderColor:`rgba(6,70,34,.08)`},children:[(0,R.jsx)(`div`,{className:`flex items-center justify-center px-6 py-8`,children:(0,R.jsx)(ku,{to:`/`,children:(0,R.jsx)(`img`,{src:`/mpj-horizontal-color.png`,alt:`MPJ Fest`,className:`h-10 w-auto object-contain`})})}),(0,R.jsx)(`nav`,{className:`flex-1 px-4`,children:t.map(e=>{let t=e.icon;return(0,R.jsxs)(Au,{to:e.path,className:({isActive:e})=>`
         flex
         items-center
         gap-3
