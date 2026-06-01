@@ -435,48 +435,37 @@ shadow-xl\r
           text-3xl\r
           font-black\r
         `,style:{color:`#064622`},children:t})]})}var Ux={super_admin:[{title:`Dashboard`,path:`/super-admin`,icon:Ax},{title:`Festival`,path:`/super-admin/festivals`,icon:Px},{title:`Event`,path:`/super-admin/events`,icon:Tx},{title:`Juri`,path:`/super-admin/judges`,icon:Rx},{title:`Admin Event`,path:`/super-admin/admin-events`,icon:Ix},{title:`Pembayaran`,path:`/super-admin/payments`,icon:Ox},{title:`Voting`,path:`/super-admin/voting`,icon:zx},{title:`Sertifikat`,path:`/super-admin/certificates`,icon:Sx}],admin_event:[{title:`Dashboard`,path:`/admin-event`,icon:Ax},{title:`Peserta`,path:`/admin-event/participants`,icon:Rx},{title:`Presensi`,path:`/admin-event/attendance`,icon:Fx},{title:`Pembayaran`,path:`/admin-event/payments`,icon:Ox},{title:`Sertifikat`,path:`/admin-event/certificates`,icon:Sx}],juri:[{title:`Dashboard`,path:`/judge`,icon:Ax},{title:`Penilaian`,path:`/judge/scoring`,icon:Dx},{title:`Rekap`,path:`/judge/recap`,icon:kx}],peserta:[{title:`Dashboard`,path:`/participant`,icon:Ax},{title:`Event Saya`,path:`/participant/events`,icon:Tx},{title:`Pembayaran`,path:`/participant/payments`,icon:Ox},{title:`E-Ticket`,path:`/participant/tickets`,icon:Nx},{title:`Sertifikat`,path:`/participant/certificates`,icon:Sx}]};function Wx(){let e=ka(e=>e.user),t=Ux[e?.role]||[];return(0,R.jsxs)(`aside`,{className:`\r
-fixed\r
-left-0\r
-top-0\r
-z-40\r
-h-screen\r
-w-72\r
-overflow-hidden\r
-border-r\r
-hidden\r
-lg:flex\r
-lg:flex-col\r
-`,style:{background:`linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.92))`,borderColor:`rgba(6,70,34,.08)`},children:[(0,R.jsx)(`div`,{className:`flex items-center justify-center px-6 py-8`,children:(0,R.jsx)(sd,{to:`/`,children:(0,R.jsx)(`img`,{src:`/mpj-horizontal-color.png`,alt:`MPJ Fest`,className:`h-10 w-auto object-contain`})})}),(0,R.jsx)(`nav`,{className:`flex-1 px-4`,children:t.map(e=>{let t=e.icon;return(0,R.jsxs)(cd,{to:e.path,className:({isActive:e})=>`
-        flex
-        items-center
-        gap-3
-        px-4
-        py-3
-        mb-2
-        rounded-xl
-        transition-all
-        ${e?`
-              bg-gradient-to-r
-              from-green-500
-              to-green-600
-              text-white
-              shadow-lg
-            `:`
-              text-slate-600
-              hover:bg-slate-100
-              hover:text-slate-900
-            `}
-      `,children:[(0,R.jsx)(t,{size:18,strokeWidth:2.2,className:`shrink-0`}),(0,R.jsx)(`span`,{children:e.title})]},e.path)})}),(0,R.jsx)(`div`,{className:`border-t border-slate-200/60 p-4`,children:(0,R.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,R.jsx)(`div`,{className:`\r
-              flex\r
-              h-10\r
-              w-10\r
-              items-center\r
-              justify-center\r
-              rounded-full\r
-              bg-green-100\r
-              text-green-700\r
-              font-semibold\r
-            `,children:e?.nama?.charAt(0)?.toUpperCase()}),(0,R.jsxs)(`div`,{className:`min-w-0`,children:[(0,R.jsx)(`p`,{className:`truncate text-sm font-medium text-slate-800`,children:e?.nama}),(0,R.jsx)(`p`,{className:`text-xs text-slate-500`,children:{super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`}[e?.role]||`-`})]})]})})]})}var Gx=()=>mn({mutationFn:Sa.logout});function Kx(){let[e,t]=(0,S.useState)(!1),n=Ml(),r=ka(e=>e.user),i=ka(e=>e.logout),a=Gx(),o={super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`};return(0,R.jsxs)(`div`,{className:`relative`,children:[(0,R.jsxs)(`button`,{onClick:()=>t(!e),className:`\r
+        z-40\r
+\r
+        /* MOBILE bottom nav */\r
+        fixed bottom-0 left-0 right-0\r
+        h-20 w-full\r
+        flex flex-row\r
+        items-center justify-around\r
+        border-t bg-white\r
+\r
+        /* DESKTOP sidebar */\r
+        lg:relative\r
+        lg:h-screen\r
+        lg:w-60\r
+        lg:flex-col\r
+        lg:justify-between\r
+        lg:border-r\r
+      `,style:{background:`linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.92))`,borderColor:`rgba(6,70,34,.08)`},children:[(0,R.jsx)(`div`,{className:`hidden lg:flex items-center justify-center px-6 py-8`,children:(0,R.jsx)(sd,{to:`/`,children:(0,R.jsx)(`img`,{src:`/mpj-horizontal-color.png`,alt:`MPJ Fest`,className:`h-10 w-auto object-contain`})})}),(0,R.jsx)(`nav`,{className:`flex-1 flex lg:block justify-around lg:justify-start px-2 lg:px-4`,children:t.map(e=>{let t=e.icon;return(0,R.jsxs)(cd,{to:e.path,className:({isActive:e})=>`
+  flex flex-col lg:flex-row
+  items-center
+  gap-1 lg:gap-2
+px-3 lg:px-6 py-2 lg:py-3
+  rounded-xl
+  transition-all
+  text-xs lg:text-base
+
+  ${e?`
+        bg-green-100 text-green-700
+        lg:bg-gradient-to-r lg:from-green-500 lg:to-green-600
+        lg:text-white lg:shadow-lg
+      `:`text-slate-600 hover:bg-slate-100 hover:text-slate-900`}
+`,children:[(0,R.jsx)(t,{className:`w-5 h-5 lg:w-6 lg:h-6`,strokeWidth:2}),(0,R.jsx)(`span`,{className:`mt-0.5 lg:mt-0 `,children:e.title})]},e.path)})}),(0,R.jsx)(`div`,{className:`hidden lg:flex border-t border-slate-200/60 p-4`,children:(0,R.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,R.jsx)(`div`,{className:`flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-700 font-semibold`,children:e?.nama?.charAt(0)?.toUpperCase()}),(0,R.jsxs)(`div`,{className:`min-w-0`,children:[(0,R.jsx)(`p`,{className:`truncate text-sm font-medium text-slate-800`,children:e?.nama}),(0,R.jsx)(`p`,{className:`text-xs text-slate-500`,children:{super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`}[e?.role]||`-`})]})]})})]})}var Gx=()=>mn({mutationFn:Sa.logout});function Kx(){let[e,t]=(0,S.useState)(!1),n=Ml(),r=ka(e=>e.user),i=ka(e=>e.logout),a=Gx(),o={super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`};return(0,R.jsxs)(`div`,{className:`relative`,children:[(0,R.jsxs)(`button`,{onClick:()=>t(!e),className:`\r
           flex\r
           items-center\r
           gap-3\r
@@ -527,7 +516,7 @@ lg:flex-col\r
         border-b\r
         bg-white/70\r
         backdrop-blur-xl\r
-      `,style:{borderColor:`rgba(6,70,34,.08)`},children:(0,R.jsxs)(`div`,{className:`flex h-full items-center justify-between px-6`,children:[(0,R.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,R.jsx)(`div`,{className:`h-2 w-2 rounded-full`,style:{backgroundColor:`#064622`}}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(`p`,{className:`text-sm font-medium text-slate-800`,children:`Dashboard`}),(0,R.jsx)(`p`,{className:`text-xs text-slate-500`,children:`MPJ Fest Admin Panel`})]})]}),(0,R.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,R.jsx)(`div`,{className:`hidden h-6 w-px sm:block`,style:{backgroundColor:`rgba(6,70,34,.15)`}}),(0,R.jsx)(Kx,{})]})]})})}function Jx(){return(0,R.jsxs)(`div`,{className:`min-h-screen bg-slate-50`,children:[(0,R.jsx)(Wx,{}),(0,R.jsxs)(`div`,{className:`lg:pl-72`,children:[(0,R.jsx)(qx,{}),(0,R.jsx)(`main`,{className:`p-6`,children:(0,R.jsx)(hu,{})})]})]})}var Yx=Ov({niam:ev().min(5,`NIAM wajib diisi`)});function Xx({onSearch:e,loading:t}){let{register:n,handleSubmit:r,formState:{errors:i}}=qf({resolver:D_(Yx)});return(0,R.jsxs)(`div`,{className:`\r
+      `,style:{borderColor:`rgba(6,70,34,.08)`},children:(0,R.jsxs)(`div`,{className:`flex h-full items-center justify-between px-6`,children:[(0,R.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,R.jsx)(`div`,{className:`h-2 w-2 rounded-full`,style:{backgroundColor:`#064622`}}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(`p`,{className:`text-sm font-medium text-slate-800`,children:`Dashboard`}),(0,R.jsx)(`p`,{className:`text-xs text-slate-500`,children:`MPJ Fest Admin Panel`})]})]}),(0,R.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,R.jsx)(`div`,{className:`hidden h-6 w-px sm:block`,style:{backgroundColor:`rgba(6,70,34,.15)`}}),(0,R.jsx)(Kx,{})]})]})})}function Jx(){return(0,R.jsxs)(`div`,{className:`min-h-screen bg-slate-50 flex`,children:[(0,R.jsx)(Wx,{}),(0,R.jsxs)(`div`,{className:`flex-1 min-w-0 flex flex-col`,children:[(0,R.jsx)(qx,{}),(0,R.jsx)(`main`,{className:`p-6 pb-24 lg:pb-6`,children:(0,R.jsx)(hu,{})})]})]})}var Yx=Ov({niam:ev().min(5,`NIAM wajib diisi`)});function Xx({onSearch:e,loading:t}){let{register:n,handleSubmit:r,formState:{errors:i}}=qf({resolver:D_(Yx)});return(0,R.jsxs)(`div`,{className:`\r
 relative\r
 w-full\r
 max-w-xl\r
