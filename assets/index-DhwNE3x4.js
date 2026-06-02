@@ -233,7 +233,7 @@ shadow-xl\r
           text-sm\r
           font-medium\r
           text-green-700\r
-          `,children:`MPJ FEST 2026`}),(0,R.jsxs)(`h1`,{className:`\r
+          `,children:`MPJJK FEST 2026`}),(0,R.jsxs)(`h1`,{className:`\r
           mt-6\r
           text-6xl\r
           font-black\r
