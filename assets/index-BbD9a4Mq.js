@@ -1462,245 +1462,103 @@ mt-6\r
         rounded-2xl\r
         py-12\r
         text-center\r
-      `,children:(0,V.jsx)(`p`,{className:`text-slate-500`,children:`Event tidak ditemukan, Anda belum Mendaftar apapun.`})})}var RS=e=>ko({queryKey:[`registration`,e],queryFn:()=>DS.registrationDetail(e),enabled:!!e});function zS(){let{id:e}=ur(),t=or(),n=mo(),{data:r,isLoading:i}=RS(e);if(i)return(0,V.jsx)(`div`,{className:`flex justify-center py-24 text-slate-500`,children:`Loading...`});let a=r?.data,o=a?.event;return a?(0,V.jsx)(`div`,{className:`max-w-5xl mx-auto px-4`,children:(0,V.jsxs)(`div`,{className:`\r
-          relative\r
-          overflow-hidden\r
-          rounded-3xl\r
-          border border-slate-200/70\r
+      `,children:(0,V.jsx)(`p`,{className:`text-slate-500`,children:`Event tidak ditemukan, Anda belum Mendaftar apapun.`})})}var RS=e=>ko({queryKey:[`registration`,e],queryFn:()=>DS.registrationDetail(e),enabled:!!e});function zS(){let{id:e}=ur(),t=or(),n=mo(),{data:r,isLoading:i}=RS(e);if(i)return(0,V.jsx)(`div`,{className:`flex justify-center py-20 text-slate-500`,children:`Loading...`});let a=r?.data,o=a?.event;return a?(0,V.jsx)(`div`,{className:`max-w-3xl mx-auto`,children:(0,V.jsxs)(`div`,{className:`\r
           bg-white\r
-          shadow-[0_20px_60px_rgba(15,23,42,0.08)]\r
-          transition-all\r
-          duration-300\r
-          hover:-translate-y-1\r
-        `,children:[(0,V.jsx)(`div`,{className:`absolute -top-24 -right-24 h-72 w-72 bg-emerald-100 blur-3xl opacity-60`}),(0,V.jsxs)(`div`,{className:`relative p-7 md:p-9`,children:[(0,V.jsxs)(`div`,{className:`flex flex-wrap gap-2`,children:[(0,V.jsx)(`span`,{className:`rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200`,children:o?.kategori}),(0,V.jsx)(BS,{status:a?.status_pembayaran})]}),(0,V.jsx)(`h1`,{className:`mt-5 text-3xl md:text-4xl font-bold text-slate-900 leading-snug`,children:o?.nama}),(0,V.jsxs)(`p`,{className:`mt-2 text-sm text-slate-500`,children:[`Order ID: `,a?.order_id]}),(0,V.jsxs)(`div`,{className:`mt-7 grid grid-cols-2 md:grid-cols-4 gap-4`,children:[(0,V.jsx)(VS,{label:`Status`,value:a?.status_pembayaran}),(0,V.jsx)(VS,{label:`Jenis`,value:o?.jenis}),(0,V.jsx)(VS,{label:`Kategori`,value:o?.kategori}),(0,V.jsx)(VS,{label:`Lokasi`,value:o?.lokasi})]}),(0,V.jsxs)(`div`,{className:`mt-8 border-t border-slate-100 pt-6 flex flex-wrap gap-3`,children:[a?.status_pembayaran===`pending`&&(0,V.jsx)(`button`,{onClick:()=>{if(!window.snap){Ko.error(`Midtrans belum dimuat`);return}if(!a?.snap_token){Ko.error(`Token pembayaran tidak ditemukan`);return}window.snap.pay(a.snap_token,{onSuccess:()=>{Ko.success(`Pembayaran berhasil`),setTimeout(()=>t(`/participant/my-events`),1200)},onPending:()=>{Ko.info(`Menunggu pembayaran`),n.invalidateQueries({queryKey:[`registration`,e]})},onError:()=>Ko.error(`Pembayaran gagal`)})},className:`\r
-                  h-11 px-6\r
-                  rounded-2xl\r
-                  bg-slate-900\r
-                  text-white\r
-                  text-sm font-semibold\r
-                  hover:bg-slate-800\r
-                  transition\r
-                `,children:`Bayar Sekarang`}),a?.status_pembayaran===`settlement`&&o?.jenis===`lomba`&&(0,V.jsx)(`button`,{onClick:()=>t(`/participant/submissions/${a.id}`),className:`\r
-        h-11 px-6 rounded-2xl\r
-        bg-blue-50 text-blue-700\r
-        ring-1 ring-blue-200\r
-        text-sm font-semibold\r
-        hover:bg-blue-100 transition\r
-      `,children:`Upload Karya`}),a?.status_pembayaran===`settlement`&&o?.jenis===`non_lomba`&&(0,V.jsx)(`button`,{className:`\r
-                  h-11 px-6 rounded-2xl\r
-                  bg-emerald-50 text-emerald-700\r
-                  ring-1 ring-emerald-200\r
-                  text-sm font-semibold\r
-                  hover:bg-emerald-100 transition\r
-                `,children:`Lihat Tiket`})]})]})]})}):(0,V.jsx)(`div`,{className:`text-center py-24 text-slate-500`,children:`Data registrasi tidak ditemukan`})}function BS({status:e}){let t={pending:{className:`bg-amber-50 text-amber-700 ring-1 ring-amber-200`,icon:(0,V.jsx)(Cx,{size:14})},settlement:{className:`bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200`,icon:(0,V.jsx)(bx,{size:14})},expire:{className:`bg-red-50 text-red-700 ring-1 ring-red-200`,icon:(0,V.jsx)(Cx,{size:14})}},n=t[e]||t.pending;return(0,V.jsxs)(`span`,{className:`
-        inline-flex items-center gap-1
-        rounded-full px-3 py-1
-        text-xs font-semibold
-        ${n.className}
-      `,children:[n.icon,e]})}function VS({label:e,value:t}){return(0,V.jsxs)(`div`,{className:`rounded-2xl border border-slate-200/60 bg-slate-50 p-4`,children:[(0,V.jsx)(`p`,{className:`text-[11px] uppercase tracking-wider text-slate-400`,children:e}),(0,V.jsx)(`p`,{className:`mt-2 text-sm font-semibold text-slate-900`,children:t||`-`})]})}var HS={getByRegistration:async e=>(await K_.get(`/submissions/${e}`)).data,upload:async e=>(await K_.post(`/submissions`,e,{headers:{"Content-Type":`multipart/form-data`}})).data},US=e=>ko({queryKey:[`submission`,e],queryFn:()=>HS.getByRegistration(e)}),WS=()=>Ao({mutationFn:HS.upload});function GS({label:e,value:t}){return(0,V.jsxs)(`div`,{className:`\r
-        rounded-2xl\r
-        border\r
-        border-slate-200\r
-        bg-white\r
-        p-4\r
-      `,children:[(0,V.jsx)(`p`,{className:`\r
-          text-xs\r
-          uppercase\r
-          tracking-wide\r
-          text-slate-400\r
-        `,children:e}),(0,V.jsx)(`p`,{className:`\r
-          mt-1\r
-          font-semibold\r
-          text-slate-800\r
-        `,children:t||`-`})]})}function KS(){let{registrationId:e}=ur(),{data:t,refetch:n}=US(e),r=t?.data,i=WS(),[a,o]=(0,S.useState)(``),[s,c]=(0,S.useState)(``),[l,u]=(0,S.useState)(null),d={pending:{text:`Menunggu Verifikasi`,className:`bg-amber-50 text-amber-700 ring-amber-200`},verified:{text:`Terverifikasi`,className:`bg-emerald-50 text-emerald-700 ring-emerald-200`},rejected:{text:`Ditolak`,className:`bg-red-50 text-red-700 ring-red-200`}}[r?.status]||{text:`Belum Diketahui`,className:`bg-slate-100 text-slate-700 ring-slate-200`};return r?(0,V.jsx)(`div`,{className:`max-w-5xl mx-auto px-4`,children:(0,V.jsxs)(`div`,{className:`\r
-            relative\r
-            overflow-hidden\r
-            rounded-3xl\r
-            border border-slate-200/70\r
-            bg-white\r
-            shadow-[0_20px_60px_rgba(15,23,42,0.08)]\r
-          `,children:[(0,V.jsx)(`div`,{className:`\r
-              absolute\r
-              -top-24\r
-              -right-24\r
-              h-72\r
-              w-72\r
-              bg-emerald-100\r
-              blur-3xl\r
-              opacity-60\r
-            `}),(0,V.jsxs)(`div`,{className:`relative p-7 md:p-9`,children:[(0,V.jsxs)(`div`,{className:`
-                inline-flex
-                items-center
-                gap-2
-                rounded-full
-                px-4
-                py-2
-                text-sm
-                font-semibold
-                ring-1
-                ${d.className}
-              `,children:[(0,V.jsx)(xx,{size:16}),d.text]}),(0,V.jsx)(`h1`,{className:`\r
-                mt-5\r
-                text-3xl\r
-                md:text-4xl\r
-                font-bold\r
-                text-slate-900\r
-              `,children:`Karya Saya`}),(0,V.jsx)(`div`,{className:`\r
-                mt-8\r
-                rounded-3xl\r
-                border\r
-                border-slate-200\r
-                bg-slate-50\r
-                p-6\r
-              `,children:(0,V.jsxs)(`div`,{className:`flex items-start gap-4`,children:[(0,V.jsx)(`div`,{className:`\r
-                    h-12\r
-                    w-12\r
-                    rounded-2xl\r
-                    bg-blue-100\r
-                    flex\r
-                    items-center\r
-                    justify-center\r
-                    text-blue-700\r
-                  `,children:(0,V.jsx)(Ox,{size:22})}),(0,V.jsxs)(`div`,{className:`flex-1`,children:[(0,V.jsx)(`p`,{className:`\r
-                      text-xs\r
-                      uppercase\r
-                      tracking-wider\r
-                      text-slate-400\r
-                    `,children:`Judul Karya`}),(0,V.jsx)(`h2`,{className:`\r
-                      mt-1\r
-                      text-xl\r
-                      font-bold\r
-                      text-slate-900\r
-                    `,children:r.judul_karya}),(0,V.jsx)(`p`,{className:`\r
-                      mt-4\r
-                      text-sm\r
-                      leading-relaxed\r
-                      text-slate-600\r
-                    `,children:r.deskripsi_karya||`-`})]})]})}),(0,V.jsxs)(`div`,{className:`grid md:grid-cols-2 gap-4 mt-6`,children:[(0,V.jsx)(GS,{label:`Event`,value:r?.registration?.event?.nama}),(0,V.jsx)(GS,{label:`Kategori`,value:r?.registration?.event?.kategori}),(0,V.jsx)(GS,{label:`Status`,value:d.text}),(0,V.jsx)(GS,{label:`Tanggal Upload`,value:new Date(r.created_at).toLocaleDateString(`id-ID`)})]}),(0,V.jsx)(`div`,{className:`mt-6`,children:(0,V.jsxs)(`a`,{href:`https://api-mpj-fest.ingintau.my.id/${r.file_url}`,target:`_blank`,rel:`noreferrer`,className:`\r
-                  inline-flex\r
-                  items-center\r
-                  gap-2\r
-                  h-11\r
-                  px-6\r
-                  rounded-2xl\r
-                  bg-blue-50\r
-                  text-blue-700\r
-                  text-sm\r
-                  font-semibold\r
-                  transition\r
-                  hover:bg-blue-100\r
-                `,children:[(0,V.jsx)(Ex,{size:16}),`Lihat File Karya`]})})]})]})}):(0,V.jsx)(`div`,{className:`max-w-5xl mx-auto px-4`,children:(0,V.jsxs)(`form`,{onSubmit:async t=>{if(t.preventDefault(),!l){Ko.error(`Pilih file terlebih dahulu`);return}let r=new FormData;r.append(`registration_id`,e),r.append(`judul_karya`,a),r.append(`deskripsi_karya`,s),r.append(`file_karya`,l);try{await i.mutateAsync(r),Ko.success(`Karya berhasil diupload`),n()}catch(e){Ko.error(e?.response?.data?.message||`Upload gagal`)}},className:`\r
-          relative\r
-          overflow-hidden\r
           rounded-3xl\r
-          border border-slate-200/70\r
-          bg-white\r
-          shadow-[0_20px_60px_rgba(15,23,42,0.08)]\r
-        `,children:[(0,V.jsx)(`div`,{className:`\r
-            absolute\r
-            -top-24\r
-            -right-24\r
-            h-72\r
-            w-72\r
-            bg-blue-100\r
-            blur-3xl\r
-            opacity-60\r
-          `}),(0,V.jsxs)(`div`,{className:`relative p-7 md:p-9`,children:[(0,V.jsx)(`h1`,{className:`\r
-              text-3xl\r
-              md:text-4xl\r
-              font-bold\r
-              text-slate-900\r
-            `,children:`Upload Karya`}),(0,V.jsx)(`p`,{className:`\r
-              mt-2\r
-              text-sm\r
-              text-slate-500\r
-            `,children:`Pastikan file yang dikirim sesuai dengan ketentuan lomba.`}),(0,V.jsxs)(`div`,{className:`mt-8 space-y-5`,children:[(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`\r
-                  mb-2\r
-                  block\r
-                  text-sm\r
-                  font-semibold\r
-                  text-slate-700\r
-                `,children:`Judul Karya`}),(0,V.jsx)(`input`,{type:`text`,value:a,onChange:e=>o(e.target.value),placeholder:`Masukkan judul karya`,className:`\r
+          border\r
+          border-slate-200\r
+          shadow-sm\r
+          overflow-hidden\r
+        `,children:[(0,V.jsxs)(`div`,{className:`p-6 md:p-8 border-b border-slate-100`,children:[(0,V.jsxs)(`div`,{className:`flex items-center gap-2 flex-wrap`,children:[(0,V.jsx)(`span`,{className:`\r
+                inline-flex\r
+                items-center\r
+                rounded-full\r
+                bg-green-100\r
+                px-3\r
+                py-1\r
+                text-xs\r
+                font-medium\r
+                text-green-700\r
+              `,children:o?.kategori}),(0,V.jsx)(BS,{status:a?.status_pembayaran})]}),(0,V.jsx)(`h1`,{className:`mt-4 text-2xl md:text-3xl font-bold text-slate-900`,children:o?.nama}),(0,V.jsxs)(`p`,{className:`mt-3 text-slate-600`,children:[`Order ID: `,a?.order_id]})]}),(0,V.jsxs)(`div`,{className:`p-6 md:p-8`,children:[(0,V.jsxs)(`div`,{className:`grid md:grid-cols-2 gap-6`,children:[(0,V.jsx)(VS,{label:`Status`,value:a?.status_pembayaran}),(0,V.jsx)(VS,{label:`Jenis`,value:o?.jenis}),(0,V.jsx)(VS,{label:`Kategori`,value:o?.kategori}),(0,V.jsx)(VS,{label:`Lokasi`,value:o?.lokasi})]}),(0,V.jsxs)(`div`,{className:`mt-8 pt-6 border-t border-slate-100`,children:[a?.status_pembayaran===`pending`&&(0,V.jsx)(`button`,{onClick:()=>{if(!window.snap){Ko.error(`Midtrans belum dimuat`);return}if(!a?.snap_token){Ko.error(`Token pembayaran tidak ditemukan`);return}window.snap.pay(a.snap_token,{onSuccess:()=>{Ko.success(`Pembayaran berhasil`),setTimeout(()=>t(`/participant/my-events`),1200)},onPending:()=>{Ko.info(`Menunggu pembayaran`),n.invalidateQueries({queryKey:[`registration`,e]})},onError:()=>Ko.error(`Pembayaran gagal`)})},className:`\r
                   w-full\r
                   h-12\r
-                  rounded-2xl\r
-                  border\r
-                  border-slate-200\r
-                  bg-white\r
-                  px-4\r
-                  outline-none\r
-                  focus:border-blue-500\r
-                  focus:ring-4\r
-                  focus:ring-blue-100\r
-                  transition\r
-                `})]}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`\r
-                  mb-2\r
-                  block\r
-                  text-sm\r
+                  rounded-xl\r
+                  bg-green-600\r
+                  hover:bg-green-700\r
+                  text-white\r
                   font-semibold\r
-                  text-slate-700\r
-                `,children:`Deskripsi Karya`}),(0,V.jsx)(`textarea`,{rows:5,value:s,onChange:e=>c(e.target.value),placeholder:`Ceritakan karya yang kamu kirim...`,className:`\r
-                  w-full\r
-                  rounded-2xl\r
-                  border\r
-                  border-slate-200\r
-                  bg-white\r
-                  p-4\r
-                  outline-none\r
-                  resize-none\r
-                  focus:border-blue-500\r
-                  focus:ring-4\r
-                  focus:ring-blue-100\r
-                  transition\r
-                `})]}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`\r
-                  mb-2\r
-                  block\r
-                  text-sm\r
+                  transition-colors\r
+                `,children:`Bayar Sekarang`}),a?.status_pembayaran===`settlement`&&o?.jenis===`lomba`&&(0,V.jsx)(`button`,{onClick:()=>t(`/participant/submissions/${a.id}`),className:`\r
+                    w-full\r
+                    h-12\r
+                    rounded-xl\r
+                    bg-blue-50\r
+                    text-blue-700\r
+                    font-semibold\r
+                    border border-blue-200\r
+                    hover:bg-blue-100\r
+                    transition-colors\r
+                  `,children:`Upload Karya`}),a?.status_pembayaran===`settlement`&&o?.jenis===`non_lomba`&&(0,V.jsx)(`button`,{className:`\r
+                    w-full\r
+                    h-12\r
+                    rounded-xl\r
+                    bg-green-50\r
+                    text-green-700\r
+                    font-semibold\r
+                    border border-green-200\r
+                    hover:bg-green-100\r
+                    transition-colors\r
+                  `,children:`Lihat Tiket`})]})]})]})}):(0,V.jsx)(`div`,{className:`text-center py-20 text-slate-500`,children:`Data registrasi tidak ditemukan`})}function BS({status:e}){let t={pending:{className:`bg-amber-100 text-amber-700`,icon:(0,V.jsx)(Cx,{size:14})},settlement:{className:`bg-green-100 text-green-700`,icon:(0,V.jsx)(bx,{size:14})},expire:{className:`bg-red-100 text-red-700`,icon:(0,V.jsx)(Cx,{size:14})}},n=t[e]||t.pending;return(0,V.jsxs)(`span`,{className:`
+        inline-flex items-center gap-1
+        rounded-full px-3 py-1
+        text-xs font-medium
+        ${n.className}
+      `,children:[n.icon,e]})}function VS({label:e,value:t}){return(0,V.jsxs)(`div`,{className:`flex items-start gap-3`,children:[(0,V.jsx)(`div`,{className:`\r
+          flex\r
+          h-10 w-10\r
+          items-center justify-center\r
+          rounded-xl\r
+          bg-green-50\r
+          text-green-700\r
+        `,children:(0,V.jsx)(Px,{size:18})}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`p`,{className:`text-xs uppercase tracking-wide text-slate-400`,children:e}),(0,V.jsx)(`p`,{className:`mt-1 font-medium text-slate-800`,children:t||`-`})]})]})}var HS={getByRegistration:async e=>(await K_.get(`/submissions/${e}`)).data,upload:async e=>(await K_.post(`/submissions`,e,{headers:{"Content-Type":`multipart/form-data`}})).data},US=e=>ko({queryKey:[`submission`,e],queryFn:()=>HS.getByRegistration(e)}),WS=()=>Ao({mutationFn:HS.upload});function GS({label:e,value:t}){return(0,V.jsxs)(`div`,{className:`flex items-start gap-3`,children:[(0,V.jsx)(`div`,{className:`\r
+          flex h-10 w-10\r
+          items-center justify-center\r
+          rounded-xl\r
+          bg-green-50\r
+          text-green-700\r
+        `,children:(0,V.jsx)(Ox,{size:16})}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`p`,{className:`text-xs uppercase tracking-wide text-slate-400`,children:e}),(0,V.jsx)(`p`,{className:`mt-1 font-medium text-slate-800`,children:t||`-`})]})]})}function KS(){let{registrationId:e}=ur(),{data:t,refetch:n}=US(e),r=t?.data,i=WS(),[a,o]=(0,S.useState)(``),[s,c]=(0,S.useState)(``),[l,u]=(0,S.useState)(null),d={pending:{text:`Menunggu Verifikasi`,className:`bg-amber-100 text-amber-700`},verified:{text:`Terverifikasi`,className:`bg-green-100 text-green-700`},rejected:{text:`Ditolak`,className:`bg-red-100 text-red-700`}}[r?.status]||{text:`Belum Diketahui`,className:`bg-slate-100 text-slate-700`};return r?(0,V.jsx)(`div`,{className:`max-w-3xl mx-auto`,children:(0,V.jsxs)(`div`,{className:`bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden`,children:[(0,V.jsxs)(`div`,{className:`p-6 md:p-8 border-b border-slate-100`,children:[(0,V.jsx)(`div`,{className:`flex items-center gap-2 flex-wrap`,children:(0,V.jsxs)(`span`,{className:`
+                  inline-flex items-center gap-1
+                  rounded-full px-3 py-1
+                  text-xs font-medium
+                  ${d.className}
+                `,children:[(0,V.jsx)(xx,{size:14}),d.text]})}),(0,V.jsx)(`h1`,{className:`mt-4 text-2xl md:text-3xl font-bold text-slate-900`,children:`Karya Saya`})]}),(0,V.jsxs)(`div`,{className:`p-6 md:p-8`,children:[(0,V.jsx)(`div`,{className:`bg-slate-50 rounded-2xl border border-slate-200 p-5`,children:(0,V.jsxs)(`div`,{className:`flex items-start gap-4`,children:[(0,V.jsx)(`div`,{className:`h-10 w-10 rounded-xl bg-green-100 flex items-center justify-center text-green-700`,children:(0,V.jsx)(Ox,{size:18})}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`p`,{className:`text-xs uppercase tracking-wide text-slate-400`,children:`Judul Karya`}),(0,V.jsx)(`h2`,{className:`mt-1 text-lg font-semibold text-slate-900`,children:r.judul_karya}),(0,V.jsx)(`p`,{className:`mt-3 text-sm text-slate-600`,children:r.deskripsi_karya||`-`})]})]})}),(0,V.jsxs)(`div`,{className:`mt-6 grid md:grid-cols-2 gap-6`,children:[(0,V.jsx)(GS,{label:`Event`,value:r?.registration?.event?.nama}),(0,V.jsx)(GS,{label:`Kategori`,value:r?.registration?.event?.kategori}),(0,V.jsx)(GS,{label:`Status`,value:d.text}),(0,V.jsx)(GS,{label:`Tanggal Upload`,value:new Date(r.created_at).toLocaleDateString(`id-ID`)})]}),(0,V.jsx)(`div`,{className:`mt-8 pt-6 border-t border-slate-100`,children:(0,V.jsxs)(`a`,{href:`https://api-mpj-fest.ingintau.my.id/${r.file_url}`,target:`_blank`,rel:`noreferrer`,className:`\r
+                  inline-flex items-center gap-2\r
+                  h-12 px-6\r
+                  rounded-xl\r
+                  bg-blue-50\r
+                  text-blue-700\r
                   font-semibold\r
-                  text-slate-700\r
-                `,children:`File Karya`}),(0,V.jsxs)(`label`,{className:`\r
-                  flex\r
-                  flex-col\r
-                  items-center\r
-                  justify-center\r
-                  gap-3\r
-                  rounded-3xl\r
-                  border-2\r
-                  border-dashed\r
-                  border-slate-300\r
-                  bg-slate-50\r
-                  py-10\r
-                  cursor-pointer\r
-                  hover:border-blue-400\r
-                  hover:bg-blue-50/50\r
-                  transition\r
-                `,children:[(0,V.jsx)(wx,{size:40,className:`text-blue-600`}),(0,V.jsxs)(`div`,{className:`text-center`,children:[(0,V.jsx)(`p`,{className:`\r
-                      font-semibold\r
-                      text-slate-800\r
-                    `,children:`Klik untuk memilih file`}),(0,V.jsx)(`p`,{className:`\r
-                      mt-1\r
-                      text-sm\r
-                      text-slate-500\r
-                    `,children:`PDF, ZIP, JPG, PNG, MP4, dll`})]}),l&&(0,V.jsx)(`div`,{className:`\r
-                      rounded-xl\r
-                      bg-white\r
-                      px-4\r
-                      py-2\r
-                      text-sm\r
-                      font-medium\r
-                      shadow\r
-                    `,children:l.name}),(0,V.jsx)(`input`,{type:`file`,className:`hidden`,onChange:e=>u(e.target.files?.[0]||null)})]})]})]}),(0,V.jsx)(`div`,{className:`mt-8`,children:(0,V.jsx)(`button`,{type:`submit`,disabled:i.isPending,className:`\r
-                h-12\r
-                px-7\r
-                rounded-2xl\r
-                bg-blue-600\r
-                text-white\r
-                text-sm\r
-                font-semibold\r
-                transition\r
-                hover:bg-blue-700\r
-                disabled:opacity-50\r
-              `,children:i.isPending?`Mengupload...`:`Upload Karya`})})]})]})})}var qS=Mi([{element:(0,V.jsx)(Gx,{}),children:[{path:`/`,element:(0,V.jsx)(tx,{})}]},{element:(0,V.jsx)(Gx,{}),children:[{path:`/login`,element:(0,V.jsx)(qx,{children:(0,V.jsx)($b,{})})}]},{path:`*`,element:(0,V.jsx)(nx,{})},{path:`/super-admin`,element:(0,V.jsx)(Yx,{children:(0,V.jsx)(Xx,{allowedRoles:[`super_admin`],children:(0,V.jsx)(oS,{})})}),children:[{index:!0,element:(0,V.jsx)(Qx,{})}]},{path:`/klaim-akun`,element:(0,V.jsx)(qx,{children:(0,V.jsx)(_S,{})})},{path:`/register`,element:(0,V.jsx)(qx,{children:(0,V.jsx)(xS,{})})},{path:`/participant`,element:(0,V.jsx)(Yx,{children:(0,V.jsx)(Xx,{allowedRoles:[`peserta`],children:(0,V.jsx)(oS,{})})}),children:[{index:!0,element:(0,V.jsx)(wS,{})},{path:`events`,element:(0,V.jsx)(FS,{})},{path:`events/:id`,element:(0,V.jsx)(AS,{})},{path:`my-events`,element:(0,V.jsx)(LS,{})},{path:`registrations/:id`,element:(0,V.jsx)(zS,{})},{path:`/participant/submissions/:registrationId`,element:(0,V.jsx)(KS,{})}]}]);function JS({children:e}){let[t,n]=(0,S.useState)(!0);return(0,S.useEffect)(()=>{let e=setTimeout(()=>{n(!1)},1200);return()=>clearTimeout(e)},[]),t?(0,V.jsxs)(V.Fragment,{children:[(0,V.jsx)(Xb,{children:(0,V.jsx)(`title`,{children:`Menyiapkan Tampilan | MPJ Fest 2026`})}),(0,V.jsxs)(`div`,{className:`\r
+                  hover:bg-blue-100\r
+                  transition-colors\r
+                `,children:[(0,V.jsx)(Ex,{size:16}),`Lihat File Karya`]})})]})]})}):(0,V.jsx)(`div`,{className:`max-w-3xl mx-auto`,children:(0,V.jsxs)(`form`,{onSubmit:async t=>{if(t.preventDefault(),!l){Ko.error(`Pilih file terlebih dahulu`);return}let r=new FormData;r.append(`registration_id`,e),r.append(`judul_karya`,a),r.append(`deskripsi_karya`,s),r.append(`file_karya`,l);try{await i.mutateAsync(r),Ko.success(`Karya berhasil diupload`),n()}catch(e){Ko.error(e?.response?.data?.message||`Upload gagal`)}},className:`bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden`,children:[(0,V.jsxs)(`div`,{className:`p-6 md:p-8 border-b border-slate-100`,children:[(0,V.jsx)(`h1`,{className:`text-2xl md:text-3xl font-bold text-slate-900`,children:`Upload Karya`}),(0,V.jsx)(`p`,{className:`mt-2 text-slate-600`,children:`Pastikan file sesuai ketentuan lomba.`})]}),(0,V.jsxs)(`div`,{className:`p-6 md:p-8 space-y-5`,children:[(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`text-sm font-medium text-slate-700`,children:`Judul Karya`}),(0,V.jsx)(`input`,{type:`text`,value:a,onChange:e=>o(e.target.value),className:`\r
+                mt-2 w-full h-12 px-4\r
+                rounded-xl border border-slate-200\r
+                focus:border-green-500 focus:ring-4 focus:ring-green-100\r
+                outline-none transition\r
+              `,placeholder:`Masukkan judul karya`})]}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`text-sm font-medium text-slate-700`,children:`Deskripsi Karya`}),(0,V.jsx)(`textarea`,{rows:5,value:s,onChange:e=>c(e.target.value),className:`\r
+                mt-2 w-full p-4\r
+                rounded-xl border border-slate-200\r
+                focus:border-green-500 focus:ring-4 focus:ring-green-100\r
+                outline-none resize-none transition\r
+              `,placeholder:`Ceritakan karya kamu...`})]}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`label`,{className:`text-sm font-medium text-slate-700`,children:`File Karya`}),(0,V.jsxs)(`label`,{className:`mt-2 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 py-8 cursor-pointer hover:bg-green-50 hover:border-green-400 transition`,children:[(0,V.jsx)(wx,{className:`text-green-600`,size:36}),(0,V.jsx)(`p`,{className:`font-medium text-slate-800`,children:`Klik untuk upload file`}),(0,V.jsx)(`p`,{className:`text-sm text-slate-500`,children:`PDF, ZIP, JPG, PNG, MP4`}),l&&(0,V.jsx)(`span`,{className:`mt-2 text-sm font-medium text-slate-700 bg-white px-3 py-1 rounded-lg border`,children:l.name}),(0,V.jsx)(`input`,{type:`file`,className:`hidden`,onChange:e=>u(e.target.files?.[0]||null)})]})]}),(0,V.jsx)(`button`,{type:`submit`,disabled:i.isPending,className:`\r
+              w-full h-12\r
+              rounded-xl\r
+              bg-green-600\r
+              text-white font-semibold\r
+              hover:bg-green-700\r
+              transition\r
+              disabled:opacity-60\r
+            `,children:i.isPending?`Mengupload...`:`Upload Karya`})]})]})})}var qS=Mi([{element:(0,V.jsx)(Gx,{}),children:[{path:`/`,element:(0,V.jsx)(tx,{})}]},{element:(0,V.jsx)(Gx,{}),children:[{path:`/login`,element:(0,V.jsx)(qx,{children:(0,V.jsx)($b,{})})}]},{path:`*`,element:(0,V.jsx)(nx,{})},{path:`/super-admin`,element:(0,V.jsx)(Yx,{children:(0,V.jsx)(Xx,{allowedRoles:[`super_admin`],children:(0,V.jsx)(oS,{})})}),children:[{index:!0,element:(0,V.jsx)(Qx,{})}]},{path:`/klaim-akun`,element:(0,V.jsx)(qx,{children:(0,V.jsx)(_S,{})})},{path:`/register`,element:(0,V.jsx)(qx,{children:(0,V.jsx)(xS,{})})},{path:`/participant`,element:(0,V.jsx)(Yx,{children:(0,V.jsx)(Xx,{allowedRoles:[`peserta`],children:(0,V.jsx)(oS,{})})}),children:[{index:!0,element:(0,V.jsx)(wS,{})},{path:`events`,element:(0,V.jsx)(FS,{})},{path:`events/:id`,element:(0,V.jsx)(AS,{})},{path:`my-events`,element:(0,V.jsx)(LS,{})},{path:`registrations/:id`,element:(0,V.jsx)(zS,{})},{path:`/participant/submissions/:registrationId`,element:(0,V.jsx)(KS,{})}]}]);function JS({children:e}){let[t,n]=(0,S.useState)(!0);return(0,S.useEffect)(()=>{let e=setTimeout(()=>{n(!1)},1200);return()=>clearTimeout(e)},[]),t?(0,V.jsxs)(V.Fragment,{children:[(0,V.jsx)(Xb,{children:(0,V.jsx)(`title`,{children:`Menyiapkan Tampilan | MPJ Fest 2026`})}),(0,V.jsxs)(`div`,{className:`\r
       relative\r
       flex\r
       min-h-screen\r
