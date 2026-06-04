@@ -584,13 +584,16 @@ shadow-xl\r
     hover:bg-red-50\r
   `,children:`Logout`})})]})]})}function aS(){return(0,V.jsx)(`header`,{className:`\r
         sticky\r
-        top-2\r
+        top-1\r
         z-30\r
         h-16\r
         border-b\r
         bg-white/70\r
         backdrop-blur-xl\r
-      `,style:{borderColor:`rgba(6,70,34,.08)`},children:(0,V.jsxs)(`div`,{className:`flex h-full items-center justify-between px-6`,children:[(0,V.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,V.jsx)(`div`,{className:`h-2 w-2 rounded-full`,style:{backgroundColor:`#064622`}}),(0,V.jsxs)(`div`,{children:[(0,V.jsx)(`p`,{className:`text-sm font-medium text-slate-800`,children:`Dashboard`}),(0,V.jsx)(`p`,{className:`text-xs text-slate-500`,children:`MPJ Fest Admin Panel`})]})]}),(0,V.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,V.jsx)(`div`,{className:`hidden h-6 w-px sm:block`,style:{backgroundColor:`rgba(6,70,34,.15)`}}),(0,V.jsx)(iS,{})]})]})})}function oS(){return(0,V.jsxs)(`div`,{className:`min-h-screen bg-slate-50 flex`,children:[(0,V.jsx)(nS,{}),(0,V.jsxs)(`div`,{className:`flex-1 min-w-0 flex flex-col`,children:[(0,V.jsx)(aS,{}),(0,V.jsx)(`main`,{className:`p-6 pb-24 lg:pb-6`,children:(0,V.jsx)(Gr,{})})]})]})}var sS=lm({email:Fp().email(`Email tidak valid`),password:Fp().min(8,`Minimal 8 karakter`),password_confirmation:Fp()}).refine(e=>e.password===e.password_confirmation,{message:`Password tidak sama`,path:[`password_confirmation`]}),cS={register:async e=>{let{data:t}=await K_.post(`/auth/register/niam`,e);return t}},lS=()=>Ao({mutationFn:cS.register});function uS({member:e}){let t=lS(),{register:n,handleSubmit:r,formState:{errors:i}}=jc({resolver:cp(sS)}),a=or(),o=ev(e=>e.login);return(0,V.jsxs)(`div`,{className:`\r
+        mx-2\r
+        sm:mx-4\r
+        rounded-2xl\r
+      `,style:{borderColor:`rgba(6,70,34,.08)`},children:(0,V.jsxs)(`div`,{className:`flex h-full items-center justify-between px-4 sm:px-6`,children:[(0,V.jsxs)(`div`,{className:`flex items-center gap-2 sm:gap-3 min-w-0`,children:[(0,V.jsx)(`div`,{className:`h-2 w-2 rounded-full shrink-0`,style:{backgroundColor:`#064622`}}),(0,V.jsxs)(`div`,{className:`leading-tight min-w-0`,children:[(0,V.jsx)(`p`,{className:`text-sm sm:text-sm font-medium text-slate-800 truncate`,children:`Dashboard`}),(0,V.jsx)(`p`,{className:`text-[11px] sm:text-xs text-slate-500 truncate`,children:`MPJ Fest Admin Panel`})]})]}),(0,V.jsxs)(`div`,{className:`flex items-center gap-2 sm:gap-4 shrink-0`,children:[(0,V.jsx)(`div`,{className:`hidden sm:block h-6 w-px`,style:{backgroundColor:`rgba(6,70,34,.15)`}}),(0,V.jsx)(iS,{})]})]})})}function oS(){return(0,V.jsxs)(`div`,{className:`min-h-screen bg-slate-50 flex`,children:[(0,V.jsx)(nS,{}),(0,V.jsxs)(`div`,{className:`flex-1 min-w-0 flex flex-col`,children:[(0,V.jsx)(aS,{}),(0,V.jsx)(`main`,{className:`p-6 pb-24 lg:pb-6`,children:(0,V.jsx)(Gr,{})})]})]})}var sS=lm({email:Fp().email(`Email tidak valid`),password:Fp().min(8,`Minimal 8 karakter`),password_confirmation:Fp()}).refine(e=>e.password===e.password_confirmation,{message:`Password tidak sama`,path:[`password_confirmation`]}),cS={register:async e=>{let{data:t}=await K_.post(`/auth/register/niam`,e);return t}},lS=()=>Ao({mutationFn:cS.register});function uS({member:e}){let t=lS(),{register:n,handleSubmit:r,formState:{errors:i}}=jc({resolver:cp(sS)}),a=or(),o=ev(e=>e.login);return(0,V.jsxs)(`div`,{className:`\r
       mt-6\r
 \r
       rounded-[32px]\r
