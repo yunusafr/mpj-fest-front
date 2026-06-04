@@ -1393,19 +1393,15 @@ mt-6\r
         grid\r
         md:grid-cols-2\r
         gap-6\r
-        `,children:n.map(e=>(0,V.jsx)(kS,{registration:e},e.id))})]}):(0,V.jsxs)(`div`,{className:`\r
-      rounded-3xl\r
-      border\r
-      bg-white\r
-      p-10\r
-      text-center\r
-      `,children:[(0,V.jsx)(`h2`,{className:`\r
-        text-xl\r
-        font-bold\r
-        `,children:`Belum Ada Event`}),(0,V.jsx)(`p`,{className:`\r
-        mt-2\r
-        text-slate-500\r
-        `,children:`Anda belum mendaftar event apapun.`})]})}var jS=e=>ko({queryKey:[`registration`,e],queryFn:()=>bS.registrationDetail(e),enabled:!!e});function MS(){let{id:e}=ur(),{data:t,isLoading:n}=jS(e);if(n)return(0,V.jsx)(`div`,{children:`Loading...`});let r=t?.data,i=r?.event;return(0,V.jsxs)(`div`,{className:`space-y-6`,children:[(0,V.jsxs)(`div`,{className:`\r
+        `,children:n.map(e=>(0,V.jsx)(kS,{registration:e},e.id))})]}):(0,V.jsx)(`div`,{className:`\r
+        bg-white\r
+        border\r
+        border-dashed\r
+        border-slate-300\r
+        rounded-2xl\r
+        py-12\r
+        text-center\r
+      `,children:(0,V.jsx)(`p`,{className:`text-slate-500`,children:`Event tidak ditemukan, Anda belum Mendaftar apapun.`})})}var jS=e=>ko({queryKey:[`registration`,e],queryFn:()=>bS.registrationDetail(e),enabled:!!e});function MS(){let{id:e}=ur(),{data:t,isLoading:n}=jS(e);if(n)return(0,V.jsx)(`div`,{children:`Loading...`});let r=t?.data,i=r?.event;return(0,V.jsxs)(`div`,{className:`space-y-6`,children:[(0,V.jsxs)(`div`,{className:`\r
         rounded-3xl\r
         border\r
         bg-white\r
