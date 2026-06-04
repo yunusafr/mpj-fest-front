@@ -405,19 +405,12 @@ shadow-xl\r
               rounded-full\r
               bg-lime-200/30\r
               blur-3xl\r
-            `}),(0,V.jsxs)(`div`,{className:`relative text-center px-6`,children:[(0,V.jsx)(`h1`,{className:`\r
-    text-2xl\r
-    md:text-6xl\r
-    font-extrabold\r
-    tracking-tight\r
-  `,style:{color:`#064622`},children:`MPJ Fest`}),(0,V.jsxs)(`p`,{className:`\r
-                mt-4\r
-                text-base\r
-                md:text-lg\r
-                font-medium\r
-                tracking-wide\r
-                text-slate-600\r
-              `,children:[`Menyiapkan pengalaman terbaik untuk Anda`,(0,V.jsx)(`span`,{className:`inline-block animate-bounce`,children:`.`}),(0,V.jsx)(`span`,{className:`inline-block animate-bounce [animation-delay:0.15s]`,children:`.`}),(0,V.jsx)(`span`,{className:`inline-block animate-bounce [animation-delay:0.3s]`,children:`.`})]}),(0,V.jsx)(`div`,{className:`\r
+            `}),(0,V.jsxs)(`div`,{className:`relative text-center px-6`,children:[(0,V.jsx)(`h1`,{className:`font-extrabold tracking-tight`,style:{color:`#064622`,fontSize:`clamp(1.8rem, 5vw, 3.5rem)`,lineHeight:`1.1`},children:`MPJ Fest`}),(0,V.jsxs)(`p`,{className:`\r
+    mt-4\r
+    font-medium\r
+    tracking-wide\r
+    text-slate-600\r
+  `,style:{fontSize:`clamp(0.9rem, 2.2vw, 1.125rem)`},children:[`Menyiapkan pengalaman terbaik untuk Anda`,(0,V.jsx)(`span`,{className:`inline-block animate-bounce`,children:`.`}),(0,V.jsx)(`span`,{className:`inline-block animate-bounce [animation-delay:0.15s]`,children:`.`}),(0,V.jsx)(`span`,{className:`inline-block animate-bounce [animation-delay:0.3s]`,children:`.`})]}),(0,V.jsx)(`div`,{className:`\r
                 mx-auto\r
                 mt-8\r
                 h-1.5\r
@@ -500,7 +493,7 @@ shadow-xl\r
           mt-1\r
           text-3xl\r
           font-black\r
-        `,style:{color:`#064622`},children:t})]})}var tS={super_admin:[{title:`Dashboard`,path:`/super-admin`,icon:kx},{title:`Festival`,path:`/super-admin/festivals`,icon:Ix},{title:`Event`,path:`/super-admin/events`,icon:_x},{title:`Juri`,path:`/super-admin/judges`,icon:Bx},{title:`Admin Event`,path:`/super-admin/admin-events`,icon:Rx},{title:`Pembayaran`,path:`/super-admin/payments`,icon:Tx},{title:`Voting`,path:`/super-admin/voting`,icon:Vx},{title:`Sertifikat`,path:`/super-admin/certificates`,icon:mx}],admin_event:[{title:`Dashboard`,path:`/admin-event`,icon:kx},{title:`Peserta`,path:`/admin-event/participants`,icon:Bx},{title:`Presensi`,path:`/admin-event/attendance`,icon:Lx},{title:`Pembayaran`,path:`/admin-event/payments`,icon:Tx},{title:`Sertifikat`,path:`/admin-event/certificates`,icon:mx}],juri:[{title:`Dashboard`,path:`/judge`,icon:kx},{title:`Penilaian`,path:`/judge/scoring`,icon:Sx},{title:`Rekap`,path:`/judge/recap`,icon:Dx}],peserta:[{title:`Dashboard`,path:`/participant`,icon:kx},{title:`Daftar Event`,path:`/participant/events`,icon:_x},{title:`Event Saya`,path:`/participant/my-events`,icon:Fx},{title:`Pembayaran`,path:`/participant/payments`,icon:Tx},{title:`E-Ticket`,path:`/participant/tickets`,icon:Fx},{title:`Sertifikat`,path:`/participant/certificates`,icon:mx}]};function nS(){let e=ev(e=>e.user),t=tS[e?.role]||[];return(0,V.jsxs)(`aside`,{className:`\r
+        `,style:{color:`#064622`},children:t})]})}var tS={super_admin:[{title:`Dashboard`,path:`/super-admin`,icon:kx},{title:`Festival`,path:`/super-admin/festivals`,icon:Ix},{title:`Event`,path:`/super-admin/events`,icon:_x},{title:`Juri`,path:`/super-admin/judges`,icon:Bx},{title:`Admin Event`,path:`/super-admin/admin-events`,icon:Rx},{title:`Pembayaran`,path:`/super-admin/payments`,icon:Tx},{title:`Voting`,path:`/super-admin/voting`,icon:Vx},{title:`Sertifikat`,path:`/super-admin/certificates`,icon:mx}],admin_event:[{title:`Dashboard`,path:`/admin-event`,icon:kx},{title:`Peserta`,path:`/admin-event/participants`,icon:Bx},{title:`Presensi`,path:`/admin-event/attendance`,icon:Lx},{title:`Pembayaran`,path:`/admin-event/payments`,icon:Tx},{title:`Sertifikat`,path:`/admin-event/certificates`,icon:mx}],juri:[{title:`Dashboard`,path:`/judge`,icon:kx},{title:`Penilaian`,path:`/judge/scoring`,icon:Sx},{title:`Rekap`,path:`/judge/recap`,icon:Dx}],peserta:[{title:`Dashboard`,path:`/participant`,icon:kx},{title:`Daftar Event`,path:`/participant/events`,icon:_x},{title:`Event Saya`,path:`/participant/my-events`,icon:Fx},{title:`E-Ticket`,path:`/participant/tickets`,icon:Fx},{title:`Sertifikat`,path:`/participant/certificates`,icon:mx}]};function nS(){let e=ev(e=>e.user),t=tS[e?.role]||[];return(0,V.jsxs)(`aside`,{className:`\r
         z-40\r
 \r
         /* MOBILE bottom nav */\r
@@ -539,7 +532,7 @@ shadow-xl\r
         hover:text-slate-900
         lg:hover:bg-slate-100
       `}
-`,children:[(0,V.jsx)(t,{className:`w-5 h-5 lg:w-6 lg:h-6 ${location.pathname===e.path?`font-bold`:``}`,strokeWidth:2.3}),(0,V.jsx)(`span`,{className:`mt-0.5 lg:mt-0 `,children:e.title})]},e.path)})}),(0,V.jsx)(`div`,{className:`hidden lg:flex border-t border-slate-200/60 p-4`,children:(0,V.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,V.jsx)(`div`,{className:`flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-700 font-semibold`,children:e?.nama?.charAt(0)?.toUpperCase()}),(0,V.jsxs)(`div`,{className:`min-w-0`,children:[(0,V.jsx)(`p`,{className:`truncate text-sm font-medium text-slate-800`,children:e?.nama}),(0,V.jsx)(`p`,{className:`text-xs text-slate-500`,children:{super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`}[e?.role]||`-`})]})]})})]})}var rS=()=>Ao({mutationFn:q_.logout});function iS(){let[e,t]=(0,S.useState)(!1),n=or(),r=ev(e=>e.user),i=ev(e=>e.logout),a=rS(),o={super_admin:`Super Admin`,admin_event:`Admin Event`,panitia:`Panitia`,kru_media:`Kru Media`};return(0,V.jsxs)(`div`,{className:`relative`,children:[(0,V.jsxs)(`button`,{onClick:()=>t(!e),className:`\r
+`,children:[(0,V.jsx)(t,{className:`w-5 h-5 lg:w-6 lg:h-6 ${location.pathname===e.path?`font-bold`:``}`,strokeWidth:2.3}),(0,V.jsx)(`span`,{className:`mt-0.5 lg:mt-0 `,children:e.title})]},e.path)})}),(0,V.jsx)(`div`,{className:`hidden lg:flex border-t border-slate-200/60 p-4`,children:(0,V.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,V.jsx)(`div`,{className:`flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-700 font-semibold`,children:e?.nama?.charAt(0)?.toUpperCase()}),(0,V.jsxs)(`div`,{className:`min-w-0`,children:[(0,V.jsx)(`p`,{className:`truncate text-sm font-medium text-slate-800`,children:e?.nama}),(0,V.jsx)(`p`,{className:`text-xs text-slate-500`,children:{super_admin:`Super Admin`,admin_event:`Admin Event`,peserta:`Peserta`}[e?.role]||`-`})]})]})})]})}var rS=()=>Ao({mutationFn:q_.logout});function iS(){let[e,t]=(0,S.useState)(!1),n=or(),r=ev(e=>e.user),i=ev(e=>e.logout),a=rS(),o={super_admin:`Super Admin`,admin_event:`Admin Event`,peserta:`Peserta`};return(0,V.jsxs)(`div`,{className:`relative`,children:[(0,V.jsxs)(`button`,{onClick:()=>t(!e),className:`\r
           flex\r
           items-center\r
           gap-3\r
