@@ -15,23 +15,49 @@ export const registrationApi = {
     return response.data;
   },
 
-  myRegistrations: async () => {
+myRegistrations: async (
+  festivalId
+) => {
 
-    const response =
-      await axiosClient.get(
-        "/my-registrations"
-      );
+  const params = {};
 
-    return response.data;
-  },
-  
-  registrationDetail: async (id) => {
+  if (
+
+    festivalId &&
+
+    festivalId !== "all"
+
+  ) {
+
+    params.festival_id =
+      festivalId;
+
+  }
+
   const response =
+
     await axiosClient.get(
-      `/registrations/${id}`
+
+      "/my-registrations",
+
+      {
+
+        params
+
+      }
+
     );
 
   return response.data;
+
 },
+  
+registrationDetail: async (id) => {
+  const response = await axiosClient.get(
+    `/registrations/${id}`
+  );
+
+  return response.data;
+}
 
 };

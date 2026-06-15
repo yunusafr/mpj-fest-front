@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import {
   useActiveFestival,
 } from "@/features/festival/hooks/useActiveFestival";
+import { Sparkles } from "lucide-react";
 
 export default function LoginPage() {
     const { data } =
@@ -37,20 +38,10 @@ const festival =
         <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* LEFT */}
           <div>
-            <span
-              className="
-                inline-flex
-                rounded-full
-                bg-green-100
-                px-4
-                py-2
-                text-sm
-                font-medium
-                text-green-700
-              "
-            >
-              {festival?.nama}
-            </span>
+<span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
+      <Sparkles size={15} />
+      {festival?.nama}
+     </span>
 
             <h1
               className="

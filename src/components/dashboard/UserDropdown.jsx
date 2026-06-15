@@ -15,8 +15,8 @@ export default function UserDropdown() {
   const roleLabels = {
   super_admin: "Super Admin",
   admin_event: "Admin Event",
-  panitia: "Panitia",
-  kru_media: "Kru Media",
+  peserta: "Peserta",
+  juri: "Juri",
 };
 
   const handleLogout = async () => {

@@ -1,21 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { eventApi } from "../api/eventApi";
 
-export const useEvents = () =>
+export const useEvents = (festivalId = "all") =>
   useQuery({
-    queryKey: ["events"],
-    queryFn: getEvents,
+    queryKey: ["events", festivalId],
+    queryFn: () => eventApi.getAll(festivalId),
   });
 
-export const useEventDetail = (
-  id
-) =>
+export const useEventDetail = (id, festivalId = "all") =>
   useQuery({
-    queryKey: [
-      "event-detail",
-      id,
-    ],
-    queryFn: () =>
-      eventApi.getDetail(id),
+    queryKey: ["event-detail", id, festivalId],
+    queryFn: () => eventApi.getDetail(id, festivalId),
     enabled: !!id,
   });

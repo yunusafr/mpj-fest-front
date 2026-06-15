@@ -11,6 +11,11 @@ import {
   UserCheck,
   FileBarChart,
   Ticket,
+  FileUp,
+  ClipboardList,
+  CalendarCheck,
+  ShieldCheck,
+  FileText,
 } from "lucide-react";
 
 export const sidebarMenu = {
@@ -19,6 +24,7 @@ export const sidebarMenu = {
       title: "Dashboard",
       path: "/super-admin",
       icon: LayoutDashboard,
+      exact: true,
     },
     {
       title: "Festival",
@@ -46,6 +52,11 @@ export const sidebarMenu = {
       icon: CreditCard,
     },
     {
+      title: "Daftar Hadir",
+      path: "/super-admin/attendance",
+      icon: FileText,
+    },
+    {
       title: "Voting",
       path: "/super-admin/voting",
       icon: Vote,
@@ -62,16 +73,23 @@ export const sidebarMenu = {
       title: "Dashboard",
       path: "/admin-event",
       icon: LayoutDashboard,
+      exact: true,
+    },
+
+    {
+      title: "Scan Presensi",
+      path: "/admin-event/scan",
+      icon: CalendarCheck, // lebih cocok untuk absensi
     },
     {
-      title: "Peserta",
-      path: "/admin-event/participants",
-      icon: Users,
-    },
-    {
-      title: "Presensi",
+      title: "Daftar Hadir",
       path: "/admin-event/attendance",
-      icon: UserCheck,
+      icon: FileText,
+    },
+    {
+      title: "Submission",
+      path: "/admin-event/submissions",
+      icon: FileUp, // lebih relevan daripada UserCheck
     },
     {
       title: "Pembayaran",
@@ -90,10 +108,11 @@ export const sidebarMenu = {
       title: "Dashboard",
       path: "/judge",
       icon: LayoutDashboard,
+      exact: true,
     },
     {
       title: "Penilaian",
-      path: "/judge/scoring",
+      path: "/judge/submission",
       icon: ClipboardCheck,
     },
     {
@@ -108,6 +127,7 @@ export const sidebarMenu = {
       title: "Dashboard",
       path: "/participant",
       icon: LayoutDashboard,
+      exact: true,
     },
     {
       title: "Daftar Event",
@@ -115,19 +135,14 @@ export const sidebarMenu = {
       icon: CalendarDays,
     },
     {
-  title: "Event Saya",
-  path: "/participant/my-events",
-  icon: Ticket,
-},
+      title: "Event Saya",
+      path: "/participant/my-events",
+      icon: Ticket,
+    },
     {
       title: "Pembayaran",
       path: "/participant/payments",
       icon: CreditCard,
-    },
-    {
-      title: "E-Ticket",
-      path: "/participant/tickets",
-      icon: Ticket,
     },
     {
       title: "Sertifikat",

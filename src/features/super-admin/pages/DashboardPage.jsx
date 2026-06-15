@@ -4,6 +4,8 @@ import { Calendar, Users, Vote, CalendarDays } from "lucide-react";
 import {
   useActiveFestival,
 } from "@/features/festival/hooks/useActiveFestival";
+import { Sparkles } from "lucide-react";
+
 
 export default function DashboardPage() {
   const recentActivities = [];
@@ -100,22 +102,11 @@ const festival =
   />
 
   <div className="relative z-10">
-    <span
-      className="
-        inline-flex
-        rounded-full
-        px-3
-        py-1
-        text-xs
-        font-semibold
-      "
-      style={{
-        background: "#dcfce7",
-        color: "#064622",
-      }}
-    >
+
+    <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
+      <Sparkles size={15} />
       {festival?.nama}
-    </span>
+     </span>
 
     <h1
       className="

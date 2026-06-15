@@ -13,6 +13,21 @@ const capitalizeWords = (text) =>
       )
       .join(" ");
 
+const getPermissionLabel = (perm) => {
+  switch (perm) {
+    case "semua":
+      return { text: "Terbuka Untuk Semua", style: "bg-green-50 text-green-700 ring-green-200" };
+    case "aktif":
+      return { text: "Khusus Anggota Aktif", style: "bg-blue-50 text-blue-700 ring-blue-200" };
+    case "umum":
+      return { text: "Peserta Umum", style: "bg-emerald-50 text-emerald-700 ring-emerald-200" };
+    default:
+      return { text: "Terbatas", style: "bg-slate-50 text-slate-600 ring-slate-200" };
+  }
+};
+
+const permission = getPermissionLabel(event.permission_peserta);
+
   return (
     <Link
       to={`/participant/events/${event.id}`}
@@ -31,20 +46,20 @@ const capitalizeWords = (text) =>
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
+
         <span
-          className="
-            rounded-full
-            bg-emerald-50
-            px-3
-            py-1
-            text-xs
-            font-semibold
-            text-emerald-700
-            ring-1 ring-emerald-200
-          "
-        >
-          {event.kategori}
-        </span>
+  className={`
+    rounded-full
+    px-3
+    py-1
+    text-xs
+    font-semibold
+    ring-1
+    ${permission.style}
+  `}
+>
+  {permission.text}
+</span>
 
         <span
             className={`

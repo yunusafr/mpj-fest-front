@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import { useAuthStore } from "@/app/store/authStore";
 
-import Loader from "@/components/shared/Loader";
+import SplashScreen from "@/components/shared/SplashScreen";
 
 export default function ProtectedRoute({
   children,
@@ -27,7 +27,7 @@ export default function ProtectedRoute({
   }
 
   if (!user) {
-    return <Loader />;
+    return SplashScreen;
   }
 
   return children;

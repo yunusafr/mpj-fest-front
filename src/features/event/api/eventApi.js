@@ -3,24 +3,25 @@ from "@/lib/axios";
 
 export const eventApi = {
 
-  getAll: async () => {
+getAll: async (festivalId = "all") => {
+  const response = await axiosClient.get("/events/public", {
+    params: {
+      festival_id: festivalId,
+    },
+  });
 
-    const response =
-      await axiosClient.get(
-        "/events/public"
-      );
+  return response.data;
+},
 
-    return response.data;
-  },
+getDetail: async (id, festivalId = "all") => {
+  const response = await axiosClient.get(
+    `/events/public/${id}`,
+    {
+      params: { festival_id: festivalId },
+    }
+  );
 
-  getDetail: async (id) => {
-
-    const response =
-      await axiosClient.get(
-        `/events/public/${id}`
-      );
-
-    return response.data;
-  },
+  return response.data;
+}
 
 };

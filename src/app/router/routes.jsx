@@ -17,6 +17,52 @@ from "@/features/event/pages/EventsPage";
 import MyEventsPage from "@/features/registration/pages/MyEventsPage";
 import RegistrationDetailPage
 from "@/features/registration/pages/RegistrationDetailPage";
+import SubmissionPage
+from "@/features/participant/pages/SubmissionPage";
+import AdminEventsPage
+from "@/features/super-admin/admin-events/pages/AdminEventsPage";
+import SubmissionsPage
+from "@/features/admin-event/pages/SubmissionsPage";
+import AdminEventDashboard from "@/features/admin-event/pages/DashboardPage";
+import AssignEventPage
+from "@/features/super-admin/admin-events/pages/AssignEventPage";
+import CreateAdminEventPage
+from "@/features/super-admin/admin-events/pages/CreateAdminEventPage";
+import SubmissionDetailPage from "@/features/admin-event/pages/SubmissionDetailPage";
+import FestivalListPage
+from "@/features/super-admin/festivals/pages/FestivalListPage";
+
+import CreateFestivalPage
+from "@/features/super-admin/festivals/pages/CreateFestivalPage";
+
+import EditFestivalPage
+from "@/features/super-admin/festivals/pages/EditFestivalPage";
+import EventsPage2 from "@/features/super-admin/events/pages/EventsPage";
+import CreateEventPage from "@/features/super-admin/events/pages/CreateEventPage";
+import EditEventPage from "@/features/super-admin/events/pages/EditEventPage";
+
+import TicketPage
+from "@/features/ticket/pages/TicketPage";
+import ScanTicketPage
+from "@/features/admin-event/pages/ScanTicketPage";
+
+import JudgesPage
+from "@/features/super-admin/judges/pages/JudgesPage";
+
+import AssignJudgePage
+from "@/features/super-admin/judges/pages/AssignJudgePage";
+import CreateJudgePage
+from "@/features/super-admin/judges/pages/CreateJudgePage";
+import EditJudgePage from "@/features/super-admin/judges/pages/EditJudgePage";
+
+import PaymentHistoryPage from "@/features/payments/pages/PaymentHistoryPage";
+import InvoicePage from "@/features/payments/pages/InvoicePage";
+
+import AttendancesPage from "@/features/attendance/pages/AttendancesPage";
+import AttendanceDetailPage from "@/features/attendance/pages/AttendanceDetailPage";
+
+import JudgeDashboard from "@/features/judge/pages/JudgeDashboard";
+import JudgeSubmissionsPage from "@/features/judge/pages/JudgeSubmissionsPage";
 
 export const routes = [
   {
@@ -71,6 +117,180 @@ export const routes = [
         <SuperAdminDashboard />
       ),
     },
+{
+  path: "admin-events",
+  children: [
+    {
+      index: true,
+      element: <AdminEventsPage />,
+    },
+
+    {
+      path: "create",
+      element: <CreateAdminEventPage />,
+    },
+
+    {
+      path: ":id/assign",
+      element: <AssignEventPage />,
+    },
+  ],
+},
+{
+  path: "attendance",
+  children: [
+    {
+      index: true,
+      element: <AttendancesPage />,
+    },
+
+    {
+      path: ":eventId",
+      element: <AttendanceDetailPage />,
+    },
+  ],
+},
+{
+  path: "festivals",
+  children: [
+    {
+      index: true,
+      element:
+        <FestivalListPage />,
+    },
+
+    {
+      path: "create",
+      element:
+        <CreateFestivalPage />,
+    },
+
+    {
+      path: ":id/edit",
+      element:
+        <EditFestivalPage />,
+    },
+  ],
+},{
+  path: "judges",
+  children: [
+    {
+      index: true,
+      element:
+        <JudgesPage />,
+    },
+    {
+      path: ":id/assign",
+      element:
+        <AssignJudgePage />,
+    },
+    {
+  path:
+    "create",
+
+  element:
+    <CreateJudgePage />
+},
+    {
+  path:
+    ":id/edit",
+
+  element:
+    <EditJudgePage />
+},
+
+  ],
+},
+
+{
+  path: "events",
+  children: [
+    {
+      index: true,
+      element: <EventsPage2 />,
+    },
+
+    {
+      path: "create",
+      element: <CreateEventPage />,
+    },
+
+    {
+      path: ":id/edit",
+      element: <EditEventPage />,
+    },
+  ],
+},
+{
+  path: "payments",
+  element: <PaymentHistoryPage />,
+},
+{
+  path: "payments/:orderId",
+  element: <InvoicePage />,
+},
+  ],
+},
+{
+  path: "/admin-event",
+
+  element: (
+    <ProtectedRoute>
+      <RoleRoute
+        allowedRoles={[
+          "admin_event",
+        ]}
+      >
+        <DashboardLayout />
+      </RoleRoute>
+    </ProtectedRoute>
+  ),
+
+  children: [
+    {
+      index: true,
+      element:
+        <AdminEventDashboard />,
+    },
+
+    {
+      path:
+        "submissions",
+
+      element:
+        <SubmissionsPage />,
+    },
+    {
+  path: "submissions/:id",
+  element:
+    <SubmissionDetailPage />,
+},
+{
+  path: "scan",
+  element: <ScanTicketPage />,
+},
+{
+  path: "attendance",
+  children: [
+    {
+      index: true,
+      element: <AttendancesPage />,
+    },
+
+    {
+      path: ":eventId",
+      element: <AttendanceDetailPage />,
+    },
+  ],
+},
+{
+  path: "payments",
+  element: <PaymentHistoryPage />,
+},
+{
+  path: "payments/:orderId",
+  element: <InvoicePage />,
+},
   ],
 },
 {
@@ -138,6 +358,60 @@ export const routes = [
     <RegistrationDetailPage />
   ),
 },
+{
+  path: "submissions/:registrationId",
+  element: <SubmissionPage />,
+},
+{
+  path: "tickets/:registrationId",
+  element: <TicketPage />,
+},
+{
+  path: "payments",
+  element: <PaymentHistoryPage />,
+},
+{
+  path: "payments/:orderId",
+  element: <InvoicePage />,
+},
   ],
 },
+{
+  path: "/judge",
+
+  element: (
+    <ProtectedRoute>
+      <RoleRoute
+        allowedRoles={[
+          "juri",
+        ]}
+      >
+        <DashboardLayout />
+      </RoleRoute>
+    </ProtectedRoute>
+  ),
+
+  children: [
+    {
+      index: true,
+      element:
+        <JudgeDashboard />,
+    },
+    {
+      index: true,
+      element:
+        <JudgeDashboard />,
+    },
+    {
+  path: "submission",
+  children: [
+    {
+      index: true,
+      element: <JudgeSubmissionsPage />,
+    },
+
+  ],
+},
+  ],
+}
 ];

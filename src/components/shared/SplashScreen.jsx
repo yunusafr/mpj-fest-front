@@ -10,7 +10,7 @@ export default function SplashScreen({
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1200);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, []);
@@ -67,7 +67,7 @@ if (loading) {
         <img
           src="/mpj-vertical-color.png"
           alt="MPJ Fest"
-          className="mx-auto w-56 md:w-40"
+          className="mx-auto w-[clamp(120px,30vw,180px)]"
         />
 
         {/* Loading Line */}
@@ -89,7 +89,7 @@ if (loading) {
     bg-gradient-to-r
     from-green-500
     to-lime-500
-    animate-[loading_1.2s_ease-in-out_forwards]
+    animate-[loading_0.4s_ease-in-out_forwards]
     "
   />
 </div>
