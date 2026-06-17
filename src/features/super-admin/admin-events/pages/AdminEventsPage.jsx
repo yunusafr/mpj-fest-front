@@ -4,8 +4,7 @@ import { Plus, Users, Sparkles } from "lucide-react";
 
 import { useFestivals } from "../../festivals/hooks/useFestivals";
 import { useAdminEvents } from "../hooks/useAdminEvents";
-
-import AdminEventCard from "../components/AdminEventCard";
+import AdminEventList from "../components/AdminsEventList";
 
 export default function AdminEventsPage() {
   const [selectedFestival, setSelectedFestival] = useState(null);
@@ -143,14 +142,8 @@ export default function AdminEventsPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {admins.map((admin) => (
-            <AdminEventCard
-              key={admin.id}
-              admin={admin}
-            />
-          ))}
-        </div>
+
+        <AdminEventList admins={admins} />
       )}
     </div>
   );

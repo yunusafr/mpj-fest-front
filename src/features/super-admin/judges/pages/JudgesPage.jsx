@@ -6,7 +6,7 @@ import { useJudges } from "../hooks/useJudges";
 import { useDeleteJudge } from "../hooks/useDeleteJudge";
 import { useFestivals } from "../../festivals/hooks/useFestivals";
 
-import JudgeCard from "../components/JudgeCard";
+import JudgeList from "../components/JudgeList";
 
 export default function JudgesPage() {
   const [selectedFestival, setSelectedFestival] = useState(null);
@@ -147,15 +147,7 @@ export default function JudgesPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {judges.map((judge) => (
-            <JudgeCard
-              key={judge.id}
-              judge={judge}
-              onDelete={() => handleDelete(judge.id)}
-            />
-          ))}
-        </div>
+        <JudgeList judges={judges} onDelete={handleDelete} />
       )}
     </div>
   );

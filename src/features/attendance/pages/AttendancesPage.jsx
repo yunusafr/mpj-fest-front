@@ -193,16 +193,21 @@ const {
       {/* Empty State */}
 
       {events.length === 0 ? (
-        <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
-          <h3 className="text-lg font-semibold text-slate-900">
-            Belum ada event
-          </h3>
+  <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+    <Users
+      size={40}
+      className="mx-auto text-slate-400"
+    />
 
-          <p className="mt-2 text-slate-500">
-            Event yang memiliki absensi akan muncul di sini
-          </p>
-        </div>
-      ) : (
+    <h3 className="mt-4 text-lg font-semibold text-slate-900">
+      Belum ada event
+    </h3>
+
+    <p className="mt-1 text-slate-500">
+      Event yang memiliki absensi akan muncul di sini
+    </p>
+  </div>
+) : (
         <div className="space-y-4">
           {events.map((event) => {
             const hadir = Number(event.total_hadir);

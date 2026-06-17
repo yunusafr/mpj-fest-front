@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { QRCode } from "react-qr-code";
+import { pdf } from "@react-pdf/renderer";
+import InvoicePDF from "../components/InvoicePDF";
 
 import {
 Receipt,
@@ -20,6 +22,23 @@ export default function InvoicePage() {
   }
 
   const invoice = data?.data;
+
+const handleDownload = async () => {
+  if (!invoice) return;
+
+  const blob = await pdf(
+    <InvoicePDF invoice={invoice} orderId={orderId} />
+  ).toBlob();
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `invoice-${invoice.invoice_number}.pdf`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 py-10 px-4">
@@ -43,12 +62,19 @@ export default function InvoicePage() {
               <p className="mt-2 text-slate-500">
                 {invoice.invoice_number}
               </p>
+              <button
+  onClick={handleDownload}
+  className="rounded-xl bg-emerald-600 px-4 py-2 text-white text-sm font-semibold hover:bg-emerald-700"
+>
+  Download Invoice
+</button>
             </div>
           </div>
         </div>
 
         {/* INVOICE CARD */}
-        <div className="overflow-hidden rounded-3xl border-slate-200 bg-white border">
+        <div className="overflow-hidden rounded-3xl border bg-white border-slate-200 print:w-[210mm] print:h-[297mm]"
+>
 
           {/* TOP BAR */}
           <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 p-6 text-white">

@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@import "/src/styles/theme.css";
 
-@theme {
+:root {
   --color-primary: #22c55e;
   --color-primary-soft: #dcfce7;
 
@@ -13,17 +12,6 @@
 
   --color-text: #0f172a;
   --color-muted: #64748b;
-}
-
-:root {
-  --background: var(--color-background);
-  --foreground: var(--color-text);
-
-  --primary: var(--color-primary);
-  --secondary: var(--color-secondary);
-
-  --card-solid: var(--color-card);
-  --border: #e2e8f0;
 }
 
 html {
@@ -281,6 +269,7 @@ section .rounded-\[32px\].border {
   border-color: #6366f1;
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
+
 
 /* custom arrow */
 .select-wrapper::after {

@@ -83,7 +83,7 @@ export default function PaymentHistoryPage() {
             </span>
 
             <h1 className="mt-4 text-3xl font-bold text-slate-900">
-              Riwayat Pembayaran
+              Pembayaran
             </h1>
 
             <p className="mt-2 text-slate-500">
@@ -122,21 +122,21 @@ export default function PaymentHistoryPage() {
 
       {/* EMPTY */}
       {payments.length === 0 && (
-        <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center">
-          <Receipt
-            size={48}
-            className="mx-auto mb-4 text-slate-300"
-          />
+  <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+    <Receipt
+      size={40}
+      className="mx-auto text-slate-400"
+    />
 
-          <h3 className="font-semibold text-slate-800">
-            Belum Ada Transaksi
-          </h3>
+    <h3 className="mt-4 text-lg font-semibold text-slate-900">
+      Belum ada transaksi
+    </h3>
 
-          <p className="mt-2 text-sm text-slate-500">
-            Riwayat pembayaran akan muncul di sini.
-          </p>
-        </div>
-      )}
+    <p className="mt-1 text-slate-500">
+      Riwayat pembayaran akan muncul di sini
+    </p>
+  </div>
+)}
 
       {/* LIST */}
       {paginatedPayments.map((payment) => (

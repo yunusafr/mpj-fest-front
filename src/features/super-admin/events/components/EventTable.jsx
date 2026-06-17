@@ -17,17 +17,22 @@ events,
 onDelete,
 }) {
 if (events.length === 0) {
-return ( <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center"> <h3 className="text-lg font-semibold text-slate-900">
-Belum ada event </h3>
+  return (
+    <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+      <Ticket
+        size={40}
+        className="mx-auto text-slate-400"
+      />
 
+      <h3 className="mt-4 text-lg font-semibold text-slate-900">
+        Belum ada event
+      </h3>
 
-    <p className="mt-2 text-slate-500">
-      Event yang dibuat akan muncul di sini
-    </p>
-  </div>
-);
-
-
+      <p className="mt-1 text-slate-500">
+        Event yang dibuat akan muncul di sini
+      </p>
+    </div>
+  );
 }
 
 return ( <div className="space-y-4">

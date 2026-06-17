@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    // "deploy": "gh-pages -d dist",
     "tailwind-init": "tailwindcss init -p"
 
   },

@@ -14,4 +14,6 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+
+  base: '/mpj-fest-front/',
 })
