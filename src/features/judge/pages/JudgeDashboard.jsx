@@ -8,9 +8,12 @@ import { Sparkles } from "lucide-react";
 
 
 import { useJudgeDashboard } from "../hooks/useJudgeDashboard";
+import { useActiveFestival } from "@/features/festival/hooks/useActiveFestival";
 
 export default function JudgeDashboard() {
-  const { data, isLoading } = useJudgeDashboard();
+const { data, isLoading } = useJudgeDashboard();
+const { data: activeFestival } = useActiveFestival();
+  
 
   if (isLoading) {
     return (
@@ -21,6 +24,7 @@ export default function JudgeDashboard() {
   }
 
   const stats = data?.data;
+  const festival = activeFestival?.data;
 
   const total =
     Number(stats?.total_karya ?? 0);

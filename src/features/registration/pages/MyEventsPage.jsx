@@ -120,7 +120,7 @@ useMyRegistrations(
 
   const registrations = data?.data ?? [];
 return (
-  <div className="space-y-8 max-w-6xl mx-auto">
+  <div className="space-y-8">
 
     {/* HEADER */}
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 ">
@@ -198,32 +198,23 @@ return (
 
     {!registrations.length ? (
 
-      <div className="space-y-8 max-w-6xl mx-auto">
+      <div className="space-y-8"> 
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center">
+       {/* EMPTY */}
+<div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+  <Sparkles
+    size={40}
+    className="mx-auto text-slate-400"
+  />
 
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 ring-1 ring-emerald-200">
+  <h3 className="mt-4 text-lg font-semibold text-slate-900">
+    Belum ada event
+  </h3>
 
-            <Sparkles
-              className="text-emerald-600"
-              size={22}
-            />
-
-          </div>
-
-          <h3 className="text-lg font-semibold text-slate-900">
-
-            Belum ada event
-
-          </h3>
-
-          <p className="mt-2 text-slate-500">
-
-            Kamu belum mendaftar ke event apapun.
-
-          </p>
-
-        </div>
+  <p className="mt-1 text-slate-500">
+    Kamu belum mendaftar ke event apa pun
+  </p>
+</div>
 
       </div>
 

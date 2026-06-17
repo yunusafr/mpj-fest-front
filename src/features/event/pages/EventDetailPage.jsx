@@ -100,20 +100,20 @@ export default function EventDetailPage() {
 
   if (isLoading || isLoadingRegistrations) {
     return (
-      <div className="flex justify-center py-20">Loading...</div>
+      <div className="mx-auto max-w-4xl space-y-10">Loading...</div>
     );
   }
 
   if (!event) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="mx-auto max-w-4xl space-y-10">
         Event tidak ditemukan
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-10">
       <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden">
         {/* Header */}
         <div className="p-6 md:p-8 border-b border-slate-100">

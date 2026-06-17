@@ -106,16 +106,23 @@ useEffect(() => {
         ))}
       </div>
 
-      {/* EMPTY STATE */}
-      {filteredEvents.length === 0 && (
-        <div className="rounded-3xl border border-dashed border-slate-300 bg-white py-12 text-center shadow-sm">
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 ring-1 ring-emerald-200">
-            <Sparkles className="text-emerald-600" size={20} />
-          </div>
+{/* EMPTY */}
+{filteredEvents.length === 0 && (
+  <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+    <Sparkles
+      size={40}
+      className="mx-auto text-slate-400"
+    />
 
-          <p className="text-slate-500">Event tidak ditemukan</p>
-        </div>
-      )}
+    <h3 className="mt-4 text-lg font-semibold text-slate-900">
+      Event tidak ditemukan
+    </h3>
+
+    <p className="mt-1 text-slate-500">
+      Belum ada event yang tersedia untuk festival ini
+    </p>
+  </div>
+)}
     </div>
   );
 }

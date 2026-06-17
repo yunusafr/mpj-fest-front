@@ -57,7 +57,7 @@ export default function SubmissionPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="mx-auto max-w-4xl space-y-10">
       <div className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-3xl overflow-hidden">
 
         {/* HEADER */}
@@ -71,7 +71,7 @@ export default function SubmissionPage() {
           </h2>
 
           <p className="text-slate-600">
-            {submission?.deskripsi_karya || "-"}
+            {submission?.deskripsi_karya || "Belum ada deskripsi"}
           </p>
         </div>
 

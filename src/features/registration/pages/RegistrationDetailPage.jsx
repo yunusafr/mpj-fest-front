@@ -8,7 +8,10 @@ import {
   Trophy,
   Tag,
   CreditCard,
+  Users,
+  Ticket,
 } from "lucide-react";
+
 
 import { useRegistrationDetail } from "../hooks/useRegistrationDetail";
 
@@ -22,7 +25,7 @@ const { data, isLoading, isError } =
 
 if (isLoading) {
   return (
-    <div className="flex justify-center py-20 text-slate-500">
+    <div className="mx-auto max-w-4xl space-y-10">
       Loading...
     </div>
   );
@@ -30,7 +33,7 @@ if (isLoading) {
 
 if (isError || !data) {
   return (
-    <div className="text-center py-20 text-slate-500">
+    <div className="mx-auto max-w-4xl space-y-10">
       Data registrasi tidak ditemukan
     </div>
   );
@@ -66,7 +69,7 @@ const event = registration?.event;
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-10">
       <div
         className="
           bg-white
@@ -110,10 +113,10 @@ const event = registration?.event;
         {/* CONTENT */}
         <div className="p-6 md:p-8">
           <div className="grid md:grid-cols-2 gap-6">
-            <Info label="Status" value={registration?.status_pembayaran} />
-            <Info label="Jenis" value={event?.jenis} />
-            <Info label="Kategori" value={event?.kategori} />
-            <Info label="Lokasi" value={event?.lokasi} />
+            <Info icon={<CreditCard size={18} />} label="Status" value={registration?.status_pembayaran} />
+            <Info icon={<MapPin size={18} />} label="Jenis" value={event?.jenis} />
+            <Info icon={<MapPin size={18} />} label="Kategori" value={event?.kategori} />
+            <Info icon={<MapPin size={18} />} label="Lokasi" value={event?.lokasi} />
           </div>
 
           {/* ACTION */}
@@ -223,32 +226,18 @@ function StatusBadge({ status }) {
   );
 }
 
-/* ================= INFO ================= */
-
-function Info({ label, value }) {
+function Info({ icon, label, value }) {
   return (
     <div className="flex items-start gap-3">
-      <div
-        className="
-          flex
-          h-10 w-10
-          items-center justify-center
-          rounded-xl
-          bg-green-50
-          text-green-700
-        "
-      >
-        <Tag size={18} />
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-green-700">
+        {icon}
       </div>
 
       <div>
         <p className="text-xs uppercase tracking-wide text-slate-400">
           {label}
         </p>
-
-        <p className="mt-1 font-medium text-slate-800">
-          {value || "-"}
-        </p>
+        <p className="mt-1 font-medium text-slate-800">{value || "-"}</p>
       </div>
     </div>
   );

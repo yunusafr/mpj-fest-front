@@ -19,7 +19,7 @@ const isSettled =
 
   if (isLoading) {
     return (
-      <div className="flex h-96 items-center justify-center">
+      <div className="mx-auto max-w-4xl space-y-10">
         <div className="text-center space-y-3">
           <div className="animate-spin h-9 w-9 border-2 border-slate-200 border-t-emerald-500 rounded-full mx-auto" />
           <p className="text-sm text-slate-500">
@@ -32,7 +32,7 @@ const isSettled =
 
   if (!isSettled) {
     return (
-      <div className="flex h-96 items-center justify-center">
+      <div className="mx-auto max-w-4xl space-y-10">
         <div className="text-center space-y-3">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 ring-1 ring-red-200">
             <Ticket className="text-red-500" />
@@ -51,7 +51,7 @@ const isSettled =
   }
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-10">
 
       {/* HEADER */}
       <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -78,17 +78,17 @@ const isSettled =
       {/* TICKET LANDSCAPE */}
 {/* PREMIUM TICKET */}
 <div
-  className={`relative overflow-hidden rounded-[32px] border shadow-[0_20px_80px_rgba(0,0,0,0.08)] ${
+  className={`relative overflow-hidden rounded-[32px] border shadow-[0_10x_30px_rgba(0,0,0,0.08)] ${
     isUsed
-      ? "border-red-200 bg-red-50/40"
-      : "border-slate-200 bg-white"
+      ? "border-slate-200 shadow-sm bg-white"
+      : "border-slate-200 shadow-sm bg-white"
   }`}
 >
   {/* Background Decoration */}
   <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-emerald-100 blur-3xl opacity-60" />
+    <div className="absolute -top-24 -right-24 h-80 w-80 rounded-full opacity-60" />
 
-    <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-cyan-50 blur-3xl opacity-70" />
+    <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full opacity-70" />
 
     <div className="absolute right-10 bottom-0 text-[140px] font-black text-slate-50 select-none pointer-events-none">
       PASS
@@ -111,7 +111,7 @@ const isSettled =
           rounded-[28px]
           bg-white
           p-6
-          shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+          shadow-[0_5px_5px_rgba(0,0,0,0.08)]
           ring-1
           ring-slate-200
         "

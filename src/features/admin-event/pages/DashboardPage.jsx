@@ -13,6 +13,8 @@ import {
   Award,
   ChevronRight,
 } from "lucide-react";
+import { Link, Links } from "react-router-dom";
+import PaymentHistoryPage from "@/features/payments/pages/PaymentHistoryPage";
 
 export default function AdminEventDashboardPage() {
 

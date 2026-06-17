@@ -193,19 +193,22 @@ export default function JudgeSubmissionsPage() {
 
       {/* EMPTY */}
 
-      {filteredSubmissions.length ===
-      0 ? (
-        <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
-          <h3 className="text-lg font-semibold text-slate-900">
-            Tidak ada data
-          </h3>
+      {filteredSubmissions.length === 0 ? (
+  <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+    <Sparkles
+      size={40}
+      className="mx-auto text-slate-400"
+    />
 
-          <p className="mt-2 text-slate-500">
-            Belum ada submission yang
-            sesuai filter
-          </p>
-        </div>
-      ) : (
+    <h3 className="mt-4 text-lg font-semibold text-slate-900">
+      Tidak ada data
+    </h3>
+
+    <p className="mt-1 text-slate-500">
+      Belum ada submission yang sesuai filter
+    </p>
+  </div>
+) : (
         <div
           className="
             grid
