@@ -17,7 +17,7 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Menggunakan Node.js versi LTS yang stabil
+          node-version: '24' # Menggunakan Node.js versi LTS yang stabil
 
       - name: 📦 Install Dependencies
         run: npm install
