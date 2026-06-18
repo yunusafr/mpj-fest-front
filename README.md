@@ -1,32 +1,64 @@
-# 🎉 MPJ Fest Management System
+<p align="center">
+  <a href="https://vite.dev" target="_blank">
+    <img src="https://vite.dev/logo.svg" width="120" alt="Vite Logo">
+  </a>
+</p>
+
+<h1 align="center">MPJ Fest Management System</h1>
+
+<p align="center">
+  Sistem Manajemen Festival berbasis Web menggunakan React + Vite
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-blue" alt="React">
+  <img src="https://img.shields.io/badge/Vite-7-purple" alt="Vite">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+<p align="center">
+  <a href="https://vite.dev" target="_blank">
+    <img src="https://vite.dev/logo.svg" width="120" alt="Vite Logo">
+  </a>
+</p>
+
+<h1 align="center">MPJ Fest Management System</h1>
+
+<p align="center">
+  Sistem Manajemen Festival berbasis Web menggunakan React + Vite
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-blue" alt="React">
+  <img src="https://img.shields.io/badge/Vite-7-purple" alt="Vite">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+---
+
+# MPJ Fest Management System
 
 Aplikasi **MPJ Fest Management System** adalah sistem manajemen acara berbasis web yang dibangun menggunakan **React + Vite**. Aplikasi ini digunakan untuk mengelola berbagai kebutuhan acara MPJ Fest, mulai dari autentikasi pengguna, pengelolaan data, hingga dashboard informasi secara modern dan responsif.
 
----
+## Fitur
 
-## ✨ Fitur Utama
+- Login dan autentikasi pengguna
+- Dashboard interaktif
+- Responsive Design (Desktop & Mobile)
+- Dibangun menggunakan React + Vite
+- Tampilan modern dan ringan
+- Hot Module Replacement (HMR) saat development
 
-- 🔐 Login dan autentikasi pengguna
-- 📊 Dashboard interaktif
-- 📱 Responsive Design (Desktop & Mobile)
-- ⚡ Dibangun menggunakan React + Vite
-- 🎨 Tampilan modern dan ringan
-- 🔄 Hot Module Replacement (HMR) saat development
-
----
-
-## 🛠️ Teknologi yang Digunakan
+## Teknologi
 
 - React JS
 - Vite
 - JavaScript (ES6+)
-- CSS / Tailwind CSS (jika digunakan)
+- CSS / Tailwind CSS
 - Axios
 - React Router DOM
 
----
-
-## 📦 Persyaratan Sistem
+## Persyaratan Sistem
 
 Pastikan perangkat Anda telah terinstall:
 
@@ -39,29 +71,21 @@ Cek versi Node.js:
 node -v
 ```
 
----
+## Instalasi
 
-# 🚀 Cara Instalasi
-
-### 1. Clone Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/yunusafr/mpj-fest-front.git
 ```
 
-atau download file ZIP kemudian ekstrak.
-
----
-
-### 2. Masuk ke Folder Project
+### Masuk ke Folder Project
 
 ```bash
 cd mpj-fest
 ```
 
----
-
-### 3. Install Dependencies
+### Install Dependencies
 
 Menggunakan npm:
 
@@ -75,9 +99,7 @@ atau menggunakan yarn:
 yarn install
 ```
 
----
-
-### 4. Jalankan Aplikasi
+### Menjalankan Aplikasi
 
 ```bash
 npm run dev
@@ -89,26 +111,20 @@ atau
 yarn dev
 ```
 
-Secara default aplikasi akan berjalan pada:
+Aplikasi akan berjalan pada:
 
 ```text
 http://localhost:5173
 ```
 
----
-
-# 🔑 Login Default
-
-Gunakan akun berikut untuk login pertama kali:
+## Login Default
 
 | Field    | Value               |
 | -------- | ------------------- |
 | Email    | `fulan@example.com` |
 | Password | `password123`       |
 
----
-
-## 📂 Struktur Folder
+## Struktur Folder
 
 ```text
 mpj-fest/
@@ -128,10 +144,6 @@ mpj-fest/
 └── README.md
 ```
 
-## 📄 Lisensi
+## Lisensi
 
 Project ini dibuat untuk kebutuhan **MPJ Fest** dan dapat dikembangkan lebih lanjut sesuai kebutuhan organisasi atau panitia.
-
----
-
-### Dibuat dengan ❤️ menggunakan React + Vite
