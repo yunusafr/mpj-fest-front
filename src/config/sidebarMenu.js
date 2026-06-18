@@ -87,6 +87,11 @@ export const sidebarMenu = {
       icon: FileText,
     },
     {
+      title: "Pengaturan Event",
+      path: "/admin-event/events",
+      icon: CalendarDays,
+    },
+    {
       title: "Submission",
       path: "/admin-event/submissions",
       icon: FileUp, // lebih relevan daripada UserCheck

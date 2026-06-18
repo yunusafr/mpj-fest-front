@@ -9,3 +9,13 @@ export const fetchSubmissions = async () => {
   const res = await api.get("/judge/submissions");
   return res.data;
 };
+
+export const fetchSubmissionDetail = async (
+  submissionId
+) => {
+  const res = await api.get(
+    `/judge/submissions/${submissionId}`
+  );
+
+  return res.data;
+};

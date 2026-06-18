@@ -44,7 +44,6 @@ export default function Navbar() {
                   object-contain
                   transition-transform
                   duration-300
-                  group-hover:scale-105
                 "
               />
             </Link>

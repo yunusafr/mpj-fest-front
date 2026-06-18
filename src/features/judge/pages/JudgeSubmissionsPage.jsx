@@ -3,7 +3,7 @@ import { Search, Sparkles } from "lucide-react";
 
 import { useJudgeSubmissions } from "../hooks/useJudgeSubmissions";
 import SubmissionCard from "../components/SubmissionCard";
-import api from "@/lib/axios";
+import { Toaster } from "sonner";
 
 export default function JudgeSubmissionsPage() {
   const { data, isLoading, refetch } =
@@ -55,16 +55,6 @@ export default function JudgeSubmissionsPage() {
       search,
       filterStatus,
     ]);
-
-  const submitAssessment =
-    async (payload) => {
-      await api.post(
-        "/judge/assessment",
-        payload
-      );
-
-      refetch();
-    };
 
   if (isLoading) {
     return (
@@ -219,13 +209,10 @@ export default function JudgeSubmissionsPage() {
         >
           {filteredSubmissions.map(
             (item) => (
-              <SubmissionCard
-                key={item.id}
-                submission={item}
-                onSubmit={
-                  submitAssessment
-                }
-              />
+<SubmissionCard
+  key={item.id}
+  submission={item}
+/>
             )
           )}
         </div>

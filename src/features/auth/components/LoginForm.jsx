@@ -144,7 +144,7 @@ shadow-xl
         className="
         h-12
         rounded-2xl
-        border-slate-200
+        
         bg-white
         "
         {...register("email")}
@@ -175,7 +175,7 @@ shadow-xl
         className="
         h-12
         rounded-2xl
-        border-slate-200
+        
         bg-white
         "
         {...register("password")}

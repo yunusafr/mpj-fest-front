@@ -12,11 +12,14 @@
 
   --color-text: #0f172a;
   --color-muted: #64748b;
+  --primary: #113d0062;
 }
 
 html {
   font-family: "Geist Variable", sans-serif;
 }
+
+
 
 body {
   background-color: #f8fafc;

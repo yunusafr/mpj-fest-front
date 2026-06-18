@@ -64,6 +64,10 @@ import AttendanceDetailPage from "@/features/attendance/pages/AttendanceDetailPa
 import JudgeDashboard from "@/features/judge/pages/JudgeDashboard";
 import JudgeSubmissionsPage from "@/features/judge/pages/JudgeSubmissionsPage";
 
+import EventsPage3 from "@/features/admin-event/pages/EventsPage";
+import EventCriteriaPage from "@/features/admin-event/pages/EventCriteriaPage";
+import JudgeAssessmentPage from "@/features/judge/pages/JudgeAssessmentPage";
+
 export const routes = [
   {
   element: <PublicLayout />,
@@ -270,6 +274,22 @@ export const routes = [
   element: <ScanTicketPage />,
 },
 {
+  path: "events",
+  children: [
+
+    {
+      index: true,
+      element: <EventsPage3 />,
+    },
+
+    {
+      path: ":eventId/criteria",
+      element: <EventCriteriaPage />,
+    },
+
+  ],
+},
+{
   path: "attendance",
   children: [
     {
@@ -397,20 +417,14 @@ export const routes = [
       element:
         <JudgeDashboard />,
     },
-    {
-      index: true,
-      element:
-        <JudgeDashboard />,
-    },
-    {
-  path: "submission",
-  children: [
-    {
-      index: true,
-      element: <JudgeSubmissionsPage />,
-    },
 
-  ],
+  {
+  path: "submission",
+  element: <JudgeSubmissionsPage />,
+},
+{
+  path: "submission/:submissionId",
+  element: <JudgeAssessmentPage  />,
 },
   ],
 }
