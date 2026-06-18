@@ -16,24 +16,6 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
-<p align="center">
-  <a href="https://vite.dev" target="_blank">
-    <img src="https://vite.dev/logo.svg" width="120" alt="Vite Logo">
-  </a>
-</p>
-
-<h1 align="center">MPJ Fest Management System</h1>
-
-<p align="center">
-  Sistem Manajemen Festival berbasis Web menggunakan React + Vite
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/React-19-blue" alt="React">
-  <img src="https://img.shields.io/badge/Vite-7-purple" alt="Vite">
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
-</p>
-
 ---
 
 # MPJ Fest Management System
