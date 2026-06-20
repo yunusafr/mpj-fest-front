@@ -12,7 +12,7 @@ export default function PublicVotingPage() {
   const res = await axios.get("/auth/google");
   window.location.href = res.data.url;
 };
-const isLoggedIn = !!token;
+const isLoggedIn = !!localStorage.getItem("token");
 
   const queryClient = useQueryClient();
 

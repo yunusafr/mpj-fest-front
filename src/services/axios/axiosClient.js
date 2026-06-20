@@ -18,4 +18,6 @@ axiosClient.interceptors.request.use(
   }
 );
 
+axiosClient.defaults.headers.common["Accept"] = "application/json";
+
 export default axiosClient;
