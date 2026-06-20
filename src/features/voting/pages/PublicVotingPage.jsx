@@ -6,15 +6,18 @@ import { useState } from "react";
 
 export default function PublicVotingPage() {
   const { slug } = useParams();
-  const [loadingId, setLoadingId] = useState(null);
   const queryClient = useQueryClient();
+  const [loadingId, setLoadingId] = useState(null);
 
   const isLoggedIn = !!localStorage.getItem("token");
 
-const handleGoogleLogin = () => {
-  window.location.href = `${import.meta.env.VITE_API_URL}auth/google`;
+  // LOGIN GOOGLE
+const handleGoogleLogin = async () => {
+  const res = await axios.get("/auth/google");
+  window.location.href = res.data.url;
 };
 
+  // FETCH VOTING DATA
   const { data, isLoading } = useQuery({
     queryKey: ["public-voting", slug],
     queryFn: async () => {
@@ -24,13 +27,13 @@ const handleGoogleLogin = () => {
     enabled: !!slug,
   });
 
+  // VOTE
   const voteMutation = useMutation({
-    mutationFn: (submission_id) =>
-      axios.post(`/voting/${slug}/vote`, {
+    mutationFn: async (submission_id) => {
+      return axios.post(`/voting/${slug}/vote`, {
         submission_id,
-        user_agent: navigator.userAgent,
-        screen_resolution: `${window.screen.width}x${window.screen.height}`,
-      }),
+      });
+    },
   });
 
   const handleVote = (id) => {
@@ -63,8 +66,8 @@ const handleGoogleLogin = () => {
 
   const {
     submissions = [],
-    remaining_votes = 0,
     voting_status = "closed",
+    remaining_votes = 0,
     has_voted = false,
   } = data;
 
@@ -75,15 +78,17 @@ const handleGoogleLogin = () => {
     !has_voted;
 
   return (
-    <div className="space-y-4 p-6">
+    <div className="p-6 space-y-4">
 
+      {/* STATUS */}
       <div className="border p-3 rounded-xl text-sm">
-        Sisa vote: <b>{remaining_votes}</b> | Status: <b>{voting_status}</b>
+        Status: <b>{voting_status}</b> | Sisa vote: <b>{remaining_votes}</b>
       </div>
 
+      {/* LOGIN */}
       {!isLoggedIn && (
         <div className="p-4 border rounded-xl">
-          <p className="mb-2">Harus login untuk vote</p>
+          <p className="mb-2">Login dulu untuk melakukan voting</p>
           <button
             onClick={handleGoogleLogin}
             className="px-4 py-2 bg-red-500 text-white rounded-xl"
@@ -93,14 +98,23 @@ const handleGoogleLogin = () => {
         </div>
       )}
 
+      {/* LIST KARYA */}
       {submissions.length === 0 ? (
-        <div className="text-center text-slate-500">Belum ada karya</div>
+        <div className="text-center text-slate-500">
+          Belum ada karya
+        </div>
       ) : (
         submissions.map((item, index) => (
           <div key={item.id} className="border p-4 rounded-xl">
             <div className="text-xs">#{index + 1}</div>
-            <h3 className="font-semibold">{item.judul_karya}</h3>
-            <p className="text-sm">Vote: {item.votes_count}</p>
+
+            <h3 className="font-semibold">
+              {item.judul_karya}
+            </h3>
+
+            <p className="text-sm">
+              Votes: {item.votes_count}
+            </p>
 
             <button
               disabled={!canVote || loadingId === item.id}

@@ -1,20 +1,20 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function OAuthCallback() {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
 
-useEffect(() => {
-  const hash = window.location.hash;
-  const token = new URLSearchParams(hash.replace("#", "")).get("token");
+  useEffect(() => {
+    const token = params.get("token");
 
-  if (token) {
-    localStorage.setItem("token", token);
-    window.location.replace("/");
-  } else {
-    window.location.replace("/login");
-  }
-}, []);
+    if (token) {
+      localStorage.setItem("token", token);
+      navigate("/", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
+    }
+  }, []);
 
   return <div>Logging in...</div>;
 }
