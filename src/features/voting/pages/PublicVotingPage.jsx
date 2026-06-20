@@ -7,18 +7,14 @@ import { useState } from "react";
 export default function PublicVotingPage() {
   const { slug } = useParams();
   const [loadingId, setLoadingId] = useState(null);
-  const token = localStorage.getItem("token");
-const handleGoogleLogin = async () => {
-  const res = await axios.get("/auth/google");
-  window.location.href = res.data.url;
-};
-const isLoggedIn = !!localStorage.getItem("token");
-
   const queryClient = useQueryClient();
 
-  // =========================
-  // FETCH DATA VOTING
-  // =========================
+  const isLoggedIn = !!localStorage.getItem("token");
+
+const handleGoogleLogin = () => {
+  window.location.href = `${import.meta.env.VITE_API_URL}auth/google`;
+};
+
   const { data, isLoading } = useQuery({
     queryKey: ["public-voting", slug],
     queryFn: async () => {
@@ -28,22 +24,15 @@ const isLoggedIn = !!localStorage.getItem("token");
     enabled: !!slug,
   });
 
-  // =========================
-  // MUTATION VOTE
-  // =========================
   const voteMutation = useMutation({
     mutationFn: (submission_id) =>
       axios.post(`/voting/${slug}/vote`, {
         submission_id,
-        fingerprint: "web",
         user_agent: navigator.userAgent,
         screen_resolution: `${window.screen.width}x${window.screen.height}`,
       }),
   });
 
-  // =========================
-  // HANDLE VOTE
-  // =========================
   const handleVote = (id) => {
     setLoadingId(id);
 
@@ -51,15 +40,12 @@ const isLoggedIn = !!localStorage.getItem("token");
       onSuccess: (res) => {
         toast.success(res.data.message);
 
-        // optional refresh (kalau belum pakai optimistic update)
         queryClient.invalidateQueries({
           queryKey: ["public-voting", slug],
         });
       },
       onError: (err) => {
-        toast.error(
-          err?.response?.data?.message || "Gagal vote"
-        );
+        toast.error(err?.response?.data?.message || "Gagal vote");
       },
       onSettled: () => {
         setLoadingId(null);
@@ -67,26 +53,12 @@ const isLoggedIn = !!localStorage.getItem("token");
     });
   };
 
-  // =========================
-  // LOADING STATE
-  // =========================
   if (isLoading) {
-    return (
-      <div className="p-6 text-center text-slate-500">
-        Loading voting...
-      </div>
-    );
+    return <div className="p-6 text-center">Loading voting...</div>;
   }
 
-  // =========================
-  // SAFE GUARD
-  // =========================
   if (!data) {
-    return (
-      <div className="p-6 text-center text-red-500">
-        Data voting tidak ditemukan
-      </div>
-    );
+    return <div className="p-6 text-center text-red-500">Data tidak ditemukan</div>;
   }
 
   const {
@@ -96,86 +68,46 @@ const isLoggedIn = !!localStorage.getItem("token");
     has_voted = false,
   } = data;
 
-  // =========================
-  // RULE ENGINE
-  // =========================
-const canVote =
-  isLoggedIn &&
-  voting_status === "open" &&
-  remaining_votes > 0 &&
-  !has_voted;
+  const canVote =
+    isLoggedIn &&
+    voting_status === "open" &&
+    remaining_votes > 0 &&
+    !has_voted;
 
-  // =========================
-  // UI
-  // =========================
   return (
     <div className="space-y-4 p-6">
-      
-      {/* STATUS BAR */}
-      <div className="rounded-xl border p-3 text-sm text-slate-600">
-        Sisa vote:{" "}
-        <b className="text-slate-900">{remaining_votes}</b>
-        {" | "}
-        Status: <b>{voting_status}</b>
+
+      <div className="border p-3 rounded-xl text-sm">
+        Sisa vote: <b>{remaining_votes}</b> | Status: <b>{voting_status}</b>
       </div>
+
       {!isLoggedIn && (
-  <div className="p-4 bg-white border rounded-xl">
-    <p className="text-sm text-slate-600 mb-2">
-      Kamu harus login untuk vote
-    </p>
-
-    <button
-      onClick={handleGoogleLogin}
-      className="px-4 py-2 bg-red-500 text-white rounded-xl"
-    >
-      Login dengan Google
-    </button>
-  </div>
-)}
-
-      {/* LIST SUBMISSION */}
-      {submissions.length === 0 ? (
-        <div className="text-center text-slate-500">
-          Belum ada karya
+        <div className="p-4 border rounded-xl">
+          <p className="mb-2">Harus login untuk vote</p>
+          <button
+            onClick={handleGoogleLogin}
+            className="px-4 py-2 bg-red-500 text-white rounded-xl"
+          >
+            Login Google
+          </button>
         </div>
+      )}
+
+      {submissions.length === 0 ? (
+        <div className="text-center text-slate-500">Belum ada karya</div>
       ) : (
         submissions.map((item, index) => (
-          <div
-            key={item.id}
-            className="border p-4 rounded-xl bg-white"
-          >
-            {/* RANK */}
-            <div className="text-xs text-slate-400">
-              #{index + 1}
-            </div>
+          <div key={item.id} className="border p-4 rounded-xl">
+            <div className="text-xs">#{index + 1}</div>
+            <h3 className="font-semibold">{item.judul_karya}</h3>
+            <p className="text-sm">Vote: {item.votes_count}</p>
 
-            {/* TITLE */}
-            <h3 className="font-semibold">
-              {item.judul_karya}
-            </h3>
-
-            {/* VOTE COUNT */}
-            <p className="text-sm text-slate-500">
-              Vote: {item.votes_count}
-            </p>
-
-            {/* BUTTON */}
             <button
-              disabled={
-                !canVote || loadingId === item.id
-              }
+              disabled={!canVote || loadingId === item.id}
               onClick={() => handleVote(item.id)}
-              className="
-                mt-2 px-4 py-2
-                bg-emerald-600 text-white
-                rounded-xl
-                disabled:opacity-50
-                disabled:cursor-not-allowed
-              "
+              className="mt-2 px-4 py-2 bg-emerald-600 text-white rounded-xl disabled:opacity-50"
             >
-              {loadingId === item.id
-                ? "Voting..."
-                : "Vote"}
+              {loadingId === item.id ? "Voting..." : "Vote"}
             </button>
           </div>
         ))
