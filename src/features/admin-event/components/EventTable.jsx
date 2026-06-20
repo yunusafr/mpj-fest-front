@@ -6,11 +6,15 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
+import { MoreVertical } from "lucide-react";
+import { useState } from "react";
+
 
 export default function EventTable({
   events,
 }) {
   const navigate = useNavigate();
+  const [openMenu, setOpenMenu] = useState(null);
 
   if (events.length === 0) {
     return (
@@ -86,36 +90,50 @@ export default function EventTable({
               </div>
             </div>
 
-            <button
-              onClick={() =>
-                navigate(
-                  `/admin-event/events/${event.id}/criteria`
-                )
-              }
-              className="
-                inline-flex
-                items-center
-                gap-2
-                rounded-xl
-                bg-gradient-to-r
-                from-emerald-500
-                to-emerald-600
-                px-5
-                py-3
-                text-sm
-                font-semibold
-                text-white
-                transition-all
-                hover:shadow-md
-                hover:from-emerald-600
-                hover:to-emerald-700
-              "
-            >
-              Kelola Kriteria
-              <ArrowRight
-                size={16}
-              />
-            </button>
+           <div className="relative">
+  <button
+    onClick={() =>
+      setOpenMenu(
+        openMenu === event.id
+          ? null
+          : event.id
+      )
+    }
+    className=" inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-all hover:shadow-md hover:from-emerald-600 hover:to-emerald-700 "
+  >
+    Manage
+    <MoreVertical size={16} />
+  </button>
+
+  {openMenu === event.id && (
+    <div className="absolute right-0 mt-2 w-48 rounded-xl border bg-white shadow-lg z-10">
+      
+      <button
+        onClick={() =>
+          navigate(
+            `/admin-event/events/${event.id}/criteria`
+          )
+        }
+        className="w-full px-4 py-2 text-left text-sm hover:bg-slate-50"
+      >
+        Kriteria
+      </button>
+
+      <button
+        onClick={() =>
+          navigate(
+            `/admin-event/events/${event.id}/voting`
+          )
+        }
+        className="w-full px-4 py-2 text-left text-sm hover:bg-slate-50"
+      >
+        Voting
+      </button>
+
+    </div>
+  )}
+</div>
+
           </div>
         </div>
       ))}

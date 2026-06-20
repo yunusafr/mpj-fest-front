@@ -68,6 +68,9 @@ import EventsPage3 from "@/features/admin-event/pages/EventsPage";
 import EventCriteriaPage from "@/features/admin-event/pages/EventCriteriaPage";
 import JudgeAssessmentPage from "@/features/judge/pages/JudgeAssessmentPage";
 
+import VotingSetupPage from "@/features/admin-event/pages/VotingSetupPage";
+import PublicVotingPage from "@/features/voting/pages/PublicVotingPage";
+
 export const routes = [
   {
   element: <PublicLayout />,
@@ -88,7 +91,11 @@ export const routes = [
       <LoginPage />
     </GuestRoute>
   )
-    }
+    },
+    {
+  path: "/v/:slug",
+  element: <PublicVotingPage />
+}
   ]
 },
   {
@@ -275,19 +282,45 @@ export const routes = [
 },
 {
   path: "events",
+
   children: [
 
     {
-      index: true,
-      element: <EventsPage3 />,
+
+      index:true,
+
+      element:
+
+      <EventsPage3 />
+
     },
 
     {
-      path: ":eventId/criteria",
-      element: <EventCriteriaPage />,
+
+      path:
+
+      ":eventId/criteria",
+
+      element:
+
+      <EventCriteriaPage />
+
     },
 
-  ],
+    {
+
+      path:
+
+      ":eventId/voting",
+
+      element:
+
+      <VotingSetupPage />
+
+    }
+
+  ]
+
 },
 {
   path: "attendance",

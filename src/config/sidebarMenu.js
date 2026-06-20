@@ -91,6 +91,7 @@ export const sidebarMenu = {
       path: "/admin-event/events",
       icon: CalendarDays,
     },
+    
     {
       title: "Submission",
       path: "/admin-event/submissions",
