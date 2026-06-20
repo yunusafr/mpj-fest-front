@@ -8,7 +8,7 @@ export default function PublicVotingPage() {
   const { slug } = useParams();
   const [loadingId, setLoadingId] = useState(null);
   const token = localStorage.getItem("token");
-  const handleGoogleLogin = async () => {
+const handleGoogleLogin = async () => {
   const res = await axios.get("/auth/google");
   window.location.href = res.data.url;
 };

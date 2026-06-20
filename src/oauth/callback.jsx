@@ -5,8 +5,7 @@ export default function OAuthCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+    const token = new URLSearchParams(window.location.search).get("token");
 
     if (token) {
       localStorage.setItem("token", token);
@@ -16,5 +15,5 @@ export default function OAuthCallback() {
     }
   }, []);
 
-  return <div>Processing login...</div>;
+  return <div>Logging in...</div>;
 }
