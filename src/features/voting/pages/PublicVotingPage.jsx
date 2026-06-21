@@ -90,7 +90,7 @@ export default function PublicVotingPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-20">
+    <div className="max-w-6xl mx-auto px-6 py-14">
       {/* HERO */}
       <div className="card p-10 mb-8 text-center">
         <h1 className="mt-4 text-5xl font-black">{event_name}</h1>
