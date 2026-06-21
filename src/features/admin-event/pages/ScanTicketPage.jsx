@@ -3,8 +3,15 @@ import { Html5Qrcode } from "html5-qrcode";
 import { toast } from "sonner";
 import { QrCode, Sparkles, Camera, ShieldCheck } from "lucide-react";
 import { useScanTicket } from "../hooks/useScanTicket";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function ScanTicketPage() {
+  const { eventId } = useParams();
+
+  const [accessDenied, setAccessDenied] = useState(false);
+  const [checkingAccess, setCheckingAccess] = useState(true);
+
   const { mutateAsync } = useScanTicket();
 
   const qrRef = useRef(null);
@@ -16,8 +23,8 @@ export default function ScanTicketPage() {
 
   const successAudioRef = useRef(
     new Audio(
-      "https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3"
-    )
+      "https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3",
+    ),
   );
 
   const playSuccessSound = () => {
@@ -28,8 +35,37 @@ export default function ScanTicketPage() {
     } catch {}
   };
 
+  // =========================
+  // 1. CEK ACCESS ADMIN EVENT
+  // =========================
   useEffect(() => {
+    const checkAccess = async () => {
+      try {
+        await axios.get(`/api/scan/can-access/${eventId}`);
+        setAccessDenied(false);
+      } catch (err) {
+        setAccessDenied(true);
+      } finally {
+        setCheckingAccess(false);
+      }
+    };
+
+    if (!eventId) {
+      setAccessDenied(true); // atau false sesuai kebutuhan
+      setCheckingAccess(false); // 👈 ini yang penting
+      return;
+    }
+
+    checkAccess();
+  }, [eventId]);
+
+  // =========================
+  // 2. START SCANNER
+  // =========================
+  useEffect(() => {
+    if (checkingAccess || accessDenied) return;
     if (isMountedRef.current) return;
+
     isMountedRef.current = true;
 
     let qr;
@@ -43,22 +79,12 @@ export default function ScanTicketPage() {
         qrRef.current = qr;
 
         await qr.start(
-  {
-    facingMode: "environment",
-  },
+          { facingMode: "environment" },
           {
             fps: 10,
-            qrbox: (viewfinderWidth, viewfinderHeight) => {
-              const size = Math.min(
-                viewfinderWidth,
-                viewfinderHeight,
-                280
-              );
-
-              return {
-                width: size,
-                height: size,
-              };
+            qrbox: (w, h) => {
+              const size = Math.min(w, h, 280);
+              return { width: size, height: size };
             },
             aspectRatio: 1,
             disableFlip: false,
@@ -72,7 +98,6 @@ export default function ScanTicketPage() {
               const result = await mutateAsync(decodedText);
 
               toast.success(result.message);
-
               playSuccessSound();
 
               if (navigator.vibrate) {
@@ -85,16 +110,13 @@ export default function ScanTicketPage() {
 
               setTimeout(() => {
                 isProcessingRef.current = false;
-
                 try {
                   qr.resume();
                 } catch {}
               }, 2500);
             } catch (err) {
               toast.error(
-                err?.response?.data?.message ||
-                  err?.message ||
-                  "Scan gagal"
+                err?.response?.data?.message || err?.message || "Scan gagal",
               );
 
               setTimeout(() => {
@@ -102,17 +124,15 @@ export default function ScanTicketPage() {
               }, 800);
             }
           },
-          () => {}
+          () => {},
         );
 
         setCameraReady(true);
       } catch (err) {
         console.error(err);
-
         setCameraError(
-          "Kamera tidak dapat diakses. Pastikan izin kamera diberikan."
+          "Kamera tidak dapat diakses. Pastikan izin kamera diberikan.",
         );
-
         toast.error("Kamera tidak bisa diakses");
       }
     };
@@ -122,17 +142,11 @@ export default function ScanTicketPage() {
     return () => {
       const cleanup = async () => {
         try {
-          if (
-            qrRef.current &&
-            qrRef.current.isScanning
-          ) {
+          if (qrRef.current && qrRef.current.isScanning) {
             await qrRef.current.stop();
           }
-
           await qrRef.current?.clear();
-        } catch (e) {
-          console.log(e);
-        }
+        } catch {}
 
         qrRef.current = null;
         isMountedRef.current = false;
@@ -140,8 +154,34 @@ export default function ScanTicketPage() {
 
       cleanup();
     };
-  }, [mutateAsync]);
+  }, [checkingAccess, accessDenied, mutateAsync]);
 
+  // =========================
+  // 3. UI BLOCK ACCESS
+  // =========================
+  if (checkingAccess) {
+    return <div className="p-10 text-slate-500">Mengecek akses...</div>;
+  }
+
+  if (accessDenied) {
+    return (
+      <div className="flex h-[60vh] items-center justify-center">
+        <div className="text-center space-y-2">
+          <ShieldCheck className="mx-auto text-red-500" size={40} />
+          <p className="text-lg font-semibold text-red-500">
+            Anda tidak memiliki akses ke fitur ini
+          </p>
+          <p className="text-sm text-slate-500">
+            Hanya admin event yang dapat menggunakan scanner ini
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // =========================
+  // 4. MAIN UI
+  // =========================
   return (
     <div className="space-y-8">
       {/* HEADER */}
@@ -183,9 +223,7 @@ export default function ScanTicketPage() {
 
               <div>
                 <p className="text-sm font-semibold">Kamera Aktif</p>
-                <p className="text-xs text-slate-500">
-                  Arahkan ke QR Code
-                </p>
+                <p className="text-xs text-slate-500">Arahkan ke QR Code</p>
               </div>
             </div>
 
@@ -196,23 +234,18 @@ export default function ScanTicketPage() {
 
               <div>
                 <p className="text-sm font-semibold">Auto Verify</p>
-                <p className="text-xs text-slate-500">
-                  Validasi real-time
-                </p>
+                <p className="text-xs text-slate-500">Validasi real-time</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="p-6">
-          <div className="relative rounded-[15px] overflow-hidden border-white/20 bg-black shadow-2xl">
+          <div className="relative rounded-[15px] overflow-hidden bg-black shadow-2xl">
             {/* CAMERA */}
-            <div
-              id="reader"
-              className="w-full min-h-[320px] h-[60vh]"
-            />
+            <div id="reader" className="w-full min-h-[320px] h-[60vh]" />
 
-            {/* OVERLAY LOADING */}
+            {/* LOADING OVERLAY */}
             {!cameraReady && (
               <div className="absolute inset-0 flex items-center justify-center bg-slate-50 z-20">
                 <div className="text-center space-y-2">
@@ -223,7 +256,6 @@ export default function ScanTicketPage() {
                       <p className="font-semibold text-red-500">
                         Kamera tidak bisa diakses
                       </p>
-
                       <p className="text-sm text-slate-500">
                         Aktifkan permission kamera di browser
                       </p>
@@ -233,7 +265,6 @@ export default function ScanTicketPage() {
                       <p className="font-medium text-slate-600">
                         Menunggu akses kamera...
                       </p>
-
                       <p className="text-sm text-slate-400">
                         Pastikan izin kamera diberikan
                       </p>
@@ -243,14 +274,9 @@ export default function ScanTicketPage() {
               </div>
             )}
 
-            {/* DARK OVERLAY */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/60" />
-            </div>
-
             {/* FRAME */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="scanner-frame h-64 w-64 rounded-2xl border-2 border-emerald-400/70" />
+              <div className="h-64 w-64 rounded-2xl border-2 border-emerald-400/70" />
             </div>
           </div>
         </div>

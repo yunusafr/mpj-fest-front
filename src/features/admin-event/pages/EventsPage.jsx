@@ -1,42 +1,54 @@
-import { useMemo, useState } from "react";
-import { Sparkles, ClipboardList } from "lucide-react";
+import { useMemo, useEffect } from "react";
+import { Sparkles } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 import { useEvents } from "../hooks/useEvents";
 import EventTable from "../components/EventTable";
+import { usePublicFestivals } from "@/features/payments/hooks/usePublicFestivals";
 
 export default function EventsPage() {
   const { data, isLoading } = useEvents();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const events = data?.data || [];
 
-  const [selectedCategory, setSelectedCategory] =
-    useState("all");
+  const festivalId = searchParams.get("festival_id");
 
-  const categories = [
-    ...new Set(
-      events.map((item) => item.kategori)
-    ),
-  ];
+  const { data: festivalData } = usePublicFestivals();
+  const festivals = festivalData?.data || [];
+
+  const publishedFestival = festivals.find(
+    (festival) => festival.status === "published",
+  );
+
+  // Set default festival ke URL jika belum ada
+  useEffect(() => {
+    if (!festivalId && publishedFestival) {
+      setSearchParams({
+        festival_id: String(publishedFestival.id),
+      });
+    }
+  }, [festivalId, publishedFestival, setSearchParams]);
+
+  const activeFestivalId =
+    festivalId || publishedFestival?.id?.toString() || "";
 
   const filteredEvents = useMemo(() => {
-    if (selectedCategory === "all")
+    if (!activeFestivalId || activeFestivalId === "all") {
       return events;
+    }
 
     return events.filter(
-      (event) =>
-        event.kategori === selectedCategory
+      (event) => String(event.festival_id) === String(activeFestivalId),
     );
-  }, [events, selectedCategory]);
+  }, [events, activeFestivalId]);
 
   if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
         <div className="space-y-3 text-center">
           <div className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-slate-200 border-t-emerald-500" />
-
-          <p className="text-sm text-slate-500">
-            Loading events...
-          </p>
+          <p className="text-sm text-slate-500">Loading events...</p>
         </div>
       </div>
     );
@@ -54,26 +66,21 @@ export default function EventsPage() {
             Event Management
           </span>
 
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">
-            Event Saya
-          </h1>
-
-          <p className="mt-2 text-slate-500">
-            Kelola event yang Anda miliki
-          </p>
+          <h1 className="mt-4 text-3xl font-bold">Event Saya</h1>
+          <p className="mt-2 text-slate-500">Kelola event yang Anda miliki</p>
         </div>
       </div>
 
-      {/* Filter */}
+      {/* Festival Filter */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4">
         <div className="flex justify-end">
           <select
-            value={selectedCategory}
-            onChange={(e) =>
-              setSelectedCategory(
-                e.target.value
-              )
-            }
+            value={activeFestivalId || "all"}
+            onChange={(e) => {
+              setSearchParams({
+                festival_id: e.target.value,
+              });
+            }}
             className="
               rounded-xl
               border
@@ -84,25 +91,18 @@ export default function EventsPage() {
               focus:border-emerald-500
             "
           >
-            <option value="all">
-              Semua Kategori
-            </option>
+            <option value="all">Semua Festival</option>
 
-            {categories.map((item) => (
-              <option
-                key={item}
-                value={item}
-              >
-                {item}
+            {festivals.map((festival) => (
+              <option key={festival.id} value={String(festival.id)}>
+                {festival.nama}
               </option>
             ))}
           </select>
         </div>
       </div>
 
-      <EventTable
-        events={filteredEvents}
-      />
+      <EventTable events={filteredEvents} />
     </div>
   );
 }

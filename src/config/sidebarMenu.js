@@ -8,14 +8,15 @@ import {
   Vote,
   Award,
   ClipboardCheck,
-  UserCheck,
   FileBarChart,
   Ticket,
   FileUp,
-  ClipboardList,
   CalendarCheck,
-  ShieldCheck,
   FileText,
+  Settings,
+  ScanLine,
+  Medal,
+  Receipt,
 } from "lucide-react";
 
 export const sidebarMenu = {
@@ -49,12 +50,12 @@ export const sidebarMenu = {
     {
       title: "Pembayaran",
       path: "/super-admin/payments",
-      icon: CreditCard,
+      icon: Receipt,
     },
     {
       title: "Daftar Hadir",
       path: "/super-admin/attendance",
-      icon: FileText,
+      icon: CalendarCheck,
     },
     {
       title: "Voting",
@@ -75,32 +76,30 @@ export const sidebarMenu = {
       icon: LayoutDashboard,
       exact: true,
     },
-
     {
       title: "Scan Presensi",
       path: "/admin-event/scan",
-      icon: CalendarCheck, // lebih cocok untuk absensi
+      icon: ScanLine,
     },
     {
       title: "Daftar Hadir",
       path: "/admin-event/attendance",
-      icon: FileText,
+      icon: CalendarCheck,
     },
     {
-      title: "Pengaturan Event",
+      title: "Pengaturan Lomba",
       path: "/admin-event/events",
-      icon: CalendarDays,
+      icon: Settings,
     },
-    
     {
       title: "Submission",
       path: "/admin-event/submissions",
-      icon: FileUp, // lebih relevan daripada UserCheck
+      icon: FileUp,
     },
     {
       title: "Pembayaran",
       path: "/admin-event/payments",
-      icon: CreditCard,
+      icon: Receipt,
     },
     {
       title: "Sertifikat",
@@ -153,7 +152,7 @@ export const sidebarMenu = {
     {
       title: "Sertifikat",
       path: "/participant/certificates",
-      icon: Award,
+      icon: Medal,
     },
   ],
 };

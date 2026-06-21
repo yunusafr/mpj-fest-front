@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useVotingConfig } from "../hooks/useVotingConfig";
-import { useSetupVoting } from "../hooks/useSetupVoting";
-import { toast } from "sonner";
-import { Copy } from "lucide-react";
+import { useState, useEffect } from "react";
 
+import { Sparkles, Save, Link, Calendar, Vote } from "lucide-react";
+
+import { useVoting } from "../hooks/useVoting";
+import { useSetupVoting } from "../hooks/useSetupVoting";
 
 export default function VotingSetupPage() {
   const { eventId } = useParams();
 
-  const { data, isLoading } = useVotingConfig(eventId);
-  const mutation = useSetupVoting(eventId);
-  
+  const { data } = useVoting(eventId);
+
+  const mutation = useSetupVoting();
 
   const [form, setForm] = useState({
     waktu_buka: "",
@@ -20,11 +20,13 @@ export default function VotingSetupPage() {
   });
 
   useEffect(() => {
-    if (data?.voting) {
+    if (data?.data) {
       setForm({
-        waktu_buka: data.voting.waktu_buka?.slice(0, 16).replace(" ", "T") || "",
-        waktu_tutup: data.voting.waktu_tutup?.slice(0, 16).replace(" ", "T") || "",
-        batas_voting: data.voting.batas_voting || 1,
+        waktu_buka: data.data.waktu_buka?.slice(0, 16) || "",
+
+        waktu_tutup: data.data.waktu_tutup?.slice(0, 16) || "",
+
+        batas_voting: data.data.batas_voting || 1,
       });
     }
   }, [data]);
@@ -32,100 +34,190 @@ export default function VotingSetupPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    mutation.mutate(form, {
-      onSuccess: (res) => {
-        toast.success(res.message);
-      },
+    mutation.mutate({
+      eventId,
+      payload: form,
     });
   };
 
-  if (isLoading) {
-    return <div className="p-6">Loading...</div>;
-  }
-
-const slug = data?.slug;
-const publicLink = slug ? `${window.location.origin}/v/${slug}` : null;
-
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="space-y-8">
+      {/* Hero Header */}
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-white" />
 
-      {/* HEADER */}
-      <div className="rounded-2xl border bg-white p-6">
-        <h1 className="text-xl font-bold">Voting Setup</h1>
-        <p className="text-sm text-slate-500">
-          Atur periode dan batas voting publik
-        </p>
+        <div className="relative">
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+            <Sparkles size={12} />
+            Voting Configuration
+          </span>
+
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">
+            Pengaturan Voting
+          </h1>
+
+          <p className="mt-2 text-slate-500">
+            Atur periode voting dan jumlah suara yang dapat diberikan peserta.
+          </p>
+        </div>
       </div>
 
-      {/* FORM */}
+      {/* Main Card */}
       <form
         onSubmit={handleSubmit}
-        className="rounded-2xl border bg-white p-6 space-y-4"
+        className="rounded-3xl border border-slate-200 bg-white p-6"
       >
-        <div>
-          <label className="text-sm font-medium">Waktu Buka</label>
-          <input
-            type="datetime-local"
-            className="w-full border rounded-xl p-3"
-            value={form.waktu_buka}
-            onChange={(e) =>
-              setForm({ ...form, waktu_buka: e.target.value })
-            }
-          />
-        </div>
+        <div className="space-y-5">
+          {/* Waktu Buka */}
+          <div>
+            <label className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-700">
+              <Calendar size={16} />
+              Waktu Buka
+            </label>
 
-        <div>
-          <label className="text-sm font-medium">Waktu Tutup</label>
-          <input
-            type="datetime-local"
-            className="w-full border rounded-xl p-3"
-            value={form.waktu_tutup}
-            onChange={(e) =>
-              setForm({ ...form, waktu_tutup: e.target.value })
-            }
-          />
-        </div>
+            <input
+              type="datetime-local"
+              value={form.waktu_buka}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  waktu_buka: e.target.value,
+                })
+              }
+              className="
+                w-full
+                rounded-xl
+                border
+                border-slate-200
+                px-4
+                py-3
+                outline-none
+                focus:border-emerald-500
+              "
+            />
+          </div>
 
-        <div>
-          <label className="text-sm font-medium">Batas Vote</label>
-          <input
-            type="number"
-            min="1"
-            className="w-full border rounded-xl p-3"
-            value={form.batas_voting}
-            onChange={(e) =>
-              setForm({ ...form, batas_voting: e.target.value })
-            }
-          />
-        </div>
+          {/* Waktu Tutup */}
+          <div>
+            <label className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-700">
+              <Calendar size={16} />
+              Waktu Tutup
+            </label>
 
-        <button
-          disabled={mutation.isPending}
-          className="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold"
-        >
-          Simpan Pengaturan
-        </button>
+            <input
+              type="datetime-local"
+              value={form.waktu_tutup}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  waktu_tutup: e.target.value,
+                })
+              }
+              className="
+                w-full
+                rounded-xl
+                border
+                border-slate-200
+                px-4
+                py-3
+                outline-none
+                focus:border-emerald-500
+              "
+            />
+          </div>
+
+          {/* Batas Voting */}
+          <div>
+            <label className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-700">
+              <Vote size={16} />
+              Batas Voting
+            </label>
+
+            <input
+              type="number"
+              min="1"
+              value={form.batas_voting}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  batas_voting: Number(e.target.value),
+                })
+              }
+              className="
+                w-full
+                rounded-xl
+                border
+                border-slate-200
+                px-4
+                py-3
+                outline-none
+                focus:border-emerald-500
+              "
+            />
+          </div>
+
+          {/* Summary */}
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div className="flex items-center justify-between">
+              <span className="font-medium text-slate-600">
+                Maksimal suara per peserta
+              </span>
+
+              <span className="font-bold text-emerald-600">
+                {form.batas_voting}
+              </span>
+            </div>
+          </div>
+
+          {/* Save */}
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              disabled={mutation.isPending}
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-gradient-to-r
+                from-emerald-500
+                to-emerald-600
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                transition-all
+                hover:shadow-md
+                hover:from-emerald-600
+                hover:to-emerald-700
+              "
+            >
+              <Save size={18} />
+
+              {mutation.isPending ? "Menyimpan..." : "Simpan Pengaturan"}
+            </button>
+          </div>
+        </div>
       </form>
 
-      {/* PUBLIC LINK */}
-      {publicLink && (
-        <div className="rounded-2xl border bg-white p-6 space-y-3">
-          <h2 className="font-semibold">Link Voting Publik</h2>
+      {/* Public Link */}
+      {mutation.data?.data?.public_link && (
+        <div className="rounded-3xl border border-slate-200 bg-white p-6">
+          <div className="mb-4 flex items-center gap-2 text-emerald-600 font-semibold">
+            <Link size={18} />
+            Public Voting Link
+          </div>
 
-          <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl">
-            <span className="text-sm font-mono break-all">
-              {publicLink}
-            </span>
-
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(publicLink);
-                toast.success("Link disalin");
-              }}
-              className="p-2 hover:bg-slate-200 rounded-lg"
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <a
+              href={mutation.data.data.public_link}
+              target="_blank"
+              rel="noreferrer"
+              className="break-all text-blue-600 hover:underline"
             >
-              <Copy size={18} />
-            </button>
+              {mutation.data.data.public_link}
+            </a>
           </div>
         </div>
       )}

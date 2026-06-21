@@ -1,130 +1,266 @@
 import { useParams } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "@/lib/axios";
-import { toast } from "sonner";
 import { useState } from "react";
+import { toast } from "sonner";
+
+import usePublicVoting from "@/hooks/usePublicVoting";
+import useSubmitVote from "@/hooks/useSubmitVote";
+import useVotingAuth from "@/hooks/useVotingAuth";
 
 export default function PublicVotingPage() {
   const { slug } = useParams();
-  const queryClient = useQueryClient();
-  const [loadingId, setLoadingId] = useState(null);
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const { data, loading, error, refetch } = usePublicVoting(slug);
 
-  // LOGIN GOOGLE
-const handleGoogleLogin = async () => {
-  const res = await axios.get("/auth/google");
-  window.location.href = res.data.url;
-};
+  const { vote, loading: voteLoading } = useSubmitVote(slug);
 
-  // FETCH VOTING DATA
-  const { data, isLoading } = useQuery({
-    queryKey: ["public-voting", slug],
-    queryFn: async () => {
-      const res = await axios.get(`/voting/${slug}`);
-      return res.data.data;
-    },
-    enabled: !!slug,
-  });
+  const { login, logout, loading: loginLoading, isLoggedIn } = useVotingAuth();
 
-  // VOTE
-  const voteMutation = useMutation({
-    mutationFn: async (submission_id) => {
-      return axios.post(`/voting/${slug}/vote`, {
-        submission_id,
-      });
-    },
-  });
+  const [page, setPage] = useState(1);
 
-  const handleVote = (id) => {
-    setLoadingId(id);
+  const [email, setEmail] = useState("");
 
-    voteMutation.mutate(id, {
-      onSuccess: (res) => {
-        toast.success(res.data.message);
+  const [votedId, setVotedId] = useState(null);
 
-        queryClient.invalidateQueries({
-          queryKey: ["public-voting", slug],
-        });
-      },
-      onError: (err) => {
-        toast.error(err?.response?.data?.message || "Gagal vote");
-      },
-      onSettled: () => {
-        setLoadingId(null);
-      },
-    });
+  const ITEMS_PER_PAGE = 8;
+
+  const handleLogin = async () => {
+    if (!email) {
+      toast.error("Email wajib diisi");
+      return;
+    }
+
+    try {
+      await login(email);
+
+      toast.success("Login berhasil");
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Gagal login");
+    }
   };
 
-  if (isLoading) {
-    return <div className="p-6 text-center">Loading voting...</div>;
+  const handleLogout = () => {
+    logout();
+
+    setEmail("");
+    setVotedId(null);
+    setPage(1);
+
+    toast.success("Logout berhasil");
+  };
+
+  const handleVote = async (submissionId) => {
+    try {
+      await vote(submissionId);
+
+      setVotedId(submissionId);
+
+      toast.success("Vote berhasil diberikan");
+
+      refetch();
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Gagal memberikan vote");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading voting...{" "}
+      </div>
+    );
   }
 
-  if (!data) {
-    return <div className="p-6 text-center text-red-500">Data tidak ditemukan</div>;
+  if (error) {
+    return <div className="text-center text-red-500 py-10">{error} </div>;
   }
 
-  const {
-    submissions = [],
-    voting_status = "closed",
-    remaining_votes = 0,
-    has_voted = false,
-  } = data;
+  const event = data || {};
 
-  const canVote =
-    isLoggedIn &&
-    voting_status === "open" &&
-    remaining_votes > 0 &&
-    !has_voted;
+  const { event_name, submissions = [], voting_status } = event;
+
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
+  const paginatedSubmissions = submissions.slice(startIndex, endIndex);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(submissions.length / ITEMS_PER_PAGE),
+  );
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="max-w-6xl mx-auto px-6 py-20">
+      {/* HERO */}
+      <div className="card p-10 mb-8 text-center">
+        <h1 className="mt-4 text-5xl font-black">{event_name}</h1>
 
-      {/* STATUS */}
-      <div className="border p-3 rounded-xl text-sm">
-        Status: <b>{voting_status}</b> | Sisa vote: <b>{remaining_votes}</b>
+        <p>Pilih karya favoritmu dan dukung peserta terbaik.</p>
+
+        <div className="mt-6">
+          <span
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border ${
+              voting_status === "open"
+                ? "bg-green-50 text-green-700 border-green-200"
+                : "bg-red-50 text-red-600 border-red-200"
+            }`}
+          >
+            <span className="relative flex h-3 w-3">
+              <span
+                className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                  voting_status === "open" ? "bg-green-400" : "bg-red-400"
+                }`}
+              />
+
+              <span
+                className={`relative inline-flex rounded-full h-3 w-3 ${
+                  voting_status === "open" ? "bg-green-500" : "bg-red-500"
+                }`}
+              />
+            </span>
+
+            {voting_status === "open" ? "Voting Active" : "Voting Closed"}
+          </span>
+        </div>
       </div>
 
-      {/* LOGIN */}
-      {!isLoggedIn && (
-        <div className="p-4 border rounded-xl">
-          <p className="mb-2">Login dulu untuk melakukan voting</p>
+      {/* LOGIN STATUS */}
+      {isLoggedIn() && (
+        <div className="glass rounded-3xl p-4 mb-8 flex justify-between items-center">
+          <span className="text-green-600 font-medium">
+            ✔ Anda sudah login untuk voting
+          </span>
+
           <button
-            onClick={handleGoogleLogin}
-            className="px-4 py-2 bg-red-500 text-white rounded-xl"
+            onClick={handleLogout}
+            className="px-4 py-2 rounded-xl bg-red-500 text-white"
           >
-            Login Google
+            Logout
           </button>
         </div>
       )}
 
-      {/* LIST KARYA */}
-      {submissions.length === 0 ? (
-        <div className="text-center text-slate-500">
-          Belum ada karya
-        </div>
-      ) : (
-        submissions.map((item, index) => (
-          <div key={item.id} className="border p-4 rounded-xl">
-            <div className="text-xs">#{index + 1}</div>
+      {/* LOGIN */}
+      {!isLoggedIn() && (
+        <div className="card p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4">Login Voting</h3>
 
-            <h3 className="font-semibold">
-              {item.judul_karya}
-            </h3>
-
-            <p className="text-sm">
-              Votes: {item.votes_count}
-            </p>
+          <div className="flex gap-3">
+            <input
+              placeholder="Masukkan email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
 
             <button
-              disabled={!canVote || loadingId === item.id}
-              onClick={() => handleVote(item.id)}
-              className="mt-2 px-4 py-2 bg-emerald-600 text-white rounded-xl disabled:opacity-50"
+              onClick={handleLogin}
+              disabled={loginLoading}
+              className="btn-primary whitespace-nowrap"
             >
-              {loadingId === item.id ? "Voting..." : "Vote"}
+              {loginLoading ? "Loading..." : "Login"}
             </button>
           </div>
-        ))
+        </div>
+      )}
+
+      {/* CLOSED */}
+      {voting_status !== "open" && (
+        <div className="mb-8 text-center bg-red-50 text-red-600 p-4 rounded-2xl">
+          Voting belum aktif atau sudah ditutup
+        </div>
+      )}
+
+      {/* LIST */}
+      {submissions.length === 0 ? (
+        <div className="card p-10 text-center">
+          <div className="text-6xl mb-4">📭</div>
+
+          <h3 className="text-xl font-bold mb-2">Belum Ada Karya</h3>
+
+          <p>Peserta belum mengirimkan karya.</p>
+        </div>
+      ) : (
+        <>
+          <div className="grid md:grid-cols-2 gap-6">
+            {paginatedSubmissions.map((item) => (
+              <div key={item.id} className="card p-6">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
+                    {item.registration?.user?.nama?.charAt(0)?.toUpperCase() ||
+                      "?"}
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-lg">
+                      {item.registration?.user?.nama}
+                    </h3>
+
+                    <p className="text-sm text-gray-500">Total Vote</p>
+
+                    <div className="text-2xl font-bold text-green-600">
+                      {item.votes_count}
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleVote(item.id)}
+                  disabled={
+                    !isLoggedIn() ||
+                    voteLoading ||
+                    voting_status !== "open" ||
+                    votedId === item.id
+                  }
+                  className={`w-full mt-6 py-3 rounded-2xl font-semibold transition ${
+                    votedId === item.id
+                      ? "bg-green-500 text-white"
+                      : "btn-primary"
+                  }`}
+                >
+                  {votedId === item.id ? "✓ Sudah Vote" : "Vote Sekarang"}
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-10">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="px-4 py-2 border rounded-xl disabled:opacity-50"
+              >
+                ← Prev
+              </button>
+
+              {Array.from(
+                {
+                  length: totalPages,
+                },
+                (_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => setPage(index + 1)}
+                    className={`w-10 h-10 rounded-xl ${
+                      page === index + 1 ? "bg-green-500 text-white" : "border"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ),
+              )}
+
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="px-4 py-2 border rounded-xl disabled:opacity-50"
+              >
+                Next →
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
