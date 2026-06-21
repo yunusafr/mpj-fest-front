@@ -2,128 +2,51 @@ import { useMyRegistrations } from "../hooks/useMyRegistrations";
 import RegistrationCard from "../components/RegistrationCard";
 import { Sparkles } from "lucide-react";
 
-import {
+import { useState, useEffect } from "react";
 
-  useState,
-
-  useEffect,
-
-} from "react";
-
-import {
-
-  usePublicFestivals
-
-}
-
-from "@/features/payments/hooks/usePublicFestivals";
+import { usePublicFestivals } from "@/features/payments/hooks/usePublicFestivals";
 
 export default function MyEventsPage() {
-const {
+  const { data: festivalData } = usePublicFestivals();
 
-  data: festivalData,
+  const festivals = festivalData?.data || [];
 
-} = usePublicFestivals();
-
-const festivals =
-
-  festivalData?.data || [];
-
-const publishedFestival =
-
-  festivals.find(
-
-    (festival) =>
-
-      festival.status ===
-
-      "published"
-
+  const publishedFestival = festivals.find(
+    (festival) => festival.status === "published",
   );
 
-const [
+  const [selectedFestival, setSelectedFestival] = useState(null);
 
-  selectedFestival,
+  useEffect(() => {
+    if (selectedFestival === null && festivals.length > 0) {
+      setSelectedFestival(
+        publishedFestival ? String(publishedFestival.id) : "all",
+      );
+    }
+  }, [selectedFestival, festivals, publishedFestival]);
 
-  setSelectedFestival,
+  const {
+    data,
 
-] = useState(null);
-
-useEffect(() => {
-
-  if (
-
-    selectedFestival === null &&
-
-    festivals.length > 0
-
-  ) {
-
-    setSelectedFestival(
-
-      publishedFestival
-
-      ?
-
-      String(
-
-        publishedFestival.id
-
-      )
-
-      :
-
-      "all"
-
-    );
-
-  }
-
-}, [
-
-  selectedFestival,
-
-  festivals,
-
-  publishedFestival,
-
-]);
-
-const {
-
-  data,
-
-  isLoading
-
-}
-
-=
-
-useMyRegistrations(
-
-  selectedFestival
-
-);
+    isLoading,
+  } = useMyRegistrations(selectedFestival);
 
   if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
         <div className="text-center space-y-3">
           <div className="animate-spin h-9 w-9 border-2 border-slate-200 border-t-emerald-500 rounded-full mx-auto" />
-          <p className="text-sm text-slate-500">
-            Loading events...
-          </p>
+          <p className="text-sm text-slate-500">Loading events...</p>
         </div>
       </div>
     );
   }
 
   const registrations = data?.data ?? [];
-return (
-  <div className="space-y-8">
-
-    {/* HEADER */}
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 ">
+  return (
+    <div className="space-y-8">
+      {/* HEADER */}
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 ">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-white" />
 
         <div className="relative">
@@ -142,21 +65,13 @@ return (
         </div>
       </div>
 
-    {/* FILTER */}
-    <div className="rounded-2xl border border-slate-200 bg-white p-4">
-
-      <div className="flex justify-end">
-
-        <select
-          value={selectedFestival}
-
-          onChange={(e) =>
-            setSelectedFestival(
-              e.target.value
-            )
-          }
-
-          className="
+      {/* FILTER */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-4">
+        <div className="flex justify-end">
+          <select
+            value={selectedFestival}
+            onChange={(e) => setSelectedFestival(e.target.value)}
+            className="
             rounded-xl
             border
             border-slate-200
@@ -165,82 +80,46 @@ return (
             outline-none
             focus:border-emerald-500
           "
-        >
+          >
+            <option value="all">Semua Festival</option>
 
-          <option value="all">
-            Semua Festival
-          </option>
-
-          {festivals.map(
-            (festival) => (
-
-              <option
-                key={festival.id}
-                value={String(
-                  festival.id
-                )}
-              >
-
+            {festivals.map((festival) => (
+              <option key={festival.id} value={String(festival.id)}>
                 {festival.nama}
-
               </option>
-
-            )
-          )}
-
-        </select>
-
+            ))}
+          </select>
+        </div>
       </div>
 
-    </div>
+      {/* CONTENT */}
 
-    {/* CONTENT */}
+      {!registrations.length ? (
+        <div className="space-y-8">
+          {/* EMPTY */}
+          <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
+            <Sparkles size={40} className="mx-auto text-slate-400" />
 
-    {!registrations.length ? (
+            <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              Belum ada event
+            </h3>
 
-      <div className="space-y-8"> 
-
-       {/* EMPTY */}
-<div className="rounded-3xl border border-dashed border-slate-300 bg-white p-16 text-center">
-  <Sparkles
-    size={40}
-    className="mx-auto text-slate-400"
-  />
-
-  <h3 className="mt-4 text-lg font-semibold text-slate-900">
-    Belum ada event
-  </h3>
-
-  <p className="mt-1 text-slate-500">
-    Kamu belum mendaftar ke event apa pun
-  </p>
-</div>
-
-      </div>
-
-    ) : (
-
-      <div className="grid gap-6 md:grid-cols-2">
-
-        {registrations.map(
-          (registration) => (
-
+            <p className="mt-1 text-slate-500">
+              Kamu belum mendaftar ke event apa pun
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2">
+          {registrations.map((registration) => (
             <RegistrationCard
               key={registration.id}
               registration={registration}
-              festivalId={
-                selectedFestival
-              }
+              festivalId={selectedFestival}
             />
-
-          )
-        )}
-
-      </div>
-
-    )}
-
-  </div>
-);
-  
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }

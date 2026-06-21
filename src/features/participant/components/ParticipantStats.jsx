@@ -1,23 +1,27 @@
 import StatCard from "@/components/dashboard/StatCard";
 import { Calendar, CreditCard, Award } from "lucide-react";
 
-export default function ParticipantStats() {
+export default function ParticipantStats({
+  totalEvents = 0,
+  paidCount = 0,
+  certificateCount = 0,
+}) {
   const stats = [
     {
       title: "Event Saya",
-      value: "0",
+      value: totalEvents,
       icon: Calendar,
       color: "rgba(34,197,94,.15)",
     },
     {
       title: "Pembayaran",
-      value: "0",
+      value: paidCount,
       icon: CreditCard,
       color: "rgba(234,179,8,.15)",
     },
     {
       title: "Sertifikat",
-      value: "0",
+      value: certificateCount,
       icon: Award,
       color: "rgba(59,130,246,.12)",
     },
@@ -35,16 +39,8 @@ export default function ParticipantStats() {
             value={item.value}
             description={
               <div className="mt-4 flex items-center gap-3">
-                {/* ICON tetap ada, tapi jadi part of description area */}
                 <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-xl
-                  "
+                  className="flex h-10 w-10 items-center justify-center rounded-xl"
                   style={{
                     background: item.color,
                     color: "#064622",

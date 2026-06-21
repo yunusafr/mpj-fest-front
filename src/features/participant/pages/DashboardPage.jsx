@@ -2,22 +2,33 @@ import { useAuthStore } from "@/app/store/authStore";
 
 import ParticipantStats from "../components/ParticipantStats";
 import QuickAction from "../components/QuickAction";
-import {
-  useActiveFestival,
-} from "@/features/festival/hooks/useActiveFestival";
+import { useActiveFestival } from "@/features/festival/hooks/useActiveFestival";
 import { Sparkles } from "lucide-react";
 
+import { useMyRegistrations } from "@/features/registration/hooks/useMyRegistrations";
 
 export default function DashboardPage() {
   const user = useAuthStore((state) => state.user);
-const { data } =
-  useActiveFestival();
+  const { data: festivalData } = useActiveFestival();
+  const festival =
+    festivalData?.data?.status === "published" ? festivalData.data : null;
 
-const festival =
-  data?.data;
+  const { data: registrationData, isLoading } = useMyRegistrations();
+
+  const registrations = registrationData?.data || [];
+
+  const totalEvents = registrations.length;
+
+  const paidCount = registrations.filter(
+    (r) => r.status_pembayaran === "settlement",
+  ).length;
+
+  const certificateCount = registrations.filter(
+    (r) => r.nomor_sertifikat !== null,
+  ).length;
+
   return (
     <div className="space-y-8">
-
       {/* HEADER (SAMAKAN STYLE SUPER ADMIN) */}
       <div
         className="
@@ -69,9 +80,9 @@ const festival =
 
         <div className="relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
-      <Sparkles size={15} />
-      {festival?.nama}
-     </span>
+            <Sparkles size={15} />
+            {festival?.nama}
+          </span>
 
           <h1
             className="
@@ -88,18 +99,19 @@ const festival =
           </h1>
 
           <p className="mt-3 max-w-2xl text-slate-600">
-  Selamat datang, {user?.nama}.
-  Festival aktif saat ini adalah{" "}
-  <strong>{festival?.nama}</strong>.
-  Pilih event yang ingin Anda ikuti dan
-  pantau seluruh aktivitas pendaftaran
-  melalui dashboard ini.
-</p>
+            Selamat datang, {user?.nama}. Festival aktif saat ini adalah{" "}
+            <strong>{festival?.nama}</strong>. Pilih event yang ingin Anda ikuti
+            dan pantau seluruh aktivitas pendaftaran melalui dashboard ini.
+          </p>
         </div>
       </div>
 
       {/* STATS */}
-      <ParticipantStats />
+      <ParticipantStats
+        totalEvents={totalEvents}
+        paidCount={paidCount}
+        certificateCount={certificateCount}
+      />
 
       {/* QUICK ACTION */}
       <QuickAction />

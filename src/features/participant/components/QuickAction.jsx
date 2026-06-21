@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { Ticket, CreditCard, Calendar } from "lucide-react";
+import {
+  Ticket,
+  CreditCard,
+  Calendar,
+  Award,
+  ChevronRight,
+} from "lucide-react";
 
 export default function QuickAction() {
   const actions = [
@@ -8,34 +14,24 @@ export default function QuickAction() {
       desc: "Daftar & detail event",
       icon: Calendar,
       to: "/participant/events",
-      color: "rgba(34,197,94,.15)",
     },
     {
       title: "Pembayaran",
       desc: "Status & transaksi",
       icon: CreditCard,
       to: "/participant/payments",
-      color: "rgba(234,179,8,.15)",
     },
     {
-      title: "E-Ticket",
-      desc: "Tiket digital kamu",
-      icon: Ticket,
-      to: "/participant/tickets",
-      color: "rgba(59,130,246,.12)",
+      title: "Sertifikat",
+      desc: "Sertifikat digital kamu",
+      icon: Award,
+      to: "/participant/certificates",
     },
   ];
 
   return (
-    <div
-      className="
-        card
-        p-6
-      "
-    >
-      <h2 className="text-lg font-semibold mb-6">
-        Aksi Cepat
-      </h2>
+    <div className="space-y-4">
+      <h2 className="text-lg font-semibold text-slate-900">Aksi Cepat</h2>
 
       <div className="grid gap-4 md:grid-cols-3">
         {actions.map((item, i) => {
@@ -46,72 +42,37 @@ export default function QuickAction() {
               key={i}
               to={item.to}
               className="
-                relative
-                overflow-hidden
-
-                rounded-2xl
-
+                group
+                rounded-3xl
                 border
-                border-white/60
-
-                bg-white/70
-
-                p-6
-
+                border-slate-200/70
+                bg-white
+                p-5
+                text-left
                 transition-all
                 duration-300
-
                 hover:-translate-y-1
-                hover:shadow-lg
+                hover:shadow-md
               "
             >
-              {/* glow */}
-              <div
-                className="
-                  absolute
-                  -right-6
-                  -top-6
-
-                  h-20
-                  w-20
-
-                  rounded-full
-
-                  blur-2xl
-                "
-                style={{
-                  background: item.color,
-                }}
-              />
-
-              <div className="relative z-10">
-                <div
-                  className="
-                    mb-4
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-
-                    rounded-xl
-
-                    bg-green-50
-
-                    text-green-600
-                  "
-                >
-                  <Icon size={18} />
+              <div className="flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
+                  <Icon size={20} className="text-slate-700" />
                 </div>
 
-                <h3 className="font-semibold text-slate-800">
-                  {item.title}
-                </h3>
-
-                <p className="text-sm text-slate-500 mt-1">
-                  {item.desc}
-                </p>
+                <ChevronRight
+                  size={18}
+                  className="
+                    text-slate-400
+                    transition-transform
+                    group-hover:translate-x-1
+                  "
+                />
               </div>
+
+              <h3 className="mt-5 font-bold text-slate-900">{item.title}</h3>
+
+              <p className="mt-2 text-sm text-slate-500">{item.desc}</p>
             </Link>
           );
         })}

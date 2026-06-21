@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "tailwind-init": "tailwindcss init -p"
-
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",
@@ -20,6 +19,7 @@
     "axios": "^1.16.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.21",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "html5-qrcode": "^2.3.8",
