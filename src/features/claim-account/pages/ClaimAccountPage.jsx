@@ -3,58 +3,35 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import ClaimRegisterForm from "../components/ClaimRegisterForm";
 
-import NiamSearchForm
-from "../components/NiamSearchForm";
+import NiamSearchForm from "../components/NiamSearchForm";
 
-import MemberCard
-from "../components/MemberCard";
+import MemberCard from "../components/MemberCard";
 
-import NotFoundMember
-from "../components/NotFoundMember";
+import NotFoundMember from "../components/NotFoundMember";
 
-import { useCheckNiam }
-from "../hooks/useCheckNiam";
+import { useCheckNiam } from "../hooks/useCheckNiam";
 
 export default function ClaimAccountPage() {
+  const [member, setMember] = useState(null);
 
-  const [member, setMember] =
-    useState(null);
+  const [notFound, setNotFound] = useState(false);
 
-  const [notFound, setNotFound] =
-    useState(false);
+  const checkNiam = useCheckNiam();
 
-  const checkNiam =
-    useCheckNiam();
+  const handleSearch = async (values) => {
+    setMember(null);
+    setNotFound(false);
 
-  const handleSearch =
-    async (values) => {
+    try {
+      const result = await checkNiam.mutateAsync(values.niam);
 
-      setMember(null);
-      setNotFound(false);
-
-      try {
-
-        const result =
-          await checkNiam
-            .mutateAsync(
-              values.niam
-            );
-
-        setMember(
-          result.data
-        );
-
-      } catch (error) {
-
-        if (
-          error.response
-            ?.status ===
-          404
-        ) {
-          setNotFound(true);
-        }
+      setMember(result.data);
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setNotFound(true);
       }
-    };
+    }
+  };
 
   return (
     <section
@@ -70,7 +47,6 @@ export default function ClaimAccountPage() {
       px-4
     "
     >
-
       <div
         className="
         bg-white
@@ -81,7 +57,6 @@ export default function ClaimAccountPage() {
         max-w-xl
         "
       >
-
         <h1
           className="
           text-3xl
@@ -92,10 +67,10 @@ export default function ClaimAccountPage() {
         >
           Klaim Akun
         </h1>
-            <div className="mb-6 mt-5 flex justify-center">
-  <Link
-    to="/"
-    className="
+        <div className="mb-6 mt-5 flex justify-center">
+          <Link
+            to="/"
+            className="
       inline-flex
       items-center
       gap-2
@@ -109,36 +84,23 @@ export default function ClaimAccountPage() {
 
       hover:text-green-600
     "
-  >
-    <ArrowLeft size={16} />
-    Kembali ke Beranda
-  </Link>
-</div>
+          >
+            <ArrowLeft size={16} />
+            Kembali ke Beranda
+          </Link>
+        </div>
 
-        <NiamSearchForm
-          onSearch={
-            handleSearch
-          }
-          loading={
-            checkNiam.isPending
-          }
-        />
+        <NiamSearchForm onSearch={handleSearch} loading={checkNiam.isPending} />
 
-       {member && (
-  <>
-    <MemberCard data={member} />
+        {member && (
+          <>
+            <MemberCard data={member} />
 
-    <ClaimRegisterForm
-      member={member}
-    />
-  </>
-)}
-        {notFound && (
-          <NotFoundMember />
+            <ClaimRegisterForm member={member} />
+          </>
         )}
-
+        {notFound && <NotFoundMember />}
       </div>
-
     </section>
   );
 }

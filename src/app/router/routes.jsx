@@ -55,6 +55,7 @@ import JudgeAssessmentPage from "@/features/judge/pages/JudgeAssessmentPage";
 import VotingSetupPage from "@/features/admin-event/pages/VotingSetupPage";
 import PublicVotingPage from "@/features/voting/pages/PublicVotingPage";
 import OAuthCallbackPage from "@/oauth/callback";
+import PublicEventPage from "@/features/voting/pages/PublicEventPage";
 
 export const routes = [
   {
@@ -84,6 +85,10 @@ export const routes = [
       {
         path: "/v/:slug",
         element: <PublicVotingPage />,
+      },
+      {
+        path: "/v",
+        element: <PublicEventPage />,
       },
     ],
   },

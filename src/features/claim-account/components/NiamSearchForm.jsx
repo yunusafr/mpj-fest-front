@@ -6,22 +6,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { niamSchema } from "../schemas/niamSchema";
 
+export default function NiamSearchForm({ onSearch, loading }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(niamSchema),
+  });
 
-export default function NiamSearchForm({
-onSearch,
-loading,
-}) {
-const {
-register,
-handleSubmit,
-formState: { errors },
-} = useForm({
-resolver: zodResolver(niamSchema),
-});
-
-return (
-<div
-className="
+  return (
+    <div
+      className="
 relative
 w-full
 max-w-xl
@@ -31,21 +27,12 @@ max-w-xl
 
     rounded-[32px]
 
-    border
-    border-white/70
-
-    bg-white/75
-
     p-8
     md:p-10
-
-    shadow-[0_30px_80px_rgba(15,23,42,.08)]
-
-    backdrop-blur-3xl
   "
->
-  <div
-    className="
+    >
+      <div
+        className="
       absolute
       -right-24
       -top-24
@@ -55,14 +42,12 @@ max-w-xl
 
       rounded-full
 
-      bg-green-400/10
-
       blur-3xl
     "
-  />
+      />
 
-  <div
-    className="
+      <div
+        className="
       absolute
       -left-24
       -bottom-24
@@ -73,63 +58,58 @@ max-w-xl
       rounded-full
 
     "
-  />
+      />
 
-  <div className="relative z-10">
-
-    <h3
-      className="
+      <div className="relative z-10">
+        <h3
+          className="
         text-3xl
         font-black
         tracking-tight
       "
-    >
-      Pencarian NIAM
-    </h3>
+        >
+          Pencarian NIAM
+        </h3>
 
-    <p
-      className="
+        <p
+          className="
         mt-2
         text-slate-500
       "
-    >
-      Masukkan Nomor Induk Anggota Madrasah
-      untuk melakukan pencarian data.
-    </p>
+        >
+          Masukkan Nomor Induk Anggota Madrasah untuk melakukan pencarian data.
+        </p>
 
-    <form
-      onSubmit={handleSubmit(onSearch)}
-      className="mt-8 space-y-5"
-    >
-      <div>
-        <label
-          className="
+        <form onSubmit={handleSubmit(onSearch)} className="mt-8 space-y-5">
+          <div>
+            <label
+              className="
             mb-2
             block
             text-sm
             font-medium
             text-slate-700
           "
-        >
-          Nomor NIAM
-        </label>
+            >
+              Nomor NIAM
+            </label>
 
-        <div className="relative">
-          <Search
-            size={18}
-            className="
+            <div className="relative">
+              <Search
+                size={18}
+                className="
               absolute
               left-4
               top-1/2
               -translate-y-1/2
               text-slate-400
             "
-          />
+              />
 
-          <input
-            {...register("niam")}
-            placeholder="Masukkan nomor NIAM"
-            className="
+              <input
+                {...register("niam")}
+                placeholder="Masukkan nomor NIAM"
+                className="
               h-14
               w-full
 
@@ -152,26 +132,26 @@ max-w-xl
               focus:ring-4
               focus:ring-green-500/10
             "
-          />
-        </div>
+              />
+            </div>
 
-        {errors.niam && (
-          <p
-            className="
+            {errors.niam && (
+              <p
+                className="
               mt-2
               text-sm
               text-red-500
             "
-          >
-            {errors.niam.message}
-          </p>
-        )}
-      </div>
+              >
+                {errors.niam.message}
+              </p>
+            )}
+          </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="
+          <button
+            type="submit"
+            disabled={loading}
+            className="
           h-14
           w-full
 
@@ -195,11 +175,11 @@ max-w-xl
           disabled:opacity-60
           disabled:cursor-not-allowed
         "
-      >
-        {loading ? (
-          <span className="flex items-center justify-center gap-3">
-            <div
-              className="
+          >
+            {loading ? (
+              <span className="flex items-center justify-center gap-3">
+                <div
+                  className="
                 h-5
                 w-5
 
@@ -211,18 +191,15 @@ max-w-xl
                 border-white/30
                 border-t-white
               "
-            />
-            Mencari...
-          </span>
-        ) : (
-          "Cari Data"
-        )}
-      </button>
-    </form>
-  </div>
-  
-</div>
-
-
-);
+                />
+                Mencari...
+              </span>
+            ) : (
+              "Cari Data"
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }

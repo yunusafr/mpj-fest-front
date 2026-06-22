@@ -1,27 +1,27 @@
-import axiosClient
-from "@/lib/axios";
+import axiosClient from "@/lib/axios";
 
 export const eventApi = {
+  getAll: async (festivalId = "all") => {
+    const response = await axiosClient.get("/events/public", {
+      params: {
+        festival_id: festivalId,
+      },
+    });
 
-getAll: async (festivalId = "all") => {
-  const response = await axiosClient.get("/events/public", {
-    params: {
-      festival_id: festivalId,
-    },
-  });
+    return response.data;
+  },
 
-  return response.data;
-},
-
-getDetail: async (id, festivalId = "all") => {
-  const response = await axiosClient.get(
-    `/events/public/${id}`,
-    {
+  getDetail: async (id, festivalId = "all") => {
+    const response = await axiosClient.get(`/events/public/${id}`, {
       params: { festival_id: festivalId },
-    }
-  );
+    });
 
-  return response.data;
-}
+    return response.data;
+  },
+  // TAMBAHAN untuk voting
+  getLeaderboard: async (eventId) => {
+    const response = await axiosClient.get(`/voting/${eventId}/leaderboard`);
 
+    return response.data;
+  },
 };

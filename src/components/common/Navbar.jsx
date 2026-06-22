@@ -8,7 +8,7 @@ export default function Navbar() {
   const menus = [
     { label: "Festival", href: "#festival" },
     { label: "Event", href: "#event" },
-    { label: "Tentang", href: "#tentang" },
+    { label: "Voting", href: "/v" },
   ];
 
   return (
@@ -30,10 +30,7 @@ export default function Navbar() {
         >
           <div className="h-20 flex items-center justify-between px-6 lg:px-8">
             {/* Logo */}
-            <Link
-              to="/"
-              className="group flex items-center gap-3"
-            >
+            <Link to="/" className="group flex items-center gap-3">
               <img
                 src="/mpj-horizontal-color.png"
                 alt="MPJ FEST"
@@ -156,11 +153,7 @@ export default function Navbar() {
               overflow-hidden
               transition-all
               duration-300
-              ${
-                open
-                  ? "max-h-[400px] opacity-100"
-                  : "max-h-0 opacity-0"
-              }
+              ${open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}
             `}
           >
             <div className="border-t border-slate-200/60 px-6 py-6">

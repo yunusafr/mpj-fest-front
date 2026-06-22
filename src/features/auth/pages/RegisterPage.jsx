@@ -3,9 +3,9 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
-return (
-<section
-className="
+  return (
+    <section
+      className="
       min-h-screen
       flex
       items-center
@@ -16,9 +16,9 @@ className="
       to-yellow-50
       px-4
   "
->
-  <div
-className="
+    >
+      <div
+        className="
         bg-white
         rounded-3xl
         shadow-lg
@@ -26,24 +26,24 @@ className="
         w-full
         max-w-xl
         "
-  >
-    {/* TITLE */}
-    <h1
-      className="
+      >
+        {/* TITLE */}
+        <h1
+          className="
         text-3xl
         font-bold
         text-center
         mb-6
       "
-    >
-      Register Akun
-    </h1>
+        >
+          Register Akun
+        </h1>
 
-    {/* BACK BUTTON (same as ClaimAccountPage) */}
-    <div className="mb-6 mt-5 flex justify-center">
-      <Link
-        to="/"
-        className="
+        {/* BACK BUTTON (same as ClaimAccountPage) */}
+        <div className="mb-6 mt-5 flex justify-center">
+          <Link
+            to="/"
+            className="
           inline-flex
           items-center
           gap-2
@@ -57,17 +57,15 @@ className="
 
           hover:text-green-600
         "
-      >
-        <ArrowLeft size={16} />
-        Kembali ke Beranda
-      </Link>
-    </div>
+          >
+            <ArrowLeft size={16} />
+            Kembali ke Beranda
+          </Link>
+        </div>
 
-    {/* FORM */}
-    <RegisterForm />
-  </div>
-</section>
-
-
-);
+        {/* FORM */}
+        <RegisterForm />
+      </div>
+    </section>
+  );
 }
