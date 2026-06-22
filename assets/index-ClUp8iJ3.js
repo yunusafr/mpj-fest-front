@@ -2548,6 +2548,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
           `,children:(0,U.jsx)(hx,{size:40,className:`text-green-600`})})}),(0,U.jsx)(`h3`,{className:`text-2xl font-bold text-green-600 mb-2`,children:`Anda Sudah Login`}),(0,U.jsx)(`p`,{className:`text-slate-500 mb-6`,children:`Akun Google berhasil terverifikasi. Sekarang Anda dapat memberikan vote pada karya favorit Anda.`}),(0,U.jsx)(`div`,{children:(0,U.jsx)(`button`,{onClick:g,className:`
     px-6
     py-3
+    mt-3
     rounded-2xl
     bg-gradient-to-r
     from-rose-400
@@ -2561,7 +2562,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
     hover:to-pink-500
     transition-all
     duration-300
-  `,children:`Logout`})})]}):(0,U.jsxs)(U.Fragment,{children:[(0,U.jsx)(tS,{size:42,className:`mx-auto text-green-600 mb-4`}),(0,U.jsx)(`h3`,{className:`text-2xl font-bold mb-2`,children:`Login Voting`}),(0,U.jsx)(`p`,{className:`mb-6 text-slate-500`,children:`Login menggunakan akun Google untuk memberikan suara.`}),(0,U.jsx)(`button`,{onClick:h,disabled:l,className:`mt-3 btn-primary`,children:l?`Loading...`:`Login dengan Google`})]})}),b!==`open`&&(0,U.jsx)(`div`,{className:`mb-8 text-center bg-red-50 text-red-600 p-5 rounded-3xl border border-red-200`,children:`Voting belum aktif atau sudah ditutup`}),y.length===0?(0,U.jsxs)(`div`,{className:`card p-12 text-center`,children:[(0,U.jsx)(Ex,{size:52,className:`mx-auto text-slate-300 mb-4`}),(0,U.jsx)(`h3`,{className:`text-2xl font-bold mb-2`,children:`Belum Ada Karya`}),(0,U.jsx)(`p`,{children:`Peserta belum mengirimkan karya untuk event ini.`})]}):(0,U.jsxs)(U.Fragment,{children:[(0,U.jsx)(`div`,{className:`grid md:grid-cols-2 gap-6`,children:w.map(e=>{let t=e.file_url?`https://api-mpj-fest.ingintau.my.id${e.file_url}`:null;return(0,U.jsxs)(`div`,{className:`
+  `,children:`Logout akun Google`})})]}):(0,U.jsxs)(U.Fragment,{children:[(0,U.jsx)(tS,{size:42,className:`mx-auto text-green-600 mb-4`}),(0,U.jsx)(`h3`,{className:`text-2xl font-bold mb-2`,children:`Login Voting`}),(0,U.jsx)(`p`,{className:`mb-6 text-slate-500`,children:`Login menggunakan akun Google untuk memberikan suara.`}),(0,U.jsx)(`button`,{onClick:h,disabled:l,className:`mt-3 btn-primary`,children:l?`Loading...`:`Login dengan Google`})]})}),b!==`open`&&(0,U.jsx)(`div`,{className:`mb-8 text-center bg-red-50 text-red-600 p-5 rounded-3xl border border-red-200`,children:`Voting belum aktif atau sudah ditutup`}),y.length===0?(0,U.jsxs)(`div`,{className:`card p-12 text-center`,children:[(0,U.jsx)(Ex,{size:52,className:`mx-auto text-slate-300 mb-4`}),(0,U.jsx)(`h3`,{className:`text-2xl font-bold mb-2`,children:`Belum Ada Karya`}),(0,U.jsx)(`p`,{children:`Peserta belum mengirimkan karya untuk event ini.`})]}):(0,U.jsxs)(U.Fragment,{children:[(0,U.jsx)(`div`,{className:`grid md:grid-cols-2 gap-6`,children:w.map(e=>{let t=e.file_url?`https://api-mpj-fest.ingintau.my.id${e.file_url}`:null;return(0,U.jsxs)(`div`,{className:`
                     card
                     p-6
                     relative
