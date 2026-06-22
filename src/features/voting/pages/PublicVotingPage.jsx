@@ -206,6 +206,7 @@ export default function PublicVotingPage() {
                   className="
     px-6
     py-3
+    mt-3
     rounded-2xl
     bg-gradient-to-r
     from-rose-400
@@ -221,7 +222,7 @@ export default function PublicVotingPage() {
     duration-300
   "
                 >
-                  Logout
+                  Logout akun Google
                 </button>
               </div>
             </>
