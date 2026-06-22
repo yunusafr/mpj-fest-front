@@ -178,22 +178,20 @@ export default function PublicVotingPage() {
               <div className="flex justify-center mb-4">
                 <div
                   className="
-            h-20
-            w-20
-            rounded-full
-            bg-green-100
-            flex
-            items-center
-            justify-center
-          "
+                    h-20
+                    w-20
+                    rounded-full
+                    bg-green-100
+                    flex
+                    items-center
+                    justify-center
+                  "
                 >
                   <ClipboardCheck size={40} className="text-green-600" />
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold text-green-600 mb-2">
-                Anda Sudah Login
-              </h3>
+              <h3 className="text-2xl font-bold mb-2">Anda Sudah Login</h3>
 
               <p className="text-slate-500 mb-6">
                 Akun Google berhasil terverifikasi. Sekarang Anda dapat
@@ -228,7 +226,21 @@ export default function PublicVotingPage() {
             </>
           ) : (
             <>
-              <UserCog size={42} className="mx-auto text-green-600 mb-4" />
+              <div className="flex justify-center mb-4">
+                <div
+                  className="
+                    h-20
+                    w-20
+                    rounded-full
+                    bg-green-100
+                    flex
+                    items-center
+                    justify-center
+                  "
+                >
+                  <ClipboardCheck size={40} className="text-green-600" />
+                </div>
+              </div>
 
               <h3 className="text-2xl font-bold mb-2">Login Voting</h3>
 

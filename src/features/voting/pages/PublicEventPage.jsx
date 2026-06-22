@@ -183,7 +183,7 @@ export default function PublicEventPage() {
                 </div>
 
                 <div className="flex justify-center mt-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
+                  <div className="flex h-18 w-18 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
                     {item.registration?.user?.nama?.charAt(0)?.toUpperCase() ||
                       "?"}
                   </div>
@@ -226,14 +226,7 @@ export default function PublicEventPage() {
               <button
                 onClick={() => navigate(`/v/${e.slug}`)}
                 className="
-                  px-4
-                  py-2
-                  rounded-xl
-                  bg-green-500
-                  text-white
-                  font-semibold
-                  hover:bg-green-600
-                  transition
+                  btn-primary
                 "
               >
                 Vote
