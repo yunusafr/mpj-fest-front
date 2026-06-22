@@ -200,6 +200,32 @@ export default function EventTable({ events }) {
 
                     <ChevronRight size={14} />
                   </button>
+                  <button
+                    onClick={() =>
+                      navigate(`/admin-event/events/${event.id}/certificates`)
+                    }
+                    className="
+                  flex
+                  w-full
+                  items-center
+                  justify-between
+                  rounded-xl
+                  px-4
+                  py-3
+                  text-sm
+                  text-slate-700
+                  transition
+                  hover:bg-emerald-50
+                  hover:text-emerald-700
+                "
+                  >
+                    <div className="flex items-center gap-3">
+                      <Vote size={16} />
+                      <span>Certificates</span>
+                    </div>
+
+                    <ChevronRight size={14} />
+                  </button>
                 </div>
               )}
             </div>

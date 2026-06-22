@@ -57,6 +57,7 @@ import PublicVotingPage from "@/features/voting/pages/PublicVotingPage";
 import OAuthCallbackPage from "@/oauth/callback";
 import PublicEventPage from "@/features/voting/pages/PublicEventPage";
 import VotingLeaderboardPage from "@/features/admin-event/pages/VotingLeaderboardPage";
+import CertificateSetupPage from "@/features/admin-event/pages/CertificateSetupPage";
 
 export const routes = [
   {
@@ -273,6 +274,11 @@ export const routes = [
             path: ":eventId/leaderboard",
 
             element: <VotingLeaderboardPage />,
+          },
+          {
+            path: ":eventId/certificates",
+
+            element: <CertificateSetupPage />,
           },
         ],
       },
