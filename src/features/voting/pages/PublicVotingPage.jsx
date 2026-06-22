@@ -142,7 +142,7 @@ export default function PublicVotingPage() {
       {isLoggedIn && (
         <div className="glass rounded-3xl p-4 mb-8 flex justify-between items-center">
           <span className="text-green-600 font-medium">
-            ✔ Anda sudah login untuk voting
+            Anda sudah login untuk voting
           </span>
 
           <button
@@ -257,7 +257,7 @@ export default function PublicVotingPage() {
                         : "btn-primary"
                     }`}
                   >
-                    {votedId === item.id ? "✓ Sudah Vote" : "Vote Sekarang"}
+                    {votedId === item.id ? "Sudah Vote" : "Vote Sekarang"}
                   </button>
                 </div>
               );
