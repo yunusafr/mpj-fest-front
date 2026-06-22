@@ -8,13 +8,12 @@ export default function OAuthCallbackPage() {
   useEffect(() => {
     const token = params.get("token");
 
+    console.log("TOKEN =", token);
+
     if (token) {
       localStorage.setItem("token", token);
 
-      // redirect ke dashboard / home
       navigate("/");
-    } else {
-      navigate("/login");
     }
   }, []);
 
