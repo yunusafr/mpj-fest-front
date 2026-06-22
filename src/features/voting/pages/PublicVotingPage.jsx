@@ -118,7 +118,7 @@ export default function PublicVotingPage() {
       </div>
 
       {/* LOGIN STATUS */}
-      {isLoggedIn() && (
+      {isLoggedIn && (
         <div className="glass rounded-3xl p-4 mb-8 flex justify-between items-center">
           <span className="text-green-600 font-medium">
             ✔ Anda sudah login untuk voting
@@ -134,7 +134,7 @@ export default function PublicVotingPage() {
       )}
 
       {/* LOGIN */}
-      {!isLoggedIn() && (
+      {!isLoggedIn && (
         <div className="card p-6 mb-8">
           <h3 className="text-xl font-bold mb-4">Login Voting</h3>
 
@@ -197,7 +197,7 @@ export default function PublicVotingPage() {
                 <button
                   onClick={() => handleVote(item.id)}
                   disabled={
-                    !isLoggedIn() ||
+                    !isLoggedIn ||
                     voteLoading ||
                     voting_status !== "open" ||
                     votedId === item.id
