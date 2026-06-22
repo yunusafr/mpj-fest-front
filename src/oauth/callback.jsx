@@ -8,11 +8,15 @@ export default function OAuthCallbackPage() {
   useEffect(() => {
     const token = params.get("token");
 
-    console.log("TOKEN =", token);
-
     if (token) {
       localStorage.setItem("token", token);
 
+      const redirectUrl = localStorage.getItem("oauth_redirect") || "/";
+
+      localStorage.removeItem("oauth_redirect");
+
+      navigate(redirectUrl);
+    } else {
       navigate("/");
     }
   }, []);

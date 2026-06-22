@@ -5,6 +5,8 @@ export default function useVotingAuth() {
   const [loading, setLoading] = useState(false);
 
   const login = async () => {
+    localStorage.setItem("oauth_redirect", window.location.pathname);
+
     const res = await getGoogleLoginUrl();
 
     window.location.href = res.url;
