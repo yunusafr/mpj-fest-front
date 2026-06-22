@@ -11,3 +11,13 @@ export const getVoting = async (eventId) => {
 
   return data;
 };
+
+export const getLeaderboard = async (eventId, sort = "votes") => {
+  const { data } = await api.get(`/admin-event/events/${eventId}/leaderboard`, {
+    params: {
+      sort,
+    },
+  });
+
+  return data;
+};

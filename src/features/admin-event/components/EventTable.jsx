@@ -42,9 +42,6 @@ export default function EventTable({ events }) {
          border-slate-200
          bg-white
          p-5
-         transition-all
-         hover:-translate-y-0.5
-         hover:shadow-md
        "
         >
           {" "}
@@ -173,6 +170,32 @@ export default function EventTable({ events }) {
                     <div className="flex items-center gap-3">
                       <Vote size={16} />
                       <span>Voting</span>
+                    </div>
+
+                    <ChevronRight size={14} />
+                  </button>
+                  <button
+                    onClick={() =>
+                      navigate(`/admin-event/events/${event.id}/leaderboard`)
+                    }
+                    className="
+                  flex
+                  w-full
+                  items-center
+                  justify-between
+                  rounded-xl
+                  px-4
+                  py-3
+                  text-sm
+                  text-slate-700
+                  transition
+                  hover:bg-emerald-50
+                  hover:text-emerald-700
+                "
+                  >
+                    <div className="flex items-center gap-3">
+                      <Vote size={16} />
+                      <span>Leaderboard</span>
                     </div>
 
                     <ChevronRight size={14} />

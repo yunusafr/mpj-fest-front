@@ -56,6 +56,7 @@ import VotingSetupPage from "@/features/admin-event/pages/VotingSetupPage";
 import PublicVotingPage from "@/features/voting/pages/PublicVotingPage";
 import OAuthCallbackPage from "@/oauth/callback";
 import PublicEventPage from "@/features/voting/pages/PublicEventPage";
+import VotingLeaderboardPage from "@/features/admin-event/pages/VotingLeaderboardPage";
 
 export const routes = [
   {
@@ -267,6 +268,11 @@ export const routes = [
             path: ":eventId/voting",
 
             element: <VotingSetupPage />,
+          },
+          {
+            path: ":eventId/leaderboard",
+
+            element: <VotingLeaderboardPage />,
           },
         ],
       },

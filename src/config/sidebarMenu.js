@@ -58,11 +58,6 @@ export const sidebarMenu = {
       icon: CalendarCheck,
     },
     {
-      title: "Voting",
-      path: "/super-admin/voting",
-      icon: Vote,
-    },
-    {
       title: "Sertifikat",
       path: "/super-admin/certificates",
       icon: Award,
