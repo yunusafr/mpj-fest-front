@@ -195,43 +195,31 @@ export default function PublicVotingPage() {
                 Anda Sudah Login
               </h3>
 
-              <p className="text-slate-500 mb-6 max-w-md mx-auto">
+              <p className="text-slate-500 mb-6">
                 Akun Google berhasil terverifikasi. Sekarang Anda dapat
                 memberikan vote pada karya favorit Anda.
               </p>
-
-              <div
-                className="
-          inline-flex
-          items-center
-          gap-2
-          px-4
-          py-2
-          rounded-full
-          bg-green-50
-          text-green-700
-          border
-          border-green-200
-          mb-6
-        "
-              >
-                <span className="h-2 w-2 rounded-full bg-green-500" />
-                Status Login Aktif
-              </div>
 
               <div>
                 <button
                   onClick={handleLogout}
                   className="
-            px-6
-            py-3
-            rounded-2xl
-            bg-red-500
-            text-white
-            font-semibold
-            hover:bg-red-600
-            transition
-          "
+    px-6
+    py-3
+    rounded-2xl
+    bg-gradient-to-r
+    from-rose-400
+    via-red-400
+    to-pink-400
+    text-white
+    font-semibold
+    shadow-md
+    hover:from-rose-500
+    hover:via-red-500
+    hover:to-pink-500
+    transition-all
+    duration-300
+  "
                 >
                   Logout
                 </button>
@@ -250,7 +238,7 @@ export default function PublicVotingPage() {
               <button
                 onClick={handleLogin}
                 disabled={loginLoading}
-                className="btn-primary"
+                className="mt-3 btn-primary"
               >
                 {loginLoading ? "Loading..." : "Login dengan Google"}
               </button>
