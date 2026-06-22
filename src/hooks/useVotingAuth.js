@@ -1,27 +1,13 @@
 import { useState } from "react";
-import { loginVoting } from "@/api/votingApi";
+import { getGoogleLoginUrl } from "@/api/votingApi";
 
 export default function useVotingAuth() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const login = async (email) => {
-    try {
-      setLoading(true);
-      setError(null);
+  const login = async () => {
+    const res = await getGoogleLoginUrl();
 
-      const res = await loginVoting(email);
-
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("voting_user", JSON.stringify(res.user));
-
-      return res;
-    } catch (err) {
-      setError(err?.response?.data?.message || "Login gagal");
-      throw err;
-    } finally {
-      setLoading(false);
-    }
+    window.location.href = res.url;
   };
 
   const logout = () => {
@@ -33,5 +19,10 @@ export default function useVotingAuth() {
     return !!localStorage.getItem("token");
   };
 
-  return { login, logout, loading, error, isLoggedIn };
+  return {
+    login,
+    logout,
+    loading,
+    isLoggedIn,
+  };
 }

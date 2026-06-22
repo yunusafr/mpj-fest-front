@@ -17,20 +17,13 @@ export default function PublicVotingPage() {
 
   const [page, setPage] = useState(1);
 
-  const [email, setEmail] = useState("");
-
   const [votedId, setVotedId] = useState(null);
 
   const ITEMS_PER_PAGE = 8;
 
   const handleLogin = async () => {
-    if (!email) {
-      toast.error("Email wajib diisi");
-      return;
-    }
-
     try {
-      await login(email);
+      await login();
 
       toast.success("Login berhasil");
     } catch (err) {
@@ -146,20 +139,17 @@ export default function PublicVotingPage() {
           <h3 className="text-xl font-bold mb-4">Login Voting</h3>
 
           <div className="flex gap-3">
-            <input
-              placeholder="Masukkan email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
+            <div className="card p-6 mb-8">
+              <h3 className="text-xl font-bold mb-4">Login untuk Voting</h3>
 
-            <button
-              onClick={handleLogin}
-              disabled={loginLoading}
-              className="btn-primary whitespace-nowrap"
-            >
-              {loginLoading ? "Loading..." : "Login"}
-            </button>
+              <button
+                onClick={handleLogin}
+                disabled={loginLoading}
+                className="btn-primary"
+              >
+                Login dengan Google
+              </button>
+            </div>
           </div>
         </div>
       )}
