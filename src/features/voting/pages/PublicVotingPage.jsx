@@ -2,6 +2,26 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import {
+  CalendarDays,
+  Trophy,
+  Users,
+  UserCog,
+  CreditCard,
+  Vote,
+  Award,
+  ClipboardCheck,
+  FileBarChart,
+  Ticket,
+  FileUp,
+  CalendarCheck,
+  FileText,
+  Settings,
+  ScanLine,
+  Medal,
+  Receipt,
+} from "lucide-react";
+
 import usePublicVoting from "@/hooks/usePublicVoting";
 import useSubmitVote from "@/hooks/useSubmitVote";
 import useVotingAuth from "@/hooks/useVotingAuth";
@@ -16,10 +36,12 @@ export default function PublicVotingPage() {
   const { login, logout, loading: loginLoading, isLoggedIn } = useVotingAuth();
 
   const [page, setPage] = useState(1);
-
   const [votedId, setVotedId] = useState(null);
 
   const ITEMS_PER_PAGE = 8;
+
+  const apiUrl = import.meta.env.VITE_API_URL || "";
+  const baseUrl = apiUrl.replace("/api/", "");
 
   const handleLogin = async () => {
     try {
@@ -34,7 +56,6 @@ export default function PublicVotingPage() {
   const handleLogout = () => {
     logout();
 
-    setEmail("");
     setVotedId(null);
     setPage(1);
 
@@ -58,13 +79,13 @@ export default function PublicVotingPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading voting...{" "}
+        Loading voting...
       </div>
     );
   }
 
   if (error) {
-    return <div className="text-center text-red-500 py-10">{error} </div>;
+    return <div className="text-center text-red-500 py-10">{error}</div>;
   }
 
   const event = data || {};
@@ -138,19 +159,13 @@ export default function PublicVotingPage() {
         <div className="card p-6 mb-8">
           <h3 className="text-xl font-bold mb-4">Login Voting</h3>
 
-          <div className="flex gap-3">
-            <div className="card p-6 mb-8">
-              <h3 className="text-xl font-bold mb-4">Login untuk Voting</h3>
-
-              <button
-                onClick={handleLogin}
-                disabled={loginLoading}
-                className="btn-primary"
-              >
-                Login dengan Google
-              </button>
-            </div>
-          </div>
+          <button
+            onClick={handleLogin}
+            disabled={loginLoading}
+            className="btn-primary"
+          >
+            {loginLoading ? "Loading..." : "Login dengan Google"}
+          </button>
         </div>
       )}
 
@@ -162,9 +177,10 @@ export default function PublicVotingPage() {
       )}
 
       {/* LIST */}
+
       {submissions.length === 0 ? (
         <div className="card p-10 text-center">
-          <div className="text-6xl mb-4">📭</div>
+          <FileUp size={40} className="mx-auto text-slate-400" />
 
           <h3 className="text-xl font-bold mb-2">Belum Ada Karya</h3>
 
@@ -173,45 +189,79 @@ export default function PublicVotingPage() {
       ) : (
         <>
           <div className="grid md:grid-cols-2 gap-6">
-            {paginatedSubmissions.map((item) => (
-              <div key={item.id} className="card p-6">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
-                    {item.registration?.user?.nama?.charAt(0)?.toUpperCase() ||
-                      "?"}
-                  </div>
+            {paginatedSubmissions.map((item) => {
+              const coverUrl = item.file_url
+                ? `${baseUrl}${item.file_url}`
+                : null;
 
-                  <div>
-                    <h3 className="font-bold text-lg">
-                      {item.registration?.user?.nama}
-                    </h3>
+              return (
+                <div
+                  key={item.id}
+                  className="card p-6 relative overflow-hidden"
+                >
+                  {/* TOTAL VOTE BADGE */}
+                  <div className="absolute top-4 right-4">
+                    <div className="h-16 w-16 rounded-full bg-green-500 text-white flex flex-col items-center justify-center shadow-lg">
+                      <span className="text-lg font-black leading-none">
+                        {item.votes_count}
+                      </span>
 
-                    <p className="text-sm text-gray-500">Total Vote</p>
-
-                    <div className="text-2xl font-bold text-green-600">
-                      {item.votes_count}
+                      <span className="text-[10px] uppercase">Vote</span>
                     </div>
                   </div>
-                </div>
+                  <div className="w-full h-56 rounded-xl mb-5 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    {coverUrl ? (
+                      <img
+                        src={coverUrl}
+                        alt="Cover karya"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="text-gray-400 text-center">
+                        <FileUp size={40} className="mx-auto text-slate-400" />
 
-                <button
-                  onClick={() => handleVote(item.id)}
-                  disabled={
-                    !isLoggedIn ||
-                    voteLoading ||
-                    voting_status !== "open" ||
-                    votedId === item.id
-                  }
-                  className={`w-full mt-6 py-3 rounded-2xl font-semibold transition ${
-                    votedId === item.id
-                      ? "bg-green-500 text-white"
-                      : "btn-primary"
-                  }`}
-                >
-                  {votedId === item.id ? "✓ Sudah Vote" : "Vote Sekarang"}
-                </button>
-              </div>
-            ))}
+                        <p>Tidak ada cover</p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
+                      {item.registration?.user?.nama
+                        ?.charAt(0)
+                        ?.toUpperCase() || "?"}
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-lg">
+                        {item.registration?.user?.nama}
+                      </h3>
+
+                      <p className="text-sm text-gray-500">
+                        {item.registration?.user?.pesantren || "-"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => handleVote(item.id)}
+                    disabled={
+                      !isLoggedIn ||
+                      voteLoading ||
+                      voting_status !== "open" ||
+                      votedId === item.id
+                    }
+                    className={`w-full mt-6 py-3 rounded-2xl font-semibold transition ${
+                      votedId === item.id
+                        ? "bg-green-500 text-white"
+                        : "btn-primary"
+                    }`}
+                  >
+                    {votedId === item.id ? "✓ Sudah Vote" : "Vote Sekarang"}
+                  </button>
+                </div>
+              );
+            })}
           </div>
 
           {totalPages > 1 && (
