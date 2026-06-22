@@ -171,42 +171,92 @@ export default function PublicVotingPage() {
           </div>
         </div>
 
-        {/* LOGIN STATUS */}
-        {isLoggedIn && (
-          <div className="glass rounded-3xl p-5 mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
-            <span className="text-green-600 font-semibold">
-              Anda sudah login untuk voting
-            </span>
+        {/* AUTH CARD */}
+        <div className="card p-8 mb-8 text-center">
+          {isLoggedIn ? (
+            <>
+              <div className="flex justify-center mb-4">
+                <div
+                  className="
+            h-20
+            w-20
+            rounded-full
+            bg-green-100
+            flex
+            items-center
+            justify-center
+          "
+                >
+                  <ClipboardCheck size={40} className="text-green-600" />
+                </div>
+              </div>
 
-            <button
-              onClick={handleLogout}
-              className="px-5 py-3 rounded-2xl bg-red-500 text-white font-semibold hover:bg-red-600 transition"
-            >
-              Logout
-            </button>
-          </div>
-        )}
+              <h3 className="text-2xl font-bold text-green-600 mb-2">
+                Anda Sudah Login
+              </h3>
 
-        {/* LOGIN */}
-        {!isLoggedIn && (
-          <div className="card p-8 mb-8 text-center">
-            <UserCog size={42} className="mx-auto text-green-600 mb-4" />
+              <p className="text-slate-500 mb-6 max-w-md mx-auto">
+                Akun Google berhasil terverifikasi. Sekarang Anda dapat
+                memberikan vote pada karya favorit Anda.
+              </p>
 
-            <h3 className="text-2xl font-bold mb-2">Login Voting</h3>
+              <div
+                className="
+          inline-flex
+          items-center
+          gap-2
+          px-4
+          py-2
+          rounded-full
+          bg-green-50
+          text-green-700
+          border
+          border-green-200
+          mb-6
+        "
+              >
+                <span className="h-2 w-2 rounded-full bg-green-500" />
+                Status Login Aktif
+              </div>
 
-            <p className="mb-6">
-              Login menggunakan akun Google untuk memberikan suara.
-            </p>
+              <div>
+                <button
+                  onClick={handleLogout}
+                  className="
+            px-6
+            py-3
+            rounded-2xl
+            bg-red-500
+            text-white
+            font-semibold
+            hover:bg-red-600
+            transition
+          "
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <UserCog size={42} className="mx-auto text-green-600 mb-4" />
 
-            <button
-              onClick={handleLogin}
-              disabled={loginLoading}
-              className="btn-primary"
-            >
-              {loginLoading ? "Loading..." : "Login dengan Google"}
-            </button>
-          </div>
-        )}
+              <h3 className="text-2xl font-bold mb-2">Login Voting</h3>
+
+              <p className="mb-6 text-slate-500">
+                Login menggunakan akun Google untuk memberikan suara.
+              </p>
+
+              <button
+                onClick={handleLogin}
+                disabled={loginLoading}
+                className="btn-primary"
+              >
+                {loginLoading ? "Loading..." : "Login dengan Google"}
+              </button>
+            </>
+          )}
+        </div>
 
         {/* CLOSED */}
         {voting_status !== "open" && (
