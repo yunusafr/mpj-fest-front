@@ -1,10 +1,24 @@
 import {
   MoreVertical,
   ClipboardList,
-  Vote,
   ChevronRight,
+  CalendarDays,
+  Trophy,
   Users,
+  UserCog,
+  CreditCard,
+  Vote,
+  Award,
+  ClipboardCheck,
+  FileBarChart,
   Ticket,
+  FileUp,
+  CalendarCheck,
+  FileText,
+  Settings,
+  ScanLine,
+  Medal,
+  Receipt,
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
@@ -59,14 +73,14 @@ export default function EventTable({ events }) {
               <div className="flex flex-wrap gap-5 text-sm text-slate-500">
                 <div className="flex items-center gap-2">
                   <Users size={16} />
-                  Peserta
-                  <b>{event.jumlah_peserta}</b>
+                  Kuota Peserta
+                  <b>{event.kuota}</b>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <ClipboardList size={16} />
-                  Kriteria
-                  <b>{event.jumlah_kriteria}</b>
+                  Lokasi
+                  <b>{event.lokasi}</b>
                 </div>
               </div>
             </div>
@@ -194,7 +208,7 @@ export default function EventTable({ events }) {
                 "
                   >
                     <div className="flex items-center gap-3">
-                      <Vote size={16} />
+                      <Medal size={16} />
                       <span>Leaderboard</span>
                     </div>
 
@@ -220,7 +234,7 @@ export default function EventTable({ events }) {
                 "
                   >
                     <div className="flex items-center gap-3">
-                      <Vote size={16} />
+                      <Award size={16} />
                       <span>Certificates</span>
                     </div>
 
