@@ -58,6 +58,10 @@ import OAuthCallbackPage from "@/oauth/callback";
 import PublicEventPage from "@/features/voting/pages/PublicEventPage";
 import VotingLeaderboardPage from "@/features/admin-event/pages/VotingLeaderboardPage";
 import CertificateSetupPage from "@/features/admin-event/pages/CertificateSetupPage";
+import CertificatePage from "@/features/registration/pages/CertificatePage";
+import CertificatesPage from "@/features/registration/pages/CertificatesPage";
+import CertificatesPage2 from "@/features/admin-event/pages/CertificatesPage";
+import CertificatePage2 from "@/features/admin-event/pages/CertificatePage";
 
 export const routes = [
   {
@@ -304,6 +308,14 @@ export const routes = [
         path: "payments/:orderId",
         element: <InvoicePage />,
       },
+      {
+        path: "certificates",
+        element: <CertificatesPage2 />,
+      },
+      {
+        path: "certificates/:eventId",
+        element: <CertificatePage2 />,
+      },
     ],
   },
   {
@@ -371,6 +383,14 @@ export const routes = [
       {
         path: "payments/:orderId",
         element: <InvoicePage />,
+      },
+      {
+        path: "certificates",
+        element: <CertificatesPage />,
+      },
+      {
+        path: "certificates/:registrationId",
+        element: <CertificatePage />,
       },
     ],
   },

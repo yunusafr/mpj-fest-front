@@ -9,6 +9,8 @@ import {
   Save,
 } from "lucide-react";
 
+import { HexColorPicker } from "react-colorful";
+
 import { useCertificate, useSaveCertificate } from "../hooks/useCertificate";
 
 export default function CertificateSetupPage() {
@@ -187,25 +189,41 @@ export default function CertificateSetupPage() {
                 key: "text_color",
               },
             ].map((item) => (
-              <div
-                key={item.key}
-                className="rounded-2xl border border-slate-200 p-4"
-              >
+              <div key={item.key} className="rounded-2xl border-slate-200 p-4">
                 <label className="block text-sm font-medium text-slate-600 mb-3">
                   {item.label}
                 </label>
 
-                <input
-                  type="color"
-                  value={item.value}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      [item.key]: e.target.value,
-                    })
-                  }
-                  className="h-12 w-full cursor-pointer"
-                />
+                <div
+                  key={item.key}
+                  className="rounded-2xl border border-slate-200 p-4"
+                >
+                  <label className="block text-sm font-medium text-slate-600 mb-3">
+                    {item.label}
+                  </label>
+
+                  <HexColorPicker
+                    color={item.value}
+                    onChange={(color) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        [item.key]: color,
+                      }))
+                    }
+                  />
+
+                  <input
+                    type="text"
+                    value={item.value}
+                    onChange={(e) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        [item.key]: e.target.value,
+                      }))
+                    }
+                    className="mt-3 w-full rounded-lg border border-slate-200 px-3 py-2"
+                  />
+                </div>
               </div>
             ))}
           </div>
